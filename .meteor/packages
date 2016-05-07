@@ -26,3 +26,7 @@ accounts-password
 check
 session
 fortawesome:fontawesome
+summernote:summernote
+cfs:standard-packages
+cfs:filesystem
+cfs:ejson-file
