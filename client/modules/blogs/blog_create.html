@@ -1,0 +1,26 @@
+<template name="blogCreate">
+    <form class="main form page">
+        <div class="form-group {{errorClass 'post_title'}}">
+            <label for="post_title" class="control-label">หัวข้อ</label>
+            <div class="controls">
+                <input type="text" id="post_title" class="form-control" name="post_title" placeholder="หัวข้อ">
+                <span class="help-block">{{errorMessage 'post_title'}}</span>
+            </div>
+        </div>
+        <div class="form-group {{errorClass 'post_slug'}}">
+            <label for="post_slug" class="control-label">Slug</label>
+            <div class="controls">
+                <input type="text" id="post_slug" class="form-control" name="post_slug" placeholder="Slug">
+                <span class="help-block">{{errorMessage 'post_slug'}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="post_content" class="control-label">เนื้อหา</label>
+            <div class="controls">
+                {{> GhostEditor}}
+                <textarea name="post_content" id="post_content" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="submit">
+    </form>
+</template>
