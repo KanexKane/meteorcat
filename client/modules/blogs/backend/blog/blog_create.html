@@ -1,4 +1,4 @@
-<template name="blogCreate">
+<template name="BlogCreate">
     <form class="main form page">
         <div class="form-group {{errorClass 'post_title'}}">
             <label for="post_title" class="control-label">หัวข้อ</label>
@@ -7,11 +7,21 @@
                 <span class="help-block">{{errorMessage 'post_title'}}</span>
             </div>
         </div>
-        <div class="form-group {{errorClass 'post_slug'}}">
+        <div class="form-group">
             <label for="post_slug" class="control-label">Slug</label>
             <div class="controls">
                 <input type="text" id="post_slug" class="form-control" name="post_slug" placeholder="Slug">
                 <span class="help-block">{{errorMessage 'post_slug'}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="post_category" class="control-label">Category</label>
+            <div class="controls">
+                <select name="post_category" id="post_category" class="form-control">
+                    {{#each optionCategories}}
+                        <option value="{{_id}}">{{category_name}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
         <div class="form-group">

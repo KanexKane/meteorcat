@@ -24,3 +24,19 @@ Meteor.publish('notifications', function(){
 Meteor.publish('blogs', function(){
     return BlogPosts.find({});
 });
+Meteor.publish('blogDetail', function(_id){
+    check(_id, String);
+    return BlogPosts.find({_id: _id});
+});
+Meteor.publish('blogDetailBySlug', function(post_slug){
+    check(post_slug, String);
+    return BlogPosts.find({post_slug: post_slug});
+});
+
+Meteor.publish('categories', function(){
+    return BlogCategories.find({});
+});
+
+Meteor.publish('blogimages', function(){
+    return BlogImages.find({});
+});
