@@ -32,3 +32,5 @@ cfs:filesystem
 cfs:ejson-file
 momentjs:moment
 copleykj:tagstripper
+aldeed:tabular
+dburles:collection-helpers

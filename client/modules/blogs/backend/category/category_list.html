@@ -1,0 +1,27 @@
+<template name="BlogCategoryList">
+    {{#contentFor "title"}}
+        รายการหมวดหมู่
+    {{/contentFor}}
+    {{> tabular table=TabularTables.BlogCategories class="table table-striped table-bordered table-condensed"}}
+    <!-- <table id="table_categories" class="table table-striped table-bordered table-hover dataTable no-footer">
+        <thead>
+            <tr>
+                <th>ชื่อหมวดหมู่</th>
+                <th>Slug หมวดหมู่</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categories}}
+                <tr>
+                    <td>{{category_name}}</td>
+                    <td>{{category_slug}}</td>
+                    <td>
+                        <a href="{{pathFor 'BlogCategoryEdit' _id}}" class="edit-category btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="#" class="delete-category btn btn-danger"><i class="fa fa-remove"></i></a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table> -->
+</template>
