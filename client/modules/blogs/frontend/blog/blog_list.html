@@ -1,47 +1,45 @@
 <template name="Blogs">
-    <header>
-        <h1>Blogs</h1>
-    </header>
-    <section class="tiles">
+    <!-- <div class="col-md-12">
+        {{> BlogSideBar}}
+    </div> -->
+    <div class="col-md-12">
         {{#each posts}}
-            <article id="{{_id}}">
-                <span class="image">
-                    <img src="{{postFeaturedImage}}" alt="" sizes="(max-width:300px) 100vw, 300px"/>
-                </span>
-                <a href="{{linkToPost}}">
-                    <h2>{{post_title}}</h2>
-                    <div class="content">
-                        <p>{{postContent}}</p>
-                    </div>
-                </a>
-            </article>
-        {{/each}}
-    </section>
-    <!-- <div class="col-md-8">
-        {{#each posts}}
-            <article id="{{_id}}" class="col-md-12 entry-post">
-                <div class="col-md-5 entry-thumb">
-                    <a href="{{linkToPost}}" target="_self">
-                        <img src="{{postFeaturedImage}}" class="entry-thumb-image"  sizes="(max-width:300px) 100vw, 300px">
+            <article id="post-{{_id}}" class="col-md-4 entry">
+                <figure class="entry-thumbnail">
+                    <a href="{{linkToPost}}">
+                        <img src="{{postFeaturedImage}}" sizes="(max-width:320px) 100vw, 320px">
                     </a>
-                </div>
-                <div class="col-md-7 entry-post-info">
-                    <header class="entry-header">
-                        <h3 class="entry-title">
-                            <a href="{{linkToPost}}">{{post_title}}</a>
-                        </h3>
-                        <small>Posted in {{categoryName post_category}} by {{post_author}} on {{postDate}}</small>
-                    </header>    
-                    <div class="entry-summary">
-                        {{postContent}}
-                    </div>
-                </div>
+                </figure>
+                <header class="entry-header">
+                    <h2 class="entry-title">
+                        <a href="{{linkToPost}}" rel="bookmark">
+                            {{postTitle}}
+                        </a>
+                    </h2>
+                    <div class="entry-meta">
+                        <span class="entry-meta-item category">
+                            <span class="category">
+                                <i class="fa fa-bookmark-o"></i>
+                                {{categoryName post_category}}
+                            </span>
+                        </span>
+                        <span class="entry-meta-item author">
+                            <span class="author">
+                                <i class="fa fa-pencil"></i>
+                                Yongyee Tubtong
+                            </span>
+                        </span>
+                        <span class="entry-meta-item posted-on">
+                            <i class="fa fa-calendar-o"></i>
+                            {{postDate}}
+                        </span>
+                    </div><!-- .entry-meta -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+                    {{postContent}} 
+                </div><!-- .entry-content -->
             </article>
         {{/each}}
     </div>
-    <div class="col-md-4">
-        {{> BlogSideBar}}
-    </div> -->
-    
 </template>
 
