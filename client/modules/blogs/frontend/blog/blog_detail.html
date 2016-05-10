@@ -1,12 +1,12 @@
 <template name="BlogDetail">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <article id="{{post._id}}">
 
             <header class="entry-header"> 
                 <h1 class="entry-title">{{post.post_title}}</h1>       
                 <div class="entry-meta">
                     <span class="entry-meta-item cat-links">
-                        <i class="fa fa-folder-open"></i> Posted in <a href="{{linkToCategory}}" rel="category tag">สวยง่ายๆได้ที่บ้าน</a>
+                        <i class="fa fa-folder-open"></i> Posted in {{categoryName}}
                     </span>
                     <span class="entry-meta-item author">
                         <span class="author">by {{post.post_author}}</span>
@@ -16,12 +16,13 @@
                     </span>
                 </div><!-- .entry-meta -->
             </header><!-- .entry-header -->
-
-            <figure class="entry-thumbnail">
+            <br>
+            <div class="text-center">
                 <img src="{{postFeaturedImage}}" sizes="(max-width: 100%) 100vw, 100%">
-            </figure>
-
-            <div class="entry-content">
+            </div>
+            
+            <br><br><br>
+            <div>
                 {{{post.post_content}}}   
             </div><!-- .entry-content -->
 
@@ -29,7 +30,7 @@
             </footer><!-- .entry-footer -->
         </article>
     </div>
-    <div class="col-md-4">
+<!--     <div class="col-md-4">
         {{> BlogSideBar}}
-    </div>
+    </div> -->
 </template>
