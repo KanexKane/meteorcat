@@ -1,7 +1,8 @@
-<template name="layout">
+<template name="LayoutAdmin">
     {{> header}}
     <div class="wrapper">
         <div class="container">
+            <h1 class="page-header">{{> yield "title"}}</h1>
             {{> yield}}
         </div>
     </div>
