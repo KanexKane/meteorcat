@@ -1,8 +1,8 @@
-Template.BlogCreate.onCreated(function(){
+Template.CatAdminBlogCreate.onCreated(function(){
     Session.set('blogCreateErrors', {});
 });
 
-Template.BlogCreate.onRendered(function() {
+Template.CatAdminBlogCreate.onRendered(function() {
     $('#post_content').summernote({
         height: 400,
         maxHeight:800,
@@ -22,7 +22,7 @@ Template.BlogCreate.onRendered(function() {
 });
 
 
-Template.BlogCreate.helpers({
+Template.CatAdminBlogCreate.helpers({
     errorMessage: function(field){
         return Session.get('blogCreateErrors')[field];
     },
@@ -37,7 +37,7 @@ Template.BlogCreate.helpers({
     }
 });
 
-Template.BlogCreate.events({
+Template.CatAdminBlogCreate.events({
     'submit form': function(e){
         e.preventDefault();
 
@@ -78,5 +78,8 @@ Template.BlogCreate.events({
             
             Router.go('Blogs', { _id: result._id });
         });
+    },
+    'click .cancel-process': function(e){
+        Router.go('CatAdminBlogList');
     }
 });

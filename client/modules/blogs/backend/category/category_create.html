@@ -1,4 +1,4 @@
-<template name="BlogCategoryCreate">
+<template name="CatAdminBlogCategoryCreate">
     {{#contentFor "title"}}
         สร้างหมวดหมู่
     {{/contentFor}}
@@ -17,6 +17,7 @@
                 <span class="help-block">{{errorMessage 'category_slug' 'ถ้าไม่กรอกระบบจะทำให้อัตโนมัติ'}}</span>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="submit">
+        <input type="submit" class="btn btn-primary" value="บันทึก">
+        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
     </form>
 </template>

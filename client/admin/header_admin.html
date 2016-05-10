@@ -9,20 +9,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Cat Land Online</a>
+                <a class="navbar-brand page-scroll" href="{{pathFor 'CatAdminHome'}}">Cat Land Online</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
+                    <li>
+                        <a href="{{pathFor 'CatAdminHome'}}">Home</a>
                     </li>
-                    <li class="{{activeRouteClass 'home'}}">
-                        <a class="page-scroll" href="{{pathFor 'home'}}">Home</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Blogs <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{pathFor 'CatAdminBlogList'}}">รายการบทความ</a></li>
+                            <li><a href="{{pathFor 'CatAdminBlogCreate'}}">สร้างบทความ</a></li>
+                            <li><a href="{{pathFor 'CatAdminBlogCategoryList'}}">รายการหมวดหมู่</a></li>
+                            <li><a href="{{pathFor 'CatAdminBlogCategoryCreate'}}">สร้างหมวดหมู่</a></li>
+                        </ul>
                     </li>
-                    <li class="{{activeRouteClass 'Blogs'}}">
-                        <a class="page-scroll" href="{{pathFor 'Blogs'}}">Blogs</a>
-                    </li>
+ 
                     {{#if currentUser}}
                         <li class="dropdown">
                           {{> notifications}}

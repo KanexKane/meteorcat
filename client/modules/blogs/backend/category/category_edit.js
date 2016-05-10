@@ -1,8 +1,8 @@
-Template.BlogCategoryEdit.onCreated(function(){
+Template.CatAdminBlogCategoryEdit.onCreated(function(){
     Session.set('blogCategoryEditErrors', {});
 });
 
-Template.BlogCategoryEdit.helpers({
+Template.CatAdminBlogCategoryEdit.helpers({
     errorMessage: function(field, text){
         if(_.isObject(text)){
             text = '';
@@ -14,7 +14,7 @@ Template.BlogCategoryEdit.helpers({
     }
 });
 
-Template.BlogCategoryEdit.events({
+Template.CatAdminBlogCategoryEdit.events({
     'submit form': function(e){
         e.preventDefault();
 
@@ -44,5 +44,8 @@ Template.BlogCategoryEdit.events({
             
             Router.go('BlogCategoryList');
         });
+    },
+    'click .cancel-process': function(e){
+        Router.go('CatAdminBlogCategoryList');
     }
 });

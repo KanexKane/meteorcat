@@ -1,4 +1,7 @@
-<template name="BlogEdit">
+<template name="CatAdminBlogEdit">
+    {{#contentFor "title"}}
+        แก้ไขบทความ
+    {{/contentFor}}
     <form class="main form page">
         <div class="form-group {{errorClass 'post_title'}}">
             <label for="post_title" class="control-label">หัวข้อ</label>
@@ -46,6 +49,7 @@
                 {{/if}}
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="submit">
+        <input type="submit" class="btn btn-primary" value="บันทึก">
+        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
     </form>
 </template>
