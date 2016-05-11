@@ -77,7 +77,7 @@ Template.CatAdminBlogEdit.events({
                 return throwError(error.reason);
             }
             
-            //Router.go('CatAdminBlogList', { _id: result._id });
+            Router.go('CatAdminBlogList', { _id: result._id });
         });
     },
     'click .cancel-process': function(e){
