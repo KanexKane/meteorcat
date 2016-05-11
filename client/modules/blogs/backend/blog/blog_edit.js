@@ -50,7 +50,8 @@ Template.CatAdminBlogEdit.events({
             post_title: $(e.target).find('[name=post_title]').val(),
             post_slug: $(e.target).find('[name=post_slug]').val(),
             post_content: $(e.target).find('[name=post_content]').val(),
-            post_category: $(e.target).find('[name=post_category]').val()
+            post_category: $(e.target).find('[name=post_category]').val(),
+            post_featured_image: ''
         };
         // check files
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
@@ -76,7 +77,7 @@ Template.CatAdminBlogEdit.events({
                 return throwError(error.reason);
             }
             
-            Router.go('Blogs', { _id: result._id });
+            //Router.go('CatAdminBlogList', { _id: result._id });
         });
     },
     'click .cancel-process': function(e){

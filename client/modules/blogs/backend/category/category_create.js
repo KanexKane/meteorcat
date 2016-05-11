@@ -40,7 +40,7 @@ Template.CatAdminBlogCategoryCreate.events({
                 return throwError(error.reason);
             }
             
-            Router.go('BlogCategoryList');
+            Router.go('CatAdminBlogCategoryList');
         });
     },
     'click .cancel-process': function(e){
