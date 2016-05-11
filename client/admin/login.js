@@ -1,10 +1,7 @@
 Template.CatAdminLogin.onCreated(function(){
-    if(Meteor.user()){
-        Router.go('home');
-    }
-
     Session.set('catAdminLoginErrors', '');
 });
+
 Template.CatAdminLogin.helpers({
     errorMessage: function(){return Session.get('catAdminLoginErrors')}
 })

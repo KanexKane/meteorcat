@@ -23,16 +23,13 @@ Template.Blogs.helpers({
     },
     postTitle: function(){
         var after = "";
-        var text = TagStripper.strip(this.post_title).substr(0,25);
-        if( text.length === 25 ){
-            after = "...";
-        }
+        var text = TagStripper.strip(this.post_title);
         return text + after
     },
     postContent: function(){
         var after = "";
-        var text = TagStripper.strip(this.post_content).substr(0,200);
-        if( text.length === 200 ){
+        var text = TagStripper.strip(this.post_content).replace('&nbsp;','').substr(0,180);
+        if( text.length === 180 ){
             after = "...";
         }
         return text + after
