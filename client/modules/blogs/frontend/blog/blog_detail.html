@@ -1,29 +1,14 @@
 <template name="BlogDetail">
-    <div class="col-md-12">
-        <article id="{{post._id}}">
-            <header class="entry-header"> 
-                <h1 class="entry-title">{{post.post_title}}</h1>       
-                <div class="entry-meta">
-                    <span class="entry-meta-item cat-links">
-                        <i class="fa fa-folder-open"></i> Posted in {{categoryName}}
-                    </span>
-                    <span class="entry-meta-item author">
-                        <span class="author">by {{post.post_author}}</span>
-                    </span>
-                    <span class="entry-meta-item posted-on">
-                        <time class="entry-date published">on {{postDate}}</time>
-                    </span>
-                </div><!-- .entry-meta -->
-            </header><!-- .entry-header -->       
-            <br>
-            <div class="post-content">
-                {{{post.post_content}}}   
-            </div><!-- .entry-content -->
-            <footer class="entry-footer">
-            </footer><!-- .entry-footer -->
-        </article>
+    <h1 class="page-header">
+        {{post.post_title}}
+    </h1>
+    <div class="row">
+        <div class="col-md-12">
+            <article id="{{post._id}}">     
+                <div class="post-content-detail">
+                    {{{post.post_content}}}   
+                </div><!-- .entry-content -->
+            </article>
+        </div>
     </div>
-<!--     <div class="col-md-4">
-        {{> BlogSideBar}}
-    </div> -->
 </template>
