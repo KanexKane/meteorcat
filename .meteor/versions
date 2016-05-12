@@ -34,6 +34,7 @@ cfs:tempstore@0.1.5
 cfs:upload-http@0.0.20
 cfs:worker@0.1.4
 check@1.2.1
+coffeescript@1.0.17
 copleykj:tagstripper@1.0.0
 dburles:collection-helpers@1.0.4
 ddp@1.2.5
@@ -70,6 +71,7 @@ launch-screen@1.0.11
 livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
+manuelschoebel:ms-seo@0.4.1
 meteor@1.1.14
 meteor-base@1.0.4
 minifier-css@1.1.11

@@ -1,49 +1,21 @@
 <template name="Blogs">
-    <!-- <div class="col-md-12">
-        {{> BlogSideBar}}
-    </div> -->
     <h1 class="page-header">
-        Blogs
+        Blogs แมวๆ BY CAT LAND
     </h1>
-    
-    <div class="col-md-12">
-        {{#each posts}}
-            <article id="post-{{_id}}" class="col-md-4 entry">
-                <figure class="entry-thumbnail">
-                    <a href="{{linkToPost}}">
-                        <img src="{{postFeaturedImage}}" sizes="(max-width:320px) 100vw, 320px">
-                    </a>
-                </figure>
-                <header class="entry-header">
-                    <h2 class="entry-title">
-                        <a href="{{linkToPost}}" rel="bookmark">
-                            {{postTitle}}
-                        </a>
-                    </h2>
-                    <div class="entry-meta">
-                        <span class="entry-meta-item category">
-                            <span class="category">
-                                <i class="fa fa-bookmark-o"></i>
-                                {{categoryName post_category}}
-                            </span>
-                        </span>
-                        <span class="entry-meta-item author">
-                            <span class="author">
-                                <i class="fa fa-pencil"></i>
-                                {{post_author}}
-                            </span>
-                        </span>
-                        <span class="entry-meta-item posted-on">
-                            <i class="fa fa-calendar-o"></i>
-                            {{postDate}}
-                        </span>
-                    </div><!-- .entry-meta -->
-                </header><!-- .entry-header -->
-                <div class="entry-content">
-                    {{postContent}} 
-                </div><!-- .entry-content -->
-            </article>
-        {{/each}}
-    </div>
+    {{#each rowBlog}}
+        <div class="row blogs">
+            {{#each rows}}
+                <div class="col-md-4">
+                    <article id="post-{{_id}}" class="entry">
+                        <figure class="entry-thumbnail">
+                            <a href="{{linkToPost}}">
+                                <img src="{{postFeaturedImage}}">
+                            </a>
+                        </figure>
+                        <h2 class="text-center"><strong>{{postTitle}}</strong></h2>
+                    </article>
+                </div>
+            {{/each}}
+        </div>
+    {{/each}}
 </template>
-

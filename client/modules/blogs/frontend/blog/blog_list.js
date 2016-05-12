@@ -10,6 +10,7 @@ Template.Blogs.helpers({
         return moment(this.post_update).add(543, 'years').format('DD/MM/YYYY HH:ss');
     },
     postFeaturedImage: function(){
+        console.log(this.post_featured_image);
         if(this.post_featured_image === ''){
             return "/images/noimage.png"
         }else{
@@ -33,6 +34,19 @@ Template.Blogs.helpers({
             after = "...";
         }
         return text + after
+    },
+    rowBlog: function(){
+        var rows = [];
+        _.each(this.posts.fetch(), function(post, i){
+            //console.log(i);
+            var rowsNumber = Math.floor(i / 3);
+            if(rows[rowsNumber] == null){
+                rows[rowsNumber] = {rows:[]};
+            }
+            rows[rowsNumber].rows.push(post);
+        });
+
+        return rows;
     }
 });
 

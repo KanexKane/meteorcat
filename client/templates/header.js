@@ -10,7 +10,3 @@ Template.header.helpers({
     return active && 'active';
   }
 });
-
-Template.header.onRendered(function(){
-    $('head').append("<meta property='fb:pages' content='238710326317325'>"); 
-});
