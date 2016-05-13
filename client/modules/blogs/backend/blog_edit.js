@@ -59,7 +59,7 @@ Template.CatAdminBlogEdit.events({
         if(!fileLink && file){
             var fileObj = BlogImages.insert(file);
             post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
-        }else{
+        }else if(fileLink){
             post['post_featured_image'] = fileLink;
         }
 
