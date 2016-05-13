@@ -49,10 +49,13 @@ Template.CatAdminBlogCreate.events({
             post_featured_image: ''
         };
         // check files
+        var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
-        if(file){
+        if(!fileLink && file){
             var fileObj = BlogImages.insert(file);
             post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
+        }else{
+            post['post_featured_image'] = fileLink;
         }
 
         var errors = validatePost(post);
@@ -76,7 +79,7 @@ Template.CatAdminBlogCreate.events({
                 throwError('This link has already been posted');
             }
             
-            Router.go('Blogs', { _id: result._id });
+            Router.go('CatAdminBlogList', { _id: result._id });
         });
     },
     'click .cancel-process': function(e){

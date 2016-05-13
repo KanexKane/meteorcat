@@ -54,10 +54,13 @@ Template.CatAdminBlogEdit.events({
             post_featured_image: ''
         };
         // check files
+        var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
-        if(file){
+        if(!fileLink && file){
             var fileObj = BlogImages.insert(file);
             post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
+        }else{
+            post['post_featured_image'] = fileLink;
         }
 
         var errors = validatePost(post);

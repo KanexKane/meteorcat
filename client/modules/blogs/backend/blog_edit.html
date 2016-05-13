@@ -41,6 +41,9 @@
             <label for="post_featured_image" class="control-label">Featured Image</label>
             <div class="controls">
                 <input type="file" class="form-control myFileInput" name="post_featured_image">
+                <br>
+                <input type="text" class="form-control" name="post_featured_image_url" placeholder="Link Featured Image">
+                <span class="help-block">ถ้าใส่ Link url จะใช้ url แทนรูปที่อัพโหลด</span>
                 {{#if post.post_featured_image}}
                     <br>
                     <div class="text-center">
