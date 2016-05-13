@@ -1,5 +1,12 @@
 accounts-base@1.2.7
 accounts-password@1.1.8
+alanning:roles@1.2.15
+aldeed:autoform@5.8.1
+aldeed:collection2@2.9.1
+aldeed:collection2-core@1.1.1
+aldeed:schema-deny@1.0.1
+aldeed:schema-index@1.0.1
+aldeed:simple-schema@1.5.3
 aldeed:tabular@1.6.1
 allow-deny@1.0.4
 anti:i18n@0.4.3
@@ -72,6 +79,7 @@ livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
 manuelschoebel:ms-seo@0.4.1
+mdg:validation-error@0.2.0
 meteor@1.1.14
 meteor-base@1.0.4
 minifier-css@1.1.11
