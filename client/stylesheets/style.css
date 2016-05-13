@@ -24,9 +24,22 @@ h1{
     margin: 0 0 5% 0;
 }
 
+.wrapper{
+  padding-top:40px;
+  padding-bottom:80px;
+}
 .wrapper-black{
     padding: 0% 5% 0% 5%;
     background-color: #000;
+}
+.navbar-green{
+  background-color: #18D8A9;
+}
+.navbar-green a{
+  color: #FFF;
+}
+.navbar-green .navbar-brand{
+  padding: 27px 15px;
 }
 
 .navbar-nav{
