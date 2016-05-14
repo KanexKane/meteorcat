@@ -1,3 +1,11 @@
 <template name="CatMemberFarmHome">
-  {{> quickForm collection="Farms" id="editFarmDetail" type="update" class="edit-farm-detail"}}
+  <!-- {{> quickForm collection="Farms" id="editFarmDetail" type="update" class="edit-farm-detail"}} -->
+
+  {{#autoForm collection="Farms" id="updateFarmSettingGeneral" type="insert"}}
+    {{> afQuickField name='farm_name'}}
+    {{> afQuickField name='farm_url'}}
+    {{> afQuickField name='farm_desc'}}
+    <button type="submit" class="btn btn-primary">Update</button>
+  {{/autoForm}}
+
 </template>
