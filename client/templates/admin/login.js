@@ -12,6 +12,7 @@ Template.CatAdminLogin.events({
         var emailVar = event.target.loginUsername.value;
         var passwordVar = event.target.loginPassword.value;
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
+            Meteor.call('addToRoleAdmin', Meteor.userId());
             if(Meteor.user()){
                 Router.go('home');
             }else{

@@ -1,0 +1,70 @@
+$textInfoColor = #1DC7EA
+$textDangerColor = #FF4A55
+$textWarningColor = #FF9500
+$babelColor = #18d8a9
+$bootstrapColor = #6f5499
+
+.member
+    width 100%
+    height 100vh
+    background-color rgba(203, 203, 210, 0.15)
+    h4, .h4
+        font-size 22px
+        line-height 30px
+    .card
+        border-radius 4px
+        box-shadow 0 1px 2px rgba(black, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1)
+        background-color #FFF
+        margin-bottom 30px
+        .header
+            padding 1em
+            color $babelColor
+        .title
+            margin 0
+            color #333
+            font-weight 300
+        .category
+        .label
+            font-size 14px
+            font-weight 400
+            color #9A9A9A
+            margin-bottom 0px
+        .content
+            padding 15px 15px 10px 15px
+        .footer
+            padding 0
+            background-color rgba(0, 0, 0, 0)
+            line-height 30px
+            .legend
+                padding 5px 0
+            div
+                display inline-block
+            hr
+                margin-top 5px
+                margin-bottom 5px
+                border-color #DDD
+        .stats
+            color #a9a9a9
+    .text-info
+        color $textInfoColor !important
+    .text-danger
+        color $textDangerColor !important
+    .text-warning
+        color $textWarningColor !important
+    .navbar-default
+        background-color white
+        border-bottom 1px solid #CCC
+        .navbar-nav
+            .active
+                a
+                    background-color $babelColor
+                    color white
+            a
+                background-color white
+                color $babelColor
+                &hover
+                    background-color $babelColor
+                    color white
+        .navbar-brand
+            color $babelColor
+            font-weight bold

@@ -29,6 +29,7 @@ fortawesome:fontawesome
 summernote:summernote
 cfs:standard-packages
 cfs:filesystem
+cfs:gridfs
 cfs:ejson-file
 momentjs:moment
 copleykj:tagstripper
@@ -38,3 +39,14 @@ manuelschoebel:ms-seo
 alanning:roles
 msavin:jetsetter
 meteortoys:allthings
+stolinski:stylus-multi
+fastclick
+spiderable
+aldeed:collection2
+aldeed:autoform
+mpowaga:autoform-summernote
+cfs:graphicsmagick
+yogiben:autoform-modals
+yogiben:pretty-email
+yogiben:autoform-file
+yogiben:autoform-map

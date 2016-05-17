@@ -1,10 +1,12 @@
 <template name="layout">
-    {{> header}}
-    <div class="wrapper-black">
-        <div class="container">
-            {{> yield}}
+    <div class="frontend">
+        {{> header}}
+        <div class="wrapper-black">
+            <div class="container">
+                {{> yield}}
+            </div>
         </div>
+        {{> footer}}
     </div>
-    {{> footer}}
 </template>
         

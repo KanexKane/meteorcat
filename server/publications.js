@@ -1,21 +1,6 @@
-// // posts list กำหนดค่าว่าแสดงจำนวนเท่าไหร่ sort ด้วยอะไร
-// Meteor.publish('posts', function(options){
-//     check(options, {
-//         sort: Object,
-//         limit: Number
-//     });
-//     return Posts.find({}, options);
-// });
-// // ย้ายหน้า single page มาใช้อันนี้แทนเพราะถ้าใช้อันบนมันก็ Error
-// Meteor.publish('singlePost', function(id){
-//     check(id, String);
-//     return Posts.find(id);
-// });
-
-// Meteor.publish('comments', function(postId){
-//     check(postId, String);
-//     return Comments.find({postId: postId});
-// });
+Meteor.publish(null, function (){
+  return Meteor.roles.find({})
+});
 
 Meteor.publish('notifications', function(){
     return Notifications.find({ user_id: this.userId, read: false});
@@ -43,4 +28,8 @@ Meteor.publish('categories', function(){
 
 Meteor.publish('blogimages', function(){
     return BlogImages.find({});
+});
+
+Meteor.publish('farmDetail', function(){
+    return Farms.find({ farm_user_id: this.userId });
 });

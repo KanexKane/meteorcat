@@ -1,0 +1,119 @@
+.frontend
+    font-family "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif
+    background-color black
+    header
+        width 100%
+        background url('/images/cover_catland.png') no-repeat center;
+        height 500px
+        background-size cover
+        border-bottom-style outset
+        border-bottom-width 20px
+        border-bottom-color white
+    h1
+        font-size 56px
+    .page-header
+        color #BBB
+        padding 2%
+    .row.blogs
+        margin: 0 0 5% 0
+    .wrapper
+        padding-top 0 5%
+    .navbar-nav
+        margin-top 14px
+        li
+            +above(768px)
+                margin-left 10px
+    .navbar-nav .nav li
+        height 50px
+    .navbar-nav li a
+        padding-top 8px
+        padding-bottom 8px
+        line-height 32px
+    .navbar-default
+        background-color transparent
+        border none
+        .navbar-nav
+            li
+                a
+                    color #333
+                    font-weight bold
+                    background-color rgba(white, 0.4)
+                &:hover
+                &:focus
+                    color white
+                    background-color rgba(black, 0.6)
+                .active a
+                &:hover
+                &:focus
+                    color @color
+                    background-color @background-color
+    .navbar-toggle
+        background-color white
+        box-shadow 1px 1px 1px rgba(black, 0.4)
+        margin-top 20px
+    .navbar
+        .navbar-default
+            background none
+            box-shadow none
+            border none
+    .navbar-brand
+        height 75px
+        font-size 18px
+        color white
+        text-shadow 1px 1px 1px rgba(black, 0.4)
+        .glyphicon
+            display inline-block
+            font-size 36px
+            color @color
+            vertical-align middle
+            margin-right 20px
+            position relative
+            top -2px
+        +below(767px)
+            span.text-title
+                display none
+    .categories
+        text-align center
+        margin-bottom 20px
+        border-bottom 1px solid #E4E4E4
+        padding 10px
+        li
+            display inline-block
+            float none
+    .post-body
+        margin-top 30px
+        font-size 16px
+        figure
+            margin-bottom 10px
+            text-align center
+    .post-title
+        .author
+            text-transform uppercase
+            span
+                margin-left 50px
+        h1
+            font-weight bold
+            margin-top 30px
+    footer
+        padding 20px
+        text-align center
+        background-color #333
+        color white
+        h5
+            color @color
+    .container
+        .post
+            margin-bottom 50px
+    .entry
+        padding 2%
+        background-color #CCC
+        box-shadow 10px 10px white
+    .entry-thumbnail
+        img
+            width 100%
+    .post-content-detail
+        color white
+        padding-bottom 80px        
+
+                   
+        

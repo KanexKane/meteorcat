@@ -1,0 +1,118 @@
+<template name="CatMemberFarmSettingGeneral">
+    <!-- <form class="main form page">
+        <div class="form-group {{errorClass 'farm_name'}}">
+            <label for="farm_name" class="control-label">ชื่อฟาร์ม</label>
+            <div class="controls">
+                <input type="text" id="farm_name" class="form-control" name="farm_name" placeholder="ชื่อฟาร์ม">
+                <span class="help-block">{{errorMessage 'farm_name'}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="farm_url" class="control-label">Url ฟาร์ม</label>
+            <div class="controls">
+                <input type="text" id="farm_url" class="form-control" name="farm_url" placeholder="Url ฟาร์ม">
+                <span class="help-block">{{errorMessage 'farm_url'}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="farm_editor_header" class="control-label">เนื้อหาด้านบน</label>
+            <div class="controls">
+                <textarea name="farm_editor_header" id="farm_editor_header" cols="30" rows="10" class="form-control summernote"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="farm_logo" class="control-label">Logo ฟาร์ม</label>
+            <div class="controls">
+                <input type="file" class="form-control myFileInput" name="farm_logo">
+                <br>
+                <input type="text" class="form-control" name="farm_logo_url" placeholder="Link Logo Farm">
+                <span class="help-block">ถ้าใส่ Link url จะใช้ url แทนรูปที่อัพโหลด</span>
+                {{#if farm.farm_logo}}
+                    <br>
+                    <div class="text-center">
+                        <img src="{{farm.farm_logo}}" alt="Logo Farm">
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="farm_cover" class="control-label">Cover ฟาร์ม</label>
+            <div class="controls">
+                <input type="file" class="form-control myFileInput" name="farm_cover">
+                <br>
+                <input type="text" class="form-control" name="farm_cover_url" placeholder="Link Cover Farm">
+                <span class="help-block">ถ้าใส่ Link url จะใช้ url แทนรูปที่อัพโหลด</span>
+                {{#if farm.farm_cover}}
+                    <br>
+                    <div class="text-center">
+                        <img src="{{farm.farm_cover}}" alt="Cover Farm">
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="บันทึก">
+        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+    </form> -->
+    <div class="row">
+        <div class="card">
+            <h2 class="header">แก้ไขข้อมูลทั่วไปของฟาร์ม</h2>
+            {{#autoForm id="updateProfileFarm" collection="Farms" doc=this type="update" class="form-horizontal"}}
+                <div class="content">
+                    
+                    {{> afQuickField name="farm_user_id"}}
+                    {{> afQuickField name="farm_user"}}
+                    {{> afQuickField name="created_at"}}
+                    {{> afQuickField name="updated_at"}}
+                    <div class="form-group">
+                        <label for="farm_name" class="col-sm-2 control-label">ชื่อฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_name"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm_url" class="col-sm-2 control-label">Url ฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_url"}}
+                            <span class="help-block">ตัวอย่าง url ของคุณ: {{urlFor 'home'}}<span id="exampleUrl">{{this.farm_url}}</span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm_desc" class="col-sm-2 control-label">รายละเอียดฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_desc"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm_logo" class="col-sm-2 control-label">โลโก้ฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_logo"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm_cover" class="col-sm-2 control-label">หน้าปกฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_cover"}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="farm_editor_header" class="col-sm-2 control-label">รายละเอียดส่วนหัวของฟาร์ม</label>
+                        <div class="col-sm-10">
+                            {{> afFieldInput name="farm_editor_header"}}
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr>
+                        <button type="submit" class="btn btn-primary">
+          
+          Submit
+          
+        </button>
+                    </div>
+                </div>
+            {{/autoForm}}
+        </div>
+    </div>
+    
+
+    <!-- {{> quickForm collection="Farms" doc=this id="updateBookForm" type="update"}} -->
+</template>
