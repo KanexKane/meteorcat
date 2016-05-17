@@ -1,7 +1,10 @@
 <template name="CatAdminBlogCategoryList">
-    {{#contentFor "title"}}
-        รายการหมวดหมู่
-    {{/contentFor}}
-    
-    {{> tabular table=TabularTables.AdminBlogCategories class="table table-striped table-bordered table-condensed"}}
+    <div class="row">
+        <div class="card">
+            <h2 class="header">รายการบทความ</h2>
+            <div class="content">
+                {{> tabular table=TabularTables.AdminBlogCategories class="table table-striped table-bordered table-condensed"}}
+            </div>
+        </div>
+    </div>
 </template>

@@ -1,58 +1,62 @@
 <template name="CatAdminBlogEdit">
-    {{#contentFor "title"}}
-        แก้ไขบทความ
-    {{/contentFor}}
-    <form class="main form page">
-        <div class="form-group {{errorClass 'post_title'}}">
-            <label for="post_title" class="control-label">หัวข้อ</label>
-            <div class="controls">
-                <input type="text" id="post_title" class="form-control" name="post_title" placeholder="หัวข้อ" value="{{post.post_title}}">
-                <span class="help-block">{{errorMessage 'post_title'}}</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="post_slug" class="control-label">Slug</label>
-            <div class="controls">
-                <input type="text" id="post_slug" class="form-control" name="post_slug" placeholder="Slug" value="{{post.post_slug}}">
-                <span class="help-block">{{errorMessage 'post_slug'}}</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="post_category" class="control-label">Category</label>
-            <div class="controls">
-                <select name="post_category" id="post_category" class="form-control">
-                    {{#each optionCategories}}
-                        {{#if isSelected post.post_category _id}}
-                            <option value="{{_id}}" selected="true">{{category_name}}</option>
-                        {{else}}
-                            <option value="{{_id}}">{{category_name}}</option>
-                        {{/if}}
-                    {{/each}}
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="post_content" class="control-label">เนื้อหา</label>
-            <div class="controls">
-                <textarea name="post_content" id="post_content" cols="30" rows="10" class="form-control">{{post.post_content}}</textarea>
-            </div>
-        </div>
-        <div class="form-group {{errorClass 'post_slug'}}">
-            <label for="post_featured_image" class="control-label">Featured Image</label>
-            <div class="controls">
-                <input type="file" class="form-control myFileInput" name="post_featured_image">
-                <br>
-                <input type="text" class="form-control" name="post_featured_image_url" placeholder="Link Featured Image">
-                <span class="help-block">ถ้าใส่ Link url จะใช้ url แทนรูปที่อัพโหลด</span>
-                {{#if post.post_featured_image}}
-                    <br>
-                    <div class="text-center">
-                        <img src="{{post.post_featured_image}}" alt="Featured Image">
+    <div class="row">
+        <div class="card">
+            <h2 class="header">รายการบทความ</h2>
+            <div class="content">
+                <form class="main form page">
+                    <div class="form-group {{errorClass 'post_title'}}">
+                        <label for="post_title" class="control-label">หัวข้อ</label>
+                        <div class="controls">
+                            <input type="text" id="post_title" class="form-control" name="post_title" placeholder="หัวข้อ" value="{{post.post_title}}">
+                            <span class="help-block">{{errorMessage 'post_title'}}</span>
+                        </div>
                     </div>
-                {{/if}}
+                    <div class="form-group">
+                        <label for="post_slug" class="control-label">Slug</label>
+                        <div class="controls">
+                            <input type="text" id="post_slug" class="form-control" name="post_slug" placeholder="Slug" value="{{post.post_slug}}">
+                            <span class="help-block">{{errorMessage 'post_slug'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="post_category" class="control-label">Category</label>
+                        <div class="controls">
+                            <select name="post_category" id="post_category" class="form-control">
+                                {{#each optionCategories}}
+                                    {{#if isSelected post.post_category _id}}
+                                        <option value="{{_id}}" selected="true">{{category_name}}</option>
+                                    {{else}}
+                                        <option value="{{_id}}">{{category_name}}</option>
+                                    {{/if}}
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="post_content" class="control-label">เนื้อหา</label>
+                        <div class="controls">
+                            <textarea name="post_content" id="post_content" cols="30" rows="10" class="form-control">{{post.post_content}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group {{errorClass 'post_slug'}}">
+                        <label for="post_featured_image" class="control-label">Featured Image</label>
+                        <div class="controls">
+                            <input type="file" class="form-control myFileInput" name="post_featured_image">
+                            <br>
+                            <input type="text" class="form-control" name="post_featured_image_url" placeholder="Link Featured Image">
+                            <span class="help-block">ถ้าใส่ Link url จะใช้ url แทนรูปที่อัพโหลด</span>
+                            {{#if post.post_featured_image}}
+                                <br>
+                                <div class="text-center">
+                                    <img src="{{post.post_featured_image}}" alt="Featured Image">
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="บันทึก">
+                    <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                </form>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="บันทึก">
-        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
-    </form>
+    </div>
 </template>

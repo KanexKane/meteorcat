@@ -1,3 +1,16 @@
 <template name="CatMemberFarmSettingPromotion">
-  Setting Promotion
+    <div class="row">
+        <div class="card">
+            <h2 class="header">โปรโมชั่น</h2>
+            {{#autoForm id="updateProfileFarm" collection="Farms" doc=this type="update"}}
+                <div class="content">
+                    {{> afQuickField name="farm_promotion"}}
+                    <div class="footer">
+                        <hr>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            {{/autoForm}}
+        </div>
+    </div>
 </template>

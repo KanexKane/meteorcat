@@ -1,12 +1,9 @@
 <template name="LayoutAdmin">
-    {{> HeaderAdmin}}
-    {{> AppNav}}
-    <div class="wrapper app-layout">
+    <div class="admin">
+        {{> HeaderAdmin}}
         <div class="container">
-            <h1 class="page-header">{{> yield "title"}}</h1>
             {{> yield}}
         </div>
     </div>
-    {{> FooterAdmin}}
 </template>
         

@@ -1,23 +1,27 @@
 <template name="CatAdminBlogCategoryEdit">
-    {{#contentFor "title"}}
-        แก้ไขหมวดหมู่
-    {{/contentFor}}
-    <form class="main form page">
-        <div class="form-group {{errorClass 'category_name'}}">
-            <label for="category_name" class="control-label">ชื่อหมวดหมู่</label>
-            <div class="controls">
-                <input type="text" id="category_name" class="form-control" name="category_name" placeholder="หัวข้อ" value="{{category_name}}">
-                <span class="help-block">{{errorMessage 'category_name'}}</span>
+    <div class="row">
+        <div class="card">
+            <h2 class="header">แก้ไขหมวดหมู่</h2>
+            <div class="content">
+                <form class="main form page">
+                    <div class="form-group {{errorClass 'category_name'}}">
+                        <label for="category_name" class="control-label">ชื่อหมวดหมู่</label>
+                        <div class="controls">
+                            <input type="text" id="category_name" class="form-control" name="category_name" placeholder="หัวข้อ" value="{{category_name}}">
+                            <span class="help-block">{{errorMessage 'category_name'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category_slug" class="control-label">Slug</label>
+                        <div class="controls">
+                            <input type="text" id="category_slug" class="form-control" name="category_slug" placeholder="Slug" value="{{category_slug}}">
+                            <span class="help-block">{{errorMessage 'category_slug' 'ถ้าไม่กรอกระบบจะทำให้อัตโนมัติ'}}</span>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="บันทึก">
+                    <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label for="category_slug" class="control-label">Slug</label>
-            <div class="controls">
-                <input type="text" id="category_slug" class="form-control" name="category_slug" placeholder="Slug" value="{{category_slug}}">
-                <span class="help-block">{{errorMessage 'category_slug' 'ถ้าไม่กรอกระบบจะทำให้อัตโนมัติ'}}</span>
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary" value="บันทึก">
-        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
-    </form>
+    </div>
 </template>

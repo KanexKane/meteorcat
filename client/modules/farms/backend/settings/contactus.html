@@ -1,3 +1,21 @@
 <template name="CatMemberFarmSettingContactUs">
-  Setting Contact Us
+  <div class="row">
+        <div class="card">
+            <h2 class="header">ติดต่อเรา</h2>
+            {{#autoForm id="updateProfileFarm" collection="Farms" doc=this type="update"}}
+                <div class="content">
+                    {{> afQuickField name="farm_mobilephone"}}
+                    {{> afQuickField name="farm_line"}}
+                    {{> afQuickField name="farm_facebook"}}
+                    {{> afQuickField name="farm_instagram"}}
+                    {{> afQuickField name="farm_map"}}
+                    {{> afQuickField name="farm_editor_contactus"}}
+                    <div class="footer">
+                        <hr>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            {{/autoForm}}
+        </div>
+    </div>
 </template>
