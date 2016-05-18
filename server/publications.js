@@ -44,7 +44,9 @@ Meteor.publish('catsInfarm', function(_id){
     return Cats.find({ farm_id: _id });
 });
 Meteor.publish('cats', function(_id){
-    return Cats.find({});
+    //  เอาเฉพาะของฟาร์มเรา
+    var farms = Farms.findOne({ farm_user_id: this.userId });
+    return Cats.find({farm_id: farms._id });
 });
 Meteor.publish('catDetail', function(_id){
     var farms = Farms.findOne({ farm_user_id: this.userId });
@@ -54,5 +56,5 @@ Meteor.publish('catColors', function(){
     return CatColors.find({});
 });
 Meteor.publish('catBreeds', function(){
-    return CatBreeds.find({});
+    return CatBreeds.find({}, {sort: {breed_name: 1}});
 });
