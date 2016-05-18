@@ -14,6 +14,9 @@ Template.CatMemberLogin.events({
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
             if(Meteor.user()){
                 Router.go('CatMemberFarmHome');
+                // get farm id set to session
+                var farms = Farms.findOne({ farm_user_id: Meteor.userId() });
+                Session.set('myfarm_id', farms._id);
             }else{
                 Session.set('catMemberLoginErrors', 'ไม่สามารถเข้าสู่ระบบได้');
             }            
