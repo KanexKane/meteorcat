@@ -46,6 +46,9 @@ Meteor.publish('catsInfarm', function(_id){
 Meteor.publish('cats', function(_id){
     return Cats.find({});
 });
-Meteor.publish('catColors', function(_id){
+Meteor.publish('catColors', function(){
     return CatColors.find({});
+});
+Meteor.publish('catBreeds', function(){
+    return CatBreeds.find({});
 });

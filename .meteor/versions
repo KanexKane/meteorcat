@@ -134,6 +134,7 @@ reactive-dict@1.1.7
 reactive-var@1.0.9
 reload@1.1.8
 retry@1.0.7
+rikonor:autoform-image-gallery@0.0.3
 routepolicy@1.0.10
 sacha:spin@2.3.1
 service-configuration@1.0.9
