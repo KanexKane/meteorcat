@@ -16,16 +16,15 @@ Template.CatAdminBlogCategoryCreate.helpers({
 
 Template.CatAdminBlogCategoryCreate.events({
     'change #category_name': function(e) {
-        var objCategorySlug = $('#category_slug');
-        var categorySlug = '';
-        if( objCategorySlug.val().trim() === '' ) {
+        var categorySlug = $('#category_slug').val().trim();
+        if( categorySlug === '' ) {
             let categoryName = $('#category_name').val();
             categorySlug = categoryName.replace(/\s+/g, '-').toLowerCase();
         }
         $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
     },
     'keyup #category_slug': function() {
-        var categorySlug = $('#category_slug').val();
+        var categorySlug = $('#category_slug').val().trim().replace(/\s+/g, '-').toLowerCase();
         $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
     },
     'submit form': function(e){
