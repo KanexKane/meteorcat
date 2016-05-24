@@ -46,6 +46,34 @@ Template.Blogs.helpers({
         });
 
         return rows;
+    },
+    paging: function() {
+        var perPage = parseInt(Router.current().route.options.perpage);
+        var totalPage = Math.floor(BlogPosts.find().count() / perPage);
+        var page = parseInt(Router.current().params.query.page);
+        var prevPage = false;
+        var nextPage = false;
+
+        if( page === undefined ) { page = 1; }
+        if( totalPage > page ) { nextPage = true; }
+        if( page > 1 ) { prevPage = true; }
+
+        var html = '';
+        if( totalPage > 0 ) {
+            html += '<div>';
+            html += '<div class="pull-left">';
+            if( nextPage ) {
+                html += '<a href="/blogs?page='+ (page + 1) +'">บทความก่อนหน้านี้</a>';
+            }
+            html += '</div>';
+            html += '<div class="pull-right">';
+            if( prevPage ) {
+                html += '<a href="/blogs?page='+ (page - 1) +'">บทความใหม่กว่านี้</a>';
+            }
+            html += '</div>';
+            html += '<div class="clearfix"></div>';
+            html += '</div>';
+        }
+        return Spacebars.SafeString(html);
     }
 });
-
