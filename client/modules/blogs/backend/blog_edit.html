@@ -15,7 +15,7 @@
                         <label for="post_slug" class="control-label">Slug</label>
                         <div class="controls">
                             <input type="text" id="post_slug" class="form-control" name="post_slug" placeholder="Slug" value="{{post.post_slug}}">
-                            <span class="help-block">{{errorMessage 'post_slug'}}</span>
+                            <span class="help-block">ตัวอย่าง url: <span id="example_post_slug"></span></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -24,9 +24,9 @@
                             <select name="post_category" id="post_category" class="form-control">
                                 {{#each optionCategories}}
                                     {{#if isSelected post.post_category _id}}
-                                        <option value="{{_id}}" selected="true">{{category_name}}</option>
+                                        <option value="{{_id}}" data-slug="{{category_slug}}" selected="true">{{category_name}}</option>
                                     {{else}}
-                                        <option value="{{_id}}">{{category_name}}</option>
+                                        <option value="{{_id}}" data-slug="{{category_slug}}">{{category_name}}</option>
                                     {{/if}}
                                 {{/each}}
                             </select>

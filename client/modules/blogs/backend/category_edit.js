@@ -15,6 +15,19 @@ Template.CatAdminBlogCategoryEdit.helpers({
 });
 
 Template.CatAdminBlogCategoryEdit.events({
+    'change #category_name': function(e) {
+        var objCategorySlug = $('#category_slug');
+        var categorySlug = '';
+        if( objCategorySlug.val().trim() === '' ) {
+            let categoryName = $('#category_name').val();
+            categorySlug = categoryName.replace(/\s+/g, '-').toLowerCase();
+        }
+        $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
+    },
+    'keyup #category_slug': function() {
+        var categorySlug = $('#category_slug').val();
+        $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
+    },
     'submit form': function(e){
         e.preventDefault();
 
@@ -41,7 +54,7 @@ Template.CatAdminBlogCategoryEdit.events({
             if(error){
                 return throwError(error.reason);
             }
-            
+
             Router.go('BlogCategoryList');
         });
     },
