@@ -1,4 +1,4 @@
-Template.CatMemberFarmCats.events({
+Template.MemberFarmCats.events({
     'click .delete-cat': function(e){
         var currentId = $(e.currentTarget).attr("data-id");
         if(confirm('แน่ใจนะ?')){
