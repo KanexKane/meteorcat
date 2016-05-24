@@ -1,22 +1,22 @@
-Template.CatMemberLogin.onCreated(function(){
-    Session.set('catMemberLoginErrors', '');
+Template.MemberLogin.onCreated(function(){
+    Session.set('MemberLoginErrors', '');
 });
 
-Template.CatMemberLogin.helpers({
-    errorMessage: function(){return Session.get('catMemberLoginErrors')}
+Template.MemberLogin.helpers({
+    errorMessage: function(){return Session.get('MemberLoginErrors')}
 })
 
-Template.CatMemberLogin.events({
+Template.MemberLogin.events({
     'submit form': function(event) {
         event.preventDefault();
         var emailVar = event.target.loginUsername.value;
         var passwordVar = event.target.loginPassword.value;
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
             if(Meteor.user()){
-                Router.go('CatMemberFarmHome');
+                Router.go('MemberFarmHome');
             }else{
-                Session.set('catMemberLoginErrors', 'ไม่สามารถเข้าสู่ระบบได้');
-            }            
+                Session.set('MemberLoginErrors', 'ไม่สามารถเข้าสู่ระบบได้');
+            }
         });
     }
 });

@@ -1,0 +1,32 @@
+<template name="FarmFooter">
+    <footer>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/images/instagram.png">
+                <a href="https://www.facebook.com/mtlfarm/" style="font-size: 25px;">
+                    <strong>{{farm.farm_instagram}}</strong>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <img src="/images/line@.png">
+                <a href="https://www.facebook.com/mtlfarm/" style="font-size: 25px;">
+                    <strong>Line ID: {{farm.farm_line}}</strong>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <img src="/images/facebook.png">
+                <a href="https://www.facebook.com/mtlfarm/" style="font-size: 25px;">
+                    <strong>{{farm.farm_facebook}}</strong>
+                </a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>{{farm.farm_name}} © 2016</h5>
+                <h5>{{#striptags}}{{farm.farm_desc}}{{/striptags}}</h5>
+                <h5>ตลาดฟาร์มแมว catland.online</h5>
+            </div>
+        </div>
+    </footer>
+</template>

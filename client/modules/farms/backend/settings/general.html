@@ -1,10 +1,10 @@
-<template name="CatMemberFarmSettingGeneral">
+<template name="MemberFarmSettingGeneral">
     <div class="row">
         <div class="card">
             <h2 class="header">แก้ไขข้อมูลทั่วไปของฟาร์ม</h2>
             {{#autoForm id="updateProfileFarm" collection="Farms" doc=this type="update" class="form-horizontal"}}
                 <div class="content">
-                    
+
                     {{> afQuickField name="farm_user_id"}}
                     {{> afQuickField name="farm_user"}}
                     {{> afQuickField name="created_at"}}

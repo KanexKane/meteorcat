@@ -1,4 +1,4 @@
-<template name="CatMemberHeader">
+<template name="MemberHeader">
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -12,8 +12,8 @@
                             แมว <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{pathFor 'CatMemberFarmCats'}}">รายการแมว</a></li>
-                            <li><a href="{{pathFor 'CatMemberFarmCatCreate'}}">เพิ่มแมว</a></li>
+                            <li><a href="{{pathFor 'MemberFarmCats'}}">รายการแมว</a></li>
+                            <li><a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมว</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -21,9 +21,9 @@
                             ตั้งค่าฟาร์ม <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{pathFor 'CatMemberFarmSettingGeneral'}}">ทั่วไป</a></li>
-                            <li><a href="{{pathFor 'CatMemberFarmSettingContactUs'}}">ติดต่อเรา</a></li>
-                            <li><a href="{{pathFor 'CatMemberFarmSettingPromotion'}}">โปรโมชั่น</a></li>
+                            <li><a href="{{pathFor 'MemberFarmSettingGeneral'}}">ทั่วไป</a></li>
+                            <li><a href="{{pathFor 'MemberFarmSettingContactUs'}}">ติดต่อเรา</a></li>
+                            <li><a href="{{pathFor 'MemberFarmSettingPromotion'}}">โปรโมชั่น</a></li>
                         </ul>
                     </li>
                     {{#if currentUser}}

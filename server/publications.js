@@ -6,8 +6,8 @@ Meteor.publish('notifications', function(){
     return Notifications.find({ user_id: this.userId, read: false});
 });
 
-Meteor.publish('blogs', function(){
-    return BlogPosts.find({});
+Meteor.publish('blogs', function(findOptions){
+    return BlogPosts.find({}, findOptions);
 });
 Meteor.publish('blogDetail', function(_id){
     check(_id, String);
@@ -30,31 +30,50 @@ Meteor.publish('blogimages', function(){
     return BlogImages.find({});
 });
 
-//==============================
-// Farm & Cat
-//==============================
+//==================================================
+// Farm
+//==================================================
 
-Meteor.publish('farmsList', function(){
+// ฟาร์มทั้งหมด
+Meteor.publish('allFarms', function(){
     return Farms.find({ });
 });
-Meteor.publish('farmDetail', function(){
-    return Farms.find({ farm_user_id: this.userId });
+// รายละเอียดฟาร์ม หาโดยใช้ userId
+Meteor.publish('farmInfoByUserId', function(userId){
+    return Farms.find({ farm_user_id: userId });
 });
-Meteor.publish('catsInfarm', function(_id){
-    return Cats.find({ farm_id: _id });
+// รายละเอียดฟาร์ม หาโดยใช้ farm_url
+Meteor.publish('farmInfoByUrl', function(farm_url){
+    return Farms.find({ farm_url: farm_url });
 });
-Meteor.publish('cats', function(_id){
-    //  เอาเฉพาะของฟาร์มเรา
-    var farms = Farms.findOne({ farm_user_id: this.userId });
+// แมวทั้งหมดในฟาร์ม หาโดยใช้ farm_url
+Meteor.publish('allCatsInFarmByUrl', function(farm_url){
+    var farm;
+    if(farm_url !== undefined){
+        farm = Farms.findOne({ farm_url: farm_url });
+    }else{
+        farm = Farms.findOne({ farm_user_id: this.userId });
+    }
+    return Cats.find({ farm_id: farm._id });
+});
+// แมวทั้งหมดในฟาร์ม หาโดยใช้ farm_id
+Meteor.publish('allCatsInFarmById', function(farm_id){
+    return Cats.find({ farm_id: farm._id });
+});
+// แมวทั้งหมดในฟาร์ม หาโดยใช้ user_id
+Meteor.publish('allCatsInFarmByUserId', function(userId){
+    var farms = Farms.findOne({ farm_user_id: userId });
     return Cats.find({farm_id: farms._id });
 });
-Meteor.publish('catDetail', function(_id){
-    var farms = Farms.findOne({ farm_user_id: this.userId });
-    return Cats.find({ _id: _id, farm_id: farms._id });
+// รายละเอียดแมว หาโดยใช้ id
+Meteor.publish('catDetailById', function(_id){
+    return Cats.find({ _id: _id });
 });
-Meteor.publish('catColors', function(){
+// สีของแมวทั้งหมด
+Meteor.publish('allCatColors', function(){
     return CatColors.find({});
 });
-Meteor.publish('catBreeds', function(){
+// สายพันธุ์ของแมวทั้งหมด
+Meteor.publish('allCatBreeds', function(){
     return CatBreeds.find({}, {sort: {breed_name: 1}});
 });
