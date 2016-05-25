@@ -50,25 +50,28 @@ Template.Blogs.helpers({
     paging: function() {
         var perPage = parseInt(Router.current().route.options.perpage);
         var totalPage = Math.floor(BlogPosts.find().count() / perPage);
-        var page = parseInt(Router.current().params.query.page);
+        var page = Router.current().params.query.page;
         var prevPage = false;
         var nextPage = false;
 
-        if( page === undefined ) { page = 1; }
+        if( page === undefined || page === NaN ) { page = 1; }
+
+        page = parseInt(page);
+
         if( totalPage > page ) { nextPage = true; }
         if( page > 1 ) { prevPage = true; }
 
         var html = '';
-        if( totalPage > 0 ) {
-            html += '<div>';
-            html += '<div class="pull-left">';
+        if( totalPage > 0 && ( nextPage || prevPage ) ) {
+            html += '<div class="paging">';
+            html += '<div class="col-xs-3 col-sm-2">';
             if( nextPage ) {
-                html += '<a href="/blogs?page='+ (page + 1) +'">บทความก่อนหน้านี้</a>';
+                html += '<a href="/blogs?page='+ (page + 1) +'" class="btn-paging">บทความก่อนหน้านี้</a>';
             }
             html += '</div>';
-            html += '<div class="pull-right">';
+            html += '<div class="col-xs-offset-7 col-xs-3 col-sm-offset-8 col-sm-2">';
             if( prevPage ) {
-                html += '<a href="/blogs?page='+ (page - 1) +'">บทความใหม่กว่านี้</a>';
+                html += '<a href="/blogs?page='+ (page - 1) +'" class="btn-paging">บทความใหม่กว่านี้</a>';
             }
             html += '</div>';
             html += '<div class="clearfix"></div>';
