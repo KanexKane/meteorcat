@@ -63,15 +63,6 @@ Template.CatAdminBlogCreate.events({
             post_category: $(e.target).find('[name=post_category]').val(),
             post_featured_image: ''
         };
-        // check files
-        var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
-        var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
-        if(!fileLink && file){
-            var fileObj = BlogImages.insert(file);
-            post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
-        }else if(fileLink){
-            post['post_featured_image'] = fileLink;
-        }
 
         var errors = validatePost(post);
         // use package underscore to check is empty
@@ -84,18 +75,41 @@ Template.CatAdminBlogCreate.events({
             post.post_slug = post.post_title.replace(/\s+/g, '-').toLowerCase();
         }
 
-        Meteor.call('blogCreate', post, function(error, result){
-            //display the error to the user and abort
-            if(error){
-                return throwError(error.reason);
-            }
+        // check files
+        var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
+        var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
+        if(!fileLink && file){
+            BlogImages.insert(file, function(err, fileObj){
+                post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
+                Meteor.call('blogCreate', post, function(error, result){
+                    //display the error to the user and abort
+                    if(error){
+                        return throwError(error.reason);
+                    }
 
-            if(result.postExists){
-                throwError('This link has already been posted');
-            }
+                    if(result.postExists){
+                        throwError('This link has already been posted');
+                    }
 
-            Router.go('CatAdminBlogList', { _id: result._id });
-        });
+                    Router.go('CatAdminBlogList', { _id: result._id });
+                });
+            });
+
+        }else if(fileLink){
+            post['post_featured_image'] = fileLink;
+            Meteor.call('blogCreate', post, function(error, result){
+                //display the error to the user and abort
+                if(error){
+                    return throwError(error.reason);
+                }
+
+                if(result.postExists){
+                    throwError('This link has already been posted');
+                }
+
+                Router.go('CatAdminBlogList', { _id: result._id });
+            });
+        }
     },
     'click .cancel-process': function(e){
         Router.go('CatAdminBlogList');
