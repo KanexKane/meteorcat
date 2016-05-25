@@ -1,14 +1,18 @@
 <template name="BlogDetail">
-    <h1 class="page-header">
-        {{post.post_title}}
-    </h1>
-    <div class="row">
-        <div class="col-md-12">
-            <article id="{{post._id}}">     
-                <div class="post-content-detail">
-                    {{{post.post_content}}}   
-                </div><!-- .entry-content -->
-            </article>
-        </div>
+    <div class="post-content-header">
+        <h1>{{post.post_title}}</h1>
+        <p>POSTDATE {{postDate}} โดย {{post.post_author}}</p>
+        <!-- <p>Breadcrumb / catland / blogs / category / post</p> -->
+        <hr>
+    </div>
+
+    <div class="post-content-body">
+
+        <article id="{{post._id}}">
+            <div class="post-content-detail">
+                {{{post.post_content}}}
+            </div><!-- .entry-content -->
+        </article>
+
     </div>
 </template>

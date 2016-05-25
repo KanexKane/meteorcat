@@ -1,24 +1,34 @@
 <template name="Blogs">
-    <h1 class="page-header">
-        Blogs แมวๆ BY CAT LAND
-    </h1>
+    <header class="page-header">
+        <h1>
+            Blog Cat Land
+        </h1>
+        <!-- <p class="breadcrumbs">catland / blogs / category / post</p> -->
+    </header>
     {{#each rowBlog}}
         <div class="row blogs">
             {{#each rows}}
-                <div class="col-md-4">
-                    <article id="post-{{_id}}" class="entry">
-                        <figure class="entry-thumbnail">
-                            <a href="{{linkToPost}}">
-                                <img src="{{postFeaturedImage}}">
-                            </a>
-                        </figure>
-                        <h2 class="text-center">
-                            <a href="{{linkToPost}}">
-                                <strong>{{postTitle}}</strong>
-                            </a>
-                        </h2>
-                    </article>
-                </div>
+            <div class="col-md-4">
+                <article id="post-{{_id}}" class="entry-post">
+                    <figure class="post-thumbnail">
+                        <a href="{{linkToPost}}">
+                            <img src="{{postFeaturedImage}}">
+                            <div class="over-image">
+                                Read more
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-title">
+                        <a href="{{linkToPost}}">
+                            <strong>{{postTitle}}</strong>
+                        </a>
+                    </div>
+
+                    <div class="post-date">
+                        20-05-2016
+                    </div>
+                </article>
+            </div>
             {{/each}}
         </div>
     {{/each}}

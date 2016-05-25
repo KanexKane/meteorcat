@@ -1,11 +1,23 @@
 <template name="header">
-
-     <header>
-        <nav class="navbar navbar-default">
+    <div class="contact-info">
+        <div class="container">
+            <i class="fa fa-phone"></i> 094-482-5152
+            <i class="fa fa-envelope"></i> catlandonline@gmail.com
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-cat">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand navbar-link" href="{{pathFor 'home'}}"><span class="text-title">Cat Land</span></a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand navbar-link" href="{{pathFor 'home'}}">
+                        <img src="/images/logo60.png" alt="">
+                    </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -16,13 +28,24 @@
                             <a class="page-scroll" href="{{pathFor 'Blogs'}}">Blogs</a>
                         </li>
                         {{#if currentUser}}
-                            {{> loginButtons}}
+                        {{> loginButtons}}
                         {{/if}}
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="row">
+        <div class="cover col-sm-12">
+            <img src="/images/logo100.png" alt="">
+            <p class="cover-title">
+                Cat Land Online
+            </p>
+            <p class="cover-slogan">
+                ดินแดนแห่งแมว สวรรค์ของทาสแมว
+            </p>
+        </div>
+    </div>
 
 </template>
 
