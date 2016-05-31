@@ -1,8 +1,8 @@
-Template.CatAdminBlogCategoryCreate.onCreated(function(){
+Template.AdminBlogCategoryCreate.onCreated(function(){
     Session.set('blogCategoryCreateErrors', {});
 });
 
-Template.CatAdminBlogCategoryCreate.helpers({
+Template.AdminBlogCategoryCreate.helpers({
     errorMessage: function(field, text){
         if(_.isObject(text)){
             text = '';
@@ -14,7 +14,7 @@ Template.CatAdminBlogCategoryCreate.helpers({
     }
 });
 
-Template.CatAdminBlogCategoryCreate.events({
+Template.AdminBlogCategoryCreate.events({
     'change #category_name': function(e) {
         var categorySlug = $('#category_slug').val().trim();
         if( categorySlug === '' ) {

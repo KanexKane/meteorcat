@@ -1,4 +1,4 @@
-Template.CatAdminBlogCategoryList.events({
+Template.AdminBlogCategoryList.events({
     'click .delete-category': function(e){
         var currentId = $(e.currentTarget).attr("data-id");
         if(confirm('แน่ใจนะ?')){
