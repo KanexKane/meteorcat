@@ -91,7 +91,7 @@ Template.AdminBlogCreate.events({
                         throwError('This link has already been posted');
                     }
 
-                    Router.go('CatAdminBlogList', { _id: result._id });
+                    Router.go('AdminBlogList', { _id: result._id });
                 });
             });
 
@@ -107,11 +107,24 @@ Template.AdminBlogCreate.events({
                     throwError('This link has already been posted');
                 }
 
-                Router.go('CatAdminBlogList', { _id: result._id });
+                Router.go('AdminBlogList', { _id: result._id });
+            });
+        } else {
+            Meteor.call('blogCreate', post, function(error, result){
+                //display the error to the user and abort
+                if(error){
+                    return throwError(error.reason);
+                }
+
+                if(result.postExists){
+                    throwError('This link has already been posted');
+                }
+
+                Router.go('AdminBlogList', { _id: result._id });
             });
         }
     },
     'click .cancel-process': function(e){
-        Router.go('CatAdminBlogList');
+        Router.go('AdminBlogList');
     }
 });

@@ -1,7 +1,16 @@
 <template name="AdminBlogCategoryList">
     <div class="row">
         <div class="card">
-            <h2 class="header">รายการบทความ</h2>
+            <div class="header">
+                <div class="pull-left">
+                    <h2>รายการหมวดหมู่</h2>
+                </div>
+                <div class="pull-right">
+                    <br/>
+                    <a href="{{pathFor 'AdminBlogCategoryCreate'}}" class="btn btn-primary"><i class="fa fa-plus"></i> เพิ่มหมวดหมู่</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
             <div class="content">
                 {{> tabular table=TabularTables.AdminBlogCategories class="table table-striped table-bordered table-condensed"}}
             </div>

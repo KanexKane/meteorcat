@@ -106,7 +106,7 @@ Template.AdminBlogEdit.events({
                         return throwError(error.reason);
                     }
 
-                    Router.go('CatAdminBlogList', { _id: result._id });
+                    Router.go('AdminBlogList', { _id: result._id });
                 });
             });
         }else if(fileLink){
@@ -117,11 +117,20 @@ Template.AdminBlogEdit.events({
                     return throwError(error.reason);
                 }
 
-                Router.go('CatAdminBlogList', { _id: result._id });
+                Router.go('AdminBlogList', { _id: result._id });
+            });
+        } else {
+            Meteor.call('blogEdit', post, currentId, function(error, result){
+                //display the error to the user and abort
+                if(error){
+                    return throwError(error.reason);
+                }
+
+                Router.go('AdminBlogList', { _id: result._id });
             });
         }
     },
     'click .cancel-process': function(e){
-        Router.go('CatAdminBlogList');
+        Router.go('AdminBlogList');
     }
 });
