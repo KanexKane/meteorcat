@@ -12,12 +12,11 @@ Template.CatAdminLogin.events({
         var emailVar = event.target.loginUsername.value;
         var passwordVar = event.target.loginPassword.value;
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
-            Meteor.call('addToRoleAdmin', Meteor.userId());
             if(Meteor.user()){
-                Router.go('home');
+                Router.go('AdminHome');
             }else{
                 Session.set('catAdminLoginErrors', 'ไม่สามารถเข้าสู่ระบบได้');
-            }            
+            }
         });
     }
 });
