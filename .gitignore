@@ -1,1 +1,4 @@
 node_modules/
+.idea/meteorcat.iml
+.idea/modules.xml
+.idea/workspace.xml

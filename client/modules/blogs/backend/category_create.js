@@ -15,7 +15,7 @@ Template.AdminBlogCategoryCreate.helpers({
 });
 
 Template.AdminBlogCategoryCreate.events({
-    'change #category_name': function(e) {
+    'change #category_name': function() {
         var categorySlug = $('#category_slug').val().trim();
         if( categorySlug === '' ) {
             let categoryName = $('#category_name').val();
@@ -52,10 +52,10 @@ Template.AdminBlogCategoryCreate.events({
                 return throwError(error.reason);
             }
 
-            Router.go('CatAdminBlogCategoryList');
+            Router.go('AdminBlogCategoryList');
         });
     },
-    'click .cancel-process': function(e){
-        Router.go('CatAdminBlogCategoryList');
+    'click .cancel-process': function(){
+        Router.go('AdminBlogCategoryList');
     }
 });

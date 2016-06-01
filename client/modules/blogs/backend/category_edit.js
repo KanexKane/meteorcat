@@ -15,7 +15,7 @@ Template.AdminBlogCategoryEdit.helpers({
 });
 
 Template.AdminBlogCategoryEdit.events({
-    'change #category_name': function(e) {
+    'change #category_name': function() {
         var categorySlug = $('#category_slug').val().trim();
         if( categorySlug === '' ) {
             let categoryName = $('#category_name').val();
@@ -57,7 +57,7 @@ Template.AdminBlogCategoryEdit.events({
             Router.go('BlogCategoryList');
         });
     },
-    'click .cancel-process': function(e){
-        Router.go('CatAdminBlogCategoryList');
+    'click .cancel-process': function(){
+        Router.go('AdminBlogCategoryList');
     }
 });

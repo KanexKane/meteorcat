@@ -7,6 +7,7 @@ body
     padding 0
     .frontend
         background-color #ebebeb
+        width 100%
         hr
             border 1px solid #cecece
         .content
@@ -48,8 +49,10 @@ body
             background-size cover
             background-position center
             height 250px
-            width 100%
+            width 97%
             text-align center
+            @media (max-width: 480px)
+                width 95%
             .cover-title
                 font-size 30px
                 color: white;
@@ -76,7 +79,7 @@ body
         .breadcrumb
             background-color transparent
         .entry-post
-            box-shadow 0px 1px 5px 1px rgba(black,0.46)
+            box-shadow 0 1px 5px 1px rgba(black,0.46)
             margin-bottom 20px
             .post-thumbnail
                 position relative
@@ -104,7 +107,7 @@ body
                     transform: translate(-50%, -150%);
                     background-color #8d8d8d
                     padding 10px
-                    box-shadow 0px 2px 5px 3px rgba(black,0.5)
+                    box-shadow 0 2px 5px 3px rgba(black,0.5)
                     text-transform uppercase
                     transition all 0.5s ease
                     &:hover
@@ -132,7 +135,7 @@ body
                 text-align center
                 padding 5px 0
                 border-radius 3px
-                box-shadow 0px 2px 5px 1px rgba(black,0.5)
+                box-shadow 0 2px 5px 1px rgba(black,0.5)
                 text-decoration none
                 transition all 0.3s ease
                 &:hover
@@ -145,6 +148,7 @@ body
                 padding 10px 0
         .post-content-header
             margin-bottom 40px
+            word-wrap break-word
         .post-content-body
             font-size 1.4em
             margin-bottom 40px

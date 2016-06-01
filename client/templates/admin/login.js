@@ -4,13 +4,14 @@ Template.CatAdminLogin.onCreated(function(){
 
 Template.CatAdminLogin.helpers({
     errorMessage: function(){return Session.get('catAdminLoginErrors')}
-})
+});
 
 Template.CatAdminLogin.events({
     'submit form': function(event) {
         event.preventDefault();
         var emailVar = event.target.loginUsername.value;
         var passwordVar = event.target.loginPassword.value;
+        console.log('username: ' + emailVar + ', password: ' + passwordVar);
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
             if(Meteor.user()){
                 Router.go('AdminHome');
