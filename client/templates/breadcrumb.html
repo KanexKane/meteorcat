@@ -1,5 +1,6 @@
 <template name="Breadcrumb">
     <ol class="breadcrumb">
+        {{#linkTo route="home"}}Cat Land{{/linkTo}}
         {{#each Breadcrumb}}
             <li class="{{cssClasses}}">
             {{#if showLink}}

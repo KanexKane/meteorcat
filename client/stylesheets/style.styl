@@ -45,11 +45,11 @@ body
                 height 50px
                 margin-top -14px
         .cover
-            background-image url(/images/cover.jpg)
+            background-image url(/images/cover_catland.png)
             background-repeat no-repeat
             background-size cover
             background-position center
-            height 250px
+            height 700px
             width 100%
             text-align center
             @media (max-width: 480px)
@@ -72,13 +72,28 @@ body
                     margin-left 9%
         header.page-header
             border none
-            margin 20px 0 20px 0
+            margin 40px 0 0 0 !important
             padding 5px
             text-align center
+            color #0099F7
             h1
                 margin 0
         .breadcrumb
             background-color transparent
+            color #011F8D
+            & > li
+                &:before
+                    padding 0 5px
+                    color #011F8D
+                    content "/\00a0"
+                a
+                    color #011F8D
+            & > li
+                & + li
+                  &:before
+                    padding 0 5px
+                    color #011F8D
+                    content "/\00a0"
         .entry-post
             margin-bottom 20px
             .post-thumbnail
@@ -182,7 +197,8 @@ body
                 text-align center
                 img
                     max-width 50px
-                    margin-left 50px
+                    @media (min-width: 768px)
+                        margin-left 50px
         .post-content-header
             margin-bottom 40px
             word-wrap break-word
