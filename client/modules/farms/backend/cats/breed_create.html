@@ -1,0 +1,28 @@
+<template name="AdminCatBreedCreate">
+    <div class="row">
+        <div class="card">
+            <h2 class="header">เพิ่มสายพันธุ์แมว</h2>
+            <div class="content">
+                <form class="main form page">
+                    <div class="form-group {{errorClass 'breed_name'}}">
+                        <label for="breed_name" class="control-label">ชื่อสายพันธุ์ (อังกฤษ)</label>
+                        <div class="controls">
+                            <input type="text" id="breed_name" class="form-control" name="breed_name">
+                            <span class="help-block">{{errorMessage 'breed_name'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group {{errorClass 'breed_thai_name'}}">
+                        <label for="breed_thai_name" class="control-label">ชื่อสายพันธุ์ (ไทย)</label>
+                        <div class="controls">
+                            <input type="text" id="breed_thai_name" class="form-control" name="breed_thai_name">
+                            <span class="help-block">{{errorMessage 'breed_thai_name'}}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="บันทึก">
+                    <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

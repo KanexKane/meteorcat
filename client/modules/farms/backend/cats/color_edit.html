@@ -1,0 +1,21 @@
+<template name="AdminCatColorEdit">
+    <div class="row">
+        <div class="card">
+            <h2 class="header">เพิ่มสีแมว</h2>
+            <div class="content">
+                <form class="main form page">
+                    <div class="form-group {{errorClass 'color_name'}}">
+                        <label for="color_name" class="control-label">ชื่อสี</label>
+                        <div class="controls">
+                            <input type="text" id="color_name" class="form-control" name="color_name" value="{{this.color_name}}">
+                            <span class="help-block">{{errorMessage 'color_name'}}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="บันทึก">
+                    <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

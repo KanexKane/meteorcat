@@ -73,7 +73,15 @@ Meteor.publish('catDetailById', function(_id){
 Meteor.publish('allCatColors', function(){
     return CatColors.find({});
 });
+// รายละเอียดสีแมว
+Meteor.publish('detailCatColorById', function(id){
+    return CatColors.find({ _id: id });
+});
 // สายพันธุ์ของแมวทั้งหมด
 Meteor.publish('allCatBreeds', function(){
     return CatBreeds.find({}, {sort: {breed_name: 1}});
+});
+// รายละเอียดสายพันธุ์แมว
+Meteor.publish('detailCatBreedById', function(id){
+    return CatBreeds.find({ _id: id.toString() });
 });

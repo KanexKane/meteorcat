@@ -1,0 +1,40 @@
+<template name="AdminCatColorList">
+    <div class="row">
+        <div class="card">
+            <div class="header">
+                <div class="pull-left">
+                    <h2>รายการสีแมว</h2>
+                </div>
+                <div class="pull-right">
+                    <br/>
+                    <a href="{{pathFor 'AdminCatColorCreate'}}" class="btn btn-primary"><i class="fa fa-plus"></i> เพิ่มสี</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="content">
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>ชื่อสี</th>
+                            <th>จัดการ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#each this}}
+                                <tr>
+                                    <td>{{this.color_name}}</td>
+                                    <td>
+                                        <a href="{{pathFor 'AdminCatColorEdit' this._id}}">แก้ไข</a>
+                                        <a href="#" id="deleteColor" data-id="{{this._id}}">ลบ</a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
