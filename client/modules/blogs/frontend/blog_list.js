@@ -38,7 +38,7 @@ Template.Blogs.helpers({
         var rows = [];
         _.each(this.posts.fetch(), function(post, i){
             //console.log(i);
-            var rowsNumber = Math.floor(i / 3);
+            var rowsNumber = Math.floor(i / 4);
             if(rows[rowsNumber] == null){
                 rows[rowsNumber] = {rows:[]};
             }

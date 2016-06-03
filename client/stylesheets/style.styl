@@ -12,12 +12,12 @@ body
         hr
             border 1px solid #cecece
         .content
-            margin-bottom 100px
+            margin-bottom 60px
         .breadcrumbs
             background-color transparent
-        .contact-info
+        .nav .open > a, .nav .open > a:hover, .nav .open > a:focus
             background-color $greenColor
-            padding 5px 0
+            color $pinkColor
         .navbar
             border-radius 0
             .icon-bar
@@ -80,12 +80,12 @@ body
         .breadcrumb
             background-color transparent
         .entry-post
-            box-shadow 0 1px 5px 1px rgba(black,0.46)
             margin-bottom 20px
             .post-thumbnail
                 position relative
+                background-color white
                 overflow hidden
-                height 200px
+                height 150px
                 a
                     color white
                     text-decoration none
@@ -103,7 +103,7 @@ body
                 .over-image
                     opacity 0
                     position absolute
-                    top: 68%;
+                    top: 78%;
                     left: 50%;
                     transform: translate(-50%, -150%);
                     background-color #8d8d8d
@@ -120,13 +120,19 @@ body
                 text-align center
                 font-size 1.2em
                 padding 10px 10px
-                height 4.1em
+                height 3.2em
                 overflow hidden
+                background-color #7a81ff
+                word-wrap break-word
+                color white
+                a
+                    color white
             .post-date
                 font-size 0.7em
                 text-align right
-                padding 0 5px
-                color #a9a9a9
+                padding 15px 10px 5px 0
+                color white
+                background-color #7a81ff
         .paging
             margin-top 20px
             .btn-paging
@@ -141,12 +147,42 @@ body
                 transition all 0.3s ease
                 &:hover
                     transform scale(1.3)
-        .footer
-            background-color $pinkColor
-            .copyright
-                background-color $greenColor
+        .post-content
+            background-color #C5F0E5
+            border 3px solid $pinkColor
+            padding 10px
+            .post-content-header
                 text-align center
+                .post-featured-image
+                    overflow-y hidden
+                    max-height 500px
+                    img
+                        width 100%
+            .post-content-detail
+                padding 0 20px
+        .footer-banner
+            background-color #929292
+            padding 10px 0 0 0
+            margin 0 0 30px 0
+            text-align center
+            div
+                margin 0 0 10px 0
+            img
+                margin 0 auto
+        .footer
+            background-color #929292
+            color white
+            .copyright
+                background-color $pinkColor
+                text-align center
+                img
+                    max-height 44px
+            .information
                 padding 10px 0
+                text-align center
+                img
+                    max-width 50px
+                    margin-left 50px
         .post-content-header
             margin-bottom 40px
             word-wrap break-word
@@ -156,3 +192,5 @@ body
             min-height 300px
             img
                 max-width 100%
+.text-blue-light
+    color #00EEFE

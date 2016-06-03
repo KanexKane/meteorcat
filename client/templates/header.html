@@ -1,10 +1,4 @@
 <template name="header">
-    <div class="contact-info">
-        <div class="container">
-            <i class="fa fa-phone"></i> 094-482-5152
-            <i class="fa fa-envelope"></i> catlandonline@gmail.com
-        </div>
-    </div>
     <header>
         <nav class="navbar navbar-cat">
             <div class="container">
@@ -22,10 +16,15 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="{{activeRouteClass 'home'}}">
-                            <a class="page-scroll" href="{{pathFor 'home'}}">Home</a>
+                            <a href="{{pathFor 'home'}}">Home</a>
                         </li>
                         <li class="{{activeRouteClass 'Blogs'}}">
-                            <a class="page-scroll" href="{{pathFor 'Blogs'}}">Blogs</a>
+                            <a href="{{pathFor 'Blogs'}}">Blogs</a>
+                        </li>
+                        <li class="{{activeRouteClass 'AboutUs'}}">
+                            {{#linkTo route="AboutUs"}}
+                                เกี่ยวกับเรา
+                            {{/linkTo}}
                         </li>
                         {{#if currentUser}}
                         {{> loginButtons}}

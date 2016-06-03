@@ -3,12 +3,12 @@
         <h1>
             Blog Cat Land
         </h1>
-        <!-- <p class="breadcrumbs">catland / blogs / category / post</p> -->
+        {{> Breadcrumb}}
     </header>
     {{#each rowBlog}}
         <div class="row blogs">
             {{#each rows}}
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <article id="post-{{_id}}" class="entry-post">
                     <figure class="post-thumbnail">
                         <a href="{{linkToPost}}">
@@ -20,7 +20,7 @@
                     </figure>
                     <div class="post-title">
                         <a href="{{linkToPost}}">
-                            <strong>{{postTitle}}</strong>
+                            {{postTitle}}
                         </a>
                     </div>
 

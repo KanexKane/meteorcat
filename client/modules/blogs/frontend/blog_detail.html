@@ -1,18 +1,28 @@
 <template name="BlogDetail">
-    <div class="post-content-header">
-        <h1>{{post.post_title}}</h1>
-        <p>POSTDATE {{postDate}} โดย {{post.post_author}}</p>
-        <!-- <p>Breadcrumb / catland / blogs / category / post</p> -->
-        <hr>
-    </div>
+    <header class="page-header">
+        <h1>
+            Blog Cat Land
+        </h1>
+        {{> Breadcrumb}}
+    </header>
+    <article class="post-content">
+        <div class="post-content-header">
+            <div class="post-featured-image">
+                <img src="{{post.post_featured_image}}" alt="">
+            </div>
+            
+            <h1>{{post.post_title}}</h1>
+        </div>
 
-    <div class="post-content-body">
+        <div class="post-content-body">
 
-        <article id="{{post._id}}">
-            <div class="post-content-detail">
-                {{{post.post_content}}}
-            </div><!-- .entry-content -->
-        </article>
+            <article id="{{post._id}}">
+                <div class="post-content-detail">
+                    {{{post.post_content}}}
+                </div><!-- .entry-content -->
+            </article>
 
-    </div>
+        </div>
+    </article>
+    
 </template>
