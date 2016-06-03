@@ -4,7 +4,7 @@ Template.Blogs.helpers({
         return findArrayData(Template.instance().data.categories, post_category, 'category_name');
     },
     postDate: function(){
-        return moment(this.post_date).add(543, 'years').format('DD/MM/YYYY HH:ss');
+        return moment(this.post_date).add(543, 'years').format('DD-MM-YYYY');
     },
     postUpdate: function(){
         return moment(this.post_update).add(543, 'years').format('DD/MM/YYYY HH:ss');
@@ -66,12 +66,12 @@ Template.Blogs.helpers({
             html += '<div class="paging">';
             html += '<div class="col-xs-3 col-sm-2">';
             if( nextPage ) {
-                html += '<a href="/blogs?page='+ (page + 1) +'" class="btn-paging">บทความก่อนหน้านี้</a>';
+                html += '<a href="/blogs?page='+ (page + 1) +'"><img src="/images/paging_previous.png"/></a>';
             }
             html += '</div>';
             html += '<div class="col-xs-offset-7 col-xs-3 col-sm-offset-8 col-sm-2">';
             if( prevPage ) {
-                html += '<a href="/blogs?page='+ (page - 1) +'" class="btn-paging">บทความใหม่กว่านี้</a>';
+                html += '<a href="/blogs?page='+ (page - 1) +'"><img src="/images/paging_next.png"/></a>';
             }
             html += '</div>';
             html += '<div class="clearfix"></div>';
