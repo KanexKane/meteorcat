@@ -34,7 +34,6 @@ cfs:ejson-file
 momentjs:moment
 copleykj:tagstripper
 aldeed:tabular
-dburles:collection-helpers
 manuelschoebel:ms-seo
 alanning:roles
 msavin:jetsetter
@@ -51,5 +50,4 @@ yogiben:pretty-email
 yogiben:autoform-file
 yogiben:autoform-map
 rikonor:autoform-image-gallery
-edgee:slingshot
 monbro:iron-router-breadcrumb
