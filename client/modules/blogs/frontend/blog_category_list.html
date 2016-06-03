@@ -1,0 +1,36 @@
+<template name="BlogCategoryList">
+    <header class="page-header">
+        <h1>
+            Blog Cat Land
+        </h1>
+        {{> Breadcrumb}}
+    </header>
+    {{#each rowBlog}}
+        <div class="row blogs">
+            {{#each rows}}
+            <div class="col-md-3">
+                <article id="post-{{_id}}" class="entry-post">
+                    <figure class="post-thumbnail">
+                        <a href="{{linkToPost}}">
+                            <img src="{{postFeaturedImage}}">
+                            <div class="over-image">
+                                Read more
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="post-title">
+                        <a href="{{linkToPost}}">
+                            {{postTitle}}
+                        </a>
+                    </div>
+
+                    <div class="post-date">
+                        {{postDate}}
+                    </div>
+                </article>
+            </div>
+            {{/each}}
+        </div>
+    {{/each}}
+    {{paging}}
+</template>

@@ -23,11 +23,14 @@ Meteor.publish('blogDetailBySlug', function(post_slug){
 });
 Meteor.publish('blogInCategory', function(category_slug){
     var category_id = BlogCategories.findOne({ category_slug: category_slug})._id;
-
     return BlogPosts.find({ post_category: category_id });
 });
-Meteor.publish('categories', function(){
-    return BlogCategories.find({});
+Meteor.publish('categories', function(category_slug){
+    if(category_slug){
+        return BlogCategories.find({ category_slug: category_slug });
+    } else {
+        return BlogCategories.find({});
+    }
 });
 
 Meteor.publish('blogimages', function(){
