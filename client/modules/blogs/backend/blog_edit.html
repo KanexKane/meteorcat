@@ -1,7 +1,19 @@
 <template name="AdminBlogEdit">
     <div class="row">
         <div class="card">
-            <h2 class="header">รายการบทความ</h2>
+            <div class="row">
+                <div class="col-xs-8">
+                    <h2 class="header">รายการบทความ</h2>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <h2 class="header">
+                            {{#linkTo route='BlogDetail' category_slug=categorySlug post_slug=this.post.post_slug title='ดูบทความ' class='btn btn-success' target='_blank'}}
+                            <i class="fa fa-external-link"></i>
+                        {{/linkTo}}
+                    </h2>
+                </div>
+            </div>
+            
             <div class="content">
                 <form class="main form page">
                     <div class="form-group {{errorClass 'post_title'}}">
@@ -55,8 +67,17 @@
                     </div>
                     <div class="footer">
                         <hr>
-                        <input type="submit" class="btn btn-primary" value="บันทึก">
-                        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <input type="submit" class="btn btn-primary" value="บันทึก">
+                                <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                {{#linkTo route='BlogDetail' category_slug=categorySlug post_slug=this.post.post_slug title='ดูบทความ' class='btn btn-success' target='_blank'}}
+                                    <i class="fa fa-external-link"></i>
+                                {{/linkTo}}
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

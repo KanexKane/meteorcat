@@ -1,5 +1,6 @@
 Template.AdminBlogCreate.onCreated(function(){
     Session.set('blogCreateErrors', {});
+    Session.set('ALERTMESSAGE', '');
 });
 
 Template.AdminBlogCreate.onRendered(function() {
@@ -89,7 +90,8 @@ Template.AdminBlogCreate.events({
                         throwError('This link has already been posted');
                     }
 
-                    Router.go('AdminBlogList', { _id: result._id });
+                    Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+                    Router.go('AdminBlogEdit', { _id: result._id });
                 });
             });
 
@@ -105,7 +107,8 @@ Template.AdminBlogCreate.events({
                     throwError('This link has already been posted');
                 }
 
-                Router.go('AdminBlogList', { _id: result._id });
+                Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+                Router.go('AdminBlogEdit', { _id: result._id });
             });
         } else {
             Meteor.call('blogCreate', post, function(error, result){
@@ -118,7 +121,8 @@ Template.AdminBlogCreate.events({
                     throwError('This link has already been posted');
                 }
 
-                Router.go('AdminBlogList', { _id: result._id });
+                Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+                Router.go('AdminBlogEdit', { _id: result._id });
             });
         }
     },

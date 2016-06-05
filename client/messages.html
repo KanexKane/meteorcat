@@ -1,0 +1,10 @@
+<template name="Messages">
+    {{#if message}}
+        <div class="messages">
+            <div class="alert alert-warning" role="alert">
+                <button class="close" type="button" data-dismiss="alert">&times;</button>
+                {{message}}
+            </div>
+        </div>
+    {{/if}}
+</template>

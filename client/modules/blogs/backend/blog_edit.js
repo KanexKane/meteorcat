@@ -36,18 +36,12 @@ Template.AdminBlogEdit.helpers({
         return post_category === category_id;
     },
     examplePostSlug: function() {
-        var exSlug = 'http://catland.online/blogs/';
-        var postCategory = this.post.post_category;
-        var postSlug = this.post.post_slug;
-
-        BlogCategories.find().map(function(category){
-            if(category._id == postCategory){
-                exSlug = exSlug + category.category_slug + '/' + postSlug;
-                return true;
-            }
-        });
+        var exSlug = 'http://catland.online/blogs/' + categorySlugById(this.post.post_category) + '/' + this.post.post_slug;
 
         return exSlug;
+    },
+    categorySlug: function() {
+        return categorySlugById(this.post.post_category);
     }
 });
 
@@ -92,6 +86,8 @@ Template.AdminBlogEdit.events({
             post.post_slug = post.post_title.replace(/\s+/g, '-').toLowerCase();
         }
 
+        var categorySlug = categorySlugById(post.post_category);
+
         // check files
         var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
@@ -104,7 +100,7 @@ Template.AdminBlogEdit.events({
                         return throwError(error.reason);
                     }
 
-                    Router.go('AdminBlogList', { _id: result._id });
+                    Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
                 });
             });
         }else if(fileLink){
@@ -115,7 +111,7 @@ Template.AdminBlogEdit.events({
                     return throwError(error.reason);
                 }
 
-                Router.go('AdminBlogList', { _id: result._id });
+                Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
             });
         } else {
             Meteor.call('blogEdit', post, currentId, function(error, result){
@@ -124,7 +120,8 @@ Template.AdminBlogEdit.events({
                     return throwError(error.reason);
                 }
 
-                Router.go('AdminBlogList', { _id: result._id });
+                Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+
             });
         }
     },

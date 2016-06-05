@@ -1,5 +1,6 @@
 Template.AdminBlogCategoryEdit.onCreated(function(){
     Session.set('blogCategoryEditErrors', {});
+    Session.set('ALERTMESSAGE', '');
 });
 
 Template.AdminBlogCategoryEdit.helpers({
@@ -53,8 +54,8 @@ Template.AdminBlogCategoryEdit.events({
             if(error){
                 return throwError(error.reason);
             }
-
-            Router.go('BlogCategoryList');
+            Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+            Router.go('AdminBlogCategoryList');
         });
     },
     'click .cancel-process': function(){
