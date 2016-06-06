@@ -62,6 +62,7 @@ Template.AdminBlogEdit.events({
             if( result )
             {
                 postSlug = postSlug + '-1';
+                objPostSlug.val( postSlug );
             }
 
             $('#example_post_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug + '/' + postSlug);
@@ -76,6 +77,7 @@ Template.AdminBlogEdit.events({
             if( result )
             {
                 postSlug = postSlug + '-1';
+                objPostSlug.val( postSlug );
             }
 
             $('#example_post_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug + '/' + postSlug);

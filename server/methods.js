@@ -19,7 +19,6 @@ Meteor.methods({
                                         post_slug: postSlug 
                                     }
                                     ).count();
-        console.log( 'Counter Duplicate: ' + counter );
         return counter > 0;
     },
     blogCreate: function(postAttributes){
@@ -93,6 +92,21 @@ Meteor.methods({
     blogDelete: function(_id){
         check(_id, String);
         BlogPosts.remove(_id);
+    },
+    duplicateCategorySlugStateCreate: function( categorySlug ) {
+        var counter = BlogCategories.find( { category_slug: categorySlug } ).count();
+        return counter > 0;
+    },
+    duplicateCategorySlugStateEdit: function( id, categorySlug ) {
+        var counter = BlogCategories.find( 
+                                    { 
+                                        _id: {
+                                            $ne: id
+                                        },
+                                        category_slug: categorySlug 
+                                    }
+                                    ).count();
+        return counter > 0;
     },
     blogCategoryCreate: function(categoryAttributes){
         check(Meteor.userId(), String);

@@ -22,11 +22,29 @@ Template.AdminBlogCategoryCreate.events({
             let categoryName = $('#category_name').val();
             categorySlug = categoryName.replace(/\s+/g, '-').toLowerCase();
         }
-        $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
+        Meteor.call( 'duplicateCategorySlugStateCreate', categorySlug, function( error, result ) {
+            // if post slug is duplicate
+            if( result )
+            {
+                categorySlug = categorySlug + '-1';
+                $( '#category_slug' ).val( categorySlug );
+            }
+
+            $('#example_category_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug);
+        } );
     },
     'keyup #category_slug': function() {
         var categorySlug = $('#category_slug').val().trim().replace(/\s+/g, '-').toLowerCase();
-        $('#example_category_slug').html( 'http://catland.online/blogs/' + categorySlug );
+        Meteor.call( 'duplicateCategorySlugStateCreate', categorySlug, function( error, result ) {
+            // if post slug is duplicate
+            if( result )
+            {
+                categorySlug = categorySlug + '-1';
+                $( '#category_slug' ).val( categorySlug );
+            }
+
+            $('#example_category_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug);
+        } );
     },
     'submit form': function(e){
         e.preventDefault();

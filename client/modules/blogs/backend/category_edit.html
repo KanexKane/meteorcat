@@ -11,11 +11,11 @@
                             <span class="help-block">{{errorMessage 'category_name'}}</span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{errorClass 'category_slug'}}">
                         <label for="category_slug" class="control-label">Slug</label>
                         <div class="controls">
                             <input type="text" id="category_slug" class="form-control" name="category_slug" placeholder="Slug" value="{{category_slug}}">
-                            <span class="help-block">ตัวอย่าง url: <span id="example_category_slug">http://catland.online/blogs/{{category_slug}}</span></span>
+                            <span class="help-block"><span id="example_category_slug">ตัวอย่าง Url: http://catland.online/blogs/{{category_slug}}</span></span>
                         </div>
                     </div>
                     <input type="submit" class="btn btn-primary" value="บันทึก">
