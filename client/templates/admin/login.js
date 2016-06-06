@@ -11,7 +11,6 @@ Template.CatAdminLogin.events({
         event.preventDefault();
         var emailVar = event.target.loginUsername.value;
         var passwordVar = event.target.loginPassword.value;
-        console.log('username: ' + emailVar + ', password: ' + passwordVar);
         Meteor.loginWithPassword(emailVar, passwordVar, function(){
             if(Meteor.user()){
                 Router.go('AdminHome');

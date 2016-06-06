@@ -18,6 +18,8 @@ Template.AdminCatBreedCreate.events({
     'submit form': function(e){
         e.preventDefault();
 
+        console.log('submit form');
+
         var breed = {
             breed_name: $(e.target).find('[name=breed_name]').val().trim(),
             breed_thai_name: $(e.target).find('[name=breed_thai_name]').val().trim()
@@ -35,7 +37,10 @@ Template.AdminCatBreedCreate.events({
                 return throwError(error.reason);
             }
 
-            Router.go('AdminCatBreedList');
+            Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+            $(e.target).find('[name=breed_name]').val('');
+            $(e.target).find('[name=breed_thai_name]').val('');
+            Router.go('AdminCatBreedCreate');
         });
     },
     'click .cancel-process': function(){

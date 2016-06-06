@@ -34,7 +34,9 @@ Template.AdminCatColorCreate.events({
                 return throwError(error.reason);
             }
 
-            Router.go('AdminCatColorList');
+            Bert.alert( 'บันทึกเรียบร้อยแล้ว', 'success', 'fixed-top', 'fa-check' );
+            $(e.target).find('[name=color_name]').val('');
+            Router.go('AdminCatColorCreate');
         });
     },
     'click .cancel-process': function(){
