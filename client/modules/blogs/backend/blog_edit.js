@@ -47,6 +47,7 @@ Template.AdminBlogEdit.helpers({
 
 Template.AdminBlogEdit.events({
     'change #post_title': function() {
+        var currentId = this.post._id;
         var categorySlug = $('#post_category option:selected').attr('data-slug');
         var objPostSlug = $('#post_slug');
         var postSlug = objPostSlug.val().trim();
@@ -55,12 +56,30 @@ Template.AdminBlogEdit.events({
             postSlug = postTitle.replace(/\s+/g, '-').toLowerCase();
             objPostSlug.val(postSlug);
         }
-        $('#example_post_slug').html('http://catland.online/blogs/' + categorySlug + '/' + postSlug);
+
+        Meteor.call( 'duplicatePostSlugStateEdit', currentId, postSlug, function( error, result ) {
+            // if post slug is duplicate
+            if( result )
+            {
+                postSlug = postSlug + '-1';
+            }
+
+            $('#example_post_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug + '/' + postSlug);
+        } );
     },
     'keyup #post_slug, change #post_category': function() {
+        var currentId = this.post._id;
         var postSlug = $('#post_slug').val().trim().replace(/\s+/g, '-').toLowerCase();
         var categorySlug = $('#post_category option:selected').attr('data-slug');
-        $('#example_post_slug').html('http://catland.online/blogs/' + categorySlug + '/' + postSlug);
+        Meteor.call( 'duplicatePostSlugStateEdit', currentId, postSlug, function( error, result ) {
+            // if post slug is duplicate
+            if( result )
+            {
+                postSlug = postSlug + '-1';
+            }
+
+            $('#example_post_slug').html('ตัวอย่าง Url: http://catland.online/blogs/' + categorySlug + '/' + postSlug);
+        } );
     },
     'submit form': function(e){
         e.preventDefault();

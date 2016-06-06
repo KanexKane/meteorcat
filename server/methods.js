@@ -6,6 +6,22 @@
 //Roles.setUserRoles(userid, [], 'default-group')
 
 Meteor.methods({
+    duplicatePostSlugStateCreate: function( postSlug ) {
+        var counter = BlogPosts.find( { post_slug: postSlug } ).count();
+        return counter > 0;
+    },
+    duplicatePostSlugStateEdit: function( id, postSlug ) {
+        var counter = BlogPosts.find( 
+                                    { 
+                                        _id: {
+                                            $ne: id
+                                        },
+                                        post_slug: postSlug 
+                                    }
+                                    ).count();
+        console.log( 'Counter Duplicate: ' + counter );
+        return counter > 0;
+    },
     blogCreate: function(postAttributes){
         check(Meteor.userId(), String);
         check(postAttributes, {
