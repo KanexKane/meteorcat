@@ -68,9 +68,42 @@ Meteor.publish('allCatsInFarmById', function(farm_id){
     return Cats.find({ farm_id: farm._id });
 });
 // แมวทั้งหมดในฟาร์ม หาโดยใช้ user_id
-Meteor.publish('allCatsInFarmByUserId', function(userId){
+Meteor.publish('allCatsInFarmByUserId', function(userId, breedId, searchKeyword){
     var farms = Farms.findOne({ farm_user_id: userId });
-    return Cats.find({farm_id: farms._id });
+    if( breedId )
+    {
+        if( searchKeyword )
+        {
+            return Cats.find( { 
+                farm_id: farms._id, 
+                cat_breed: breedId,
+                cat_name: {
+                    $regex: searchKeyword
+                }
+            } );
+        }
+        else 
+        {
+            return Cats.find( { farm_id: farms._id, cat_breed: breedId } );
+        }   
+    } 
+    else 
+    {
+        if( searchKeyword )
+        {
+            return Cats.find( { 
+                farm_id: farms._id, 
+                cat_name: {
+                    $regex: searchKeyword
+                }
+            } );
+        }
+        else 
+        {
+            return Cats.find({farm_id: farms._id });
+        }
+    }
+    
 });
 // รายละเอียดแมว หาโดยใช้ id
 Meteor.publish('catDetailById', function(_id){
@@ -87,6 +120,30 @@ Meteor.publish('detailCatColorById', function(id){
 // สายพันธุ์ของแมวทั้งหมด
 Meteor.publish('allCatBreeds', function(){
     return CatBreeds.find({}, {sort: {breed_name: 1}});
+});
+// สายพันธุ์แมวทั้งหมดในฟาร์ม หาโดยใช้ farm_id
+Meteor.publish('allCatBreedsInFarmByUserId', function(userId){
+    var farms = Farms.findOne({ farm_user_id: userId });
+    // ไปหาว่าในฟาร์มเรามีสายพันธุ์อะไรถูกเพิ่มเข้าไปบ้าง โดยเอาค่ามาแค่ cat_breed
+    var catUniqueBreed = Cats.find( 
+                                { 
+                                    farm_id: farms._id 
+                                }, 
+                                { fields: 
+                                    { 
+                                        'cat_breed': 1,
+                                        '_id': 0
+                                    } 
+                                } 
+                                ).fetch();
+    // แต่รูปแบบมันยังใช้ไม่ได้เพราะมันจะเป็น catUniqueBreed[0].cat_breed
+    // เลยต้องเอามาแปลงให้เป็น Array แบบชั้นเดียวถึงจะนำไปใช้ในขั้นตอนต่อไปได้
+    var catBreeds = [];
+    _.each( catUniqueBreed, function(cat, i){
+        catBreeds.push( cat.cat_breed );
+    });
+    // เอา Array ที่ได้ไปหาที่ CatBreeds where ด้วย _id in catBreeds
+    return CatBreeds.find( { _id: { $in: catBreeds } } );
 });
 // รายละเอียดสายพันธุ์แมว
 Meteor.publish('detailCatBreedById', function(id){
