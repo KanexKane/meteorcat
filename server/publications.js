@@ -105,12 +105,13 @@ Meteor.publish('allCatsInFarmByUserId', function(userId, breedId, searchKeyword)
     }
     
 });
-// รายละเอียดแมว หาโดยใช้ id
-Meteor.publish('catDetailById', function(farm_url, id){
+// รายละเอียดแมว หาโดยใช้ slug
+Meteor.publish('catDetailBySlug', function(farm_url, slug){
     var farm = Farms.findOne({ farm_url: farm_url });
-    return Cats.find({ _id: id, farm_id: farm._id });
+    return Cats.find({ cat_slug: slug, farm_id: farm._id });
 });
-Meteor.publish('farmCatDetailById', function(id){
+// รายละเอียดแมว หาโดยใช้ id
+Meteor.publish('catDetailById', function(id){
     return Cats.find({ _id: id });
 });
 // สีของแมวทั้งหมด
