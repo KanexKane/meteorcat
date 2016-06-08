@@ -185,6 +185,7 @@ Meteor.methods({
         // _extend() เป็นส่วนหนึ่งของไลบรารี่ Underscore
         // และช่วยให้คุณ “extend” อ็อบเจกต์ตัวนึงด้วยคุณสมบัติของอีกตัวได้
         var breed = _.extend(breedAttributes, {
+            breed_slug: breedAttributes.breed_name.replace(/\s+/g, '-').toLowerCase(),
             create_by_user_id: user._id,
             create_at: new Date(),
             update_by_user_id: user._id,
@@ -213,6 +214,7 @@ Meteor.methods({
         // _extend() เป็นส่วนหนึ่งของไลบรารี่ Underscore
         // และช่วยให้คุณ “extend” อ็อบเจกต์ตัวนึงด้วยคุณสมบัติของอีกตัวได้
         var breed = _.extend(breedAttributes, {
+            breed_slug: breedAttributes.breed_name.replace(/\s+/g, '-').toLowerCase(),
             update_by_user_id: user._id,
             update_at: new Date()
         });

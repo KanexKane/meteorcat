@@ -1,21 +1,50 @@
 <template name="FarmHome">
-    <div class="row">
-        <div class="farm-editor-header col-sm-12">
-            {{{farm.farm_editor_header}}}
-        </div>
-        <div class="row" style="padding: 0 5%">
-            <div class="col-md-4 text-center" style="padding : 2%;">
-                <img src="assets/img/12678972_1062529540474500_384151276_n.jpg" width="100%" class="myImg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                <div class="text-center" style="width: 100%;font-size: 20px">
-                    <strong>ราคา 20,000 บาท</strong>
-                </div>
-                <div class="text-center" style="width: 100%;font-size: 20px">
-                    <strong>เพศ : หญิง</strong>
-                </div>
-                <a class="btn btn-warning btn-lg hero-button" role="button" href="#">
-                    Learn more
-                </a>
+
+        <div class="row">
+            <div class="farm-editor-header col-sm-12">
+                {{{farm.farm_editor_header}}}
             </div>
         </div>
-    </div>
+
+    
+        {{#each rowCats}}
+            <div class="row">
+                {{#each cats}}
+                    {{#if isFirst}}
+                        <div class="jumbotron hero-technology" style="background: url('cfs/files/farmcats/{{cat_featured_image}}');">
+                            <h1 class="hero-title">แมวสายพันธุ์ {{breed_name}}</h1>
+                            <p class="hero-subtitle">
+                                ชื่อ: {{cat_name}}<br>
+                                สายพันธุ์: {{breed_thai_name}}<br>
+                                เพศ: {{cat_sex}}<br>
+                                ลักษณะพิเศษ: {{cat_character}}<br>
+                                เกิด: {{dayOfBirth cat_dayofbirth}}<br>
+                                {{#if cat_price_sale}}
+                                    <u>ราคาพิเศษสุด ๆ ในตอนนี้เลยเพียง {{cat_price_sale}} บาทเท่านั้น</u>
+                                {{else}}
+                                    <u>ราคา {{price cat_price}} บาท</u>
+                                {{/if}}
+                                
+                            </p>
+                            {{#linkTo route='FarmCatDetail' farm_url=farm_url id=_id class='btn btn-warning btn-lg hero-button' role="button"}}
+                                รายละเอียด
+                            {{/linkTo}}
+                        </div>
+                    {{else}}
+                        <div class="col-xs-6 col-md-4 text-center cat-list">
+                            <img src="/cfs/files/farmcats/{{cat_featured_image}}" class="cat-thumbnail">
+                            <div class="cat-list-info">
+                                ราคา {{price cat_price}} บาท
+                            </div>
+                            <div class="cat-list-info">
+                                เพศ: {{cat_sex}}
+                            </div>
+                            {{#linkTo route='FarmCatDetail' farm_url=farm_url id=_id class='btn btn-warning btn-lg hero-button' role="button"}}
+                                รายละเอียด
+                            {{/linkTo}}
+                        </div>
+                    {{/if}}  
+                {{/each}}
+            </div>
+        {{/each}}    
 </template>
