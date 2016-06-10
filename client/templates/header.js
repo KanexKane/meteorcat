@@ -8,20 +8,25 @@ Template.header.helpers({
         });
 
         return active && 'active';
-    },
-    farmUrl: () => {
-        var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-        console.log(farm);
     }
 });
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
     farmUrl: () => {
-        var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-        return farm.farm_url;
+        if( Meteor.userId() ) {
+            var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
+            return farm.farm_url;
+        } else {
+            return '';
+        }
+        
     },
     farmName: () => {
-        var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-        return farm.farm_name;
+        if( Meteor.userId() ) {
+            var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
+            return farm.farm_name;
+        } else {
+            return '';
+        }
     }
 });
