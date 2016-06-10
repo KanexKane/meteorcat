@@ -106,8 +106,9 @@ Meteor.publish('allCatsInFarmByUserId', function(userId, breedId, searchKeyword)
     
 });
 // รายละเอียดแมว หาโดยใช้ slug
-Meteor.publish('catDetailBySlug', function(farm_url, slug){
+Meteor.publish('catDetailBySlug', function(farm_url, breed_slug, cat_slug){
     var farm = Farms.findOne({ farm_url: farm_url });
+    var slug = breed_slug+'/'+cat_slug;
     return Cats.find({ cat_slug: slug, farm_id: farm._id });
 });
 // รายละเอียดแมว หาโดยใช้ id

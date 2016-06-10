@@ -1,3 +1,70 @@
 <template name="FarmCatDetail">
-    dddd
+    <div class="row">
+        <div class="col-md-12">
+                <h1>แมวสายพันธุ์ {{breed.breed_name}}</h1>
+        </div>
+    </div>
+    <div class="row cat-detail-gallery">
+        <div class="col-xs-6 col-sm-4">
+            <a href="/cfs/files/farmcats/{{cat.cat_featured_image}}"
+                data-toggle="lightbox"
+                data-type="image"
+                data-gallery="cat"
+                data-title="{{cat.cat_name}} 1">
+                <div class="img-cat-detail-gallery" 
+                style="background-image: url( /cfs/files/farmcats/{{cat.cat_featured_image}} );"></div>
+            </a>
+        </div>
+   
+        {{#each cat.cat_gallery}}
+            <div class="col-xs-6 col-sm-4 thumbnail-cat-detail-gallery">
+                <a href="/cfs/files/farmcats/{{image}}"
+                data-toggle="lightbox"
+                data-type="image"
+                data-gallery="cat"
+                data-title="{{catName @index}}">
+                    <div class="img-cat-detail-gallery" style="background-image: url( /cfs/files/farmcats/{{image}} );"></div>
+                </a>
+            </div>
+        {{/each}}
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    ชื่อ : {{cat.cat_name}}
+                </div>
+                <div class="panel-body" style="font-size: 20px ;">
+                    <p>เกิด : {{dayOfBirth cat_dayofbirth}}</p>
+                    <p>สี : {{color.color_name}}</p>
+                    <p>ลักษณะพิเศษ : {{cat.cat_character}}</p>
+                    <p>ประวัติทางการแพทย์ : {{cat.cat_medical_history}}</p>
+                    <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">พ่อ </h3>
+                </div>
+                <div class="panel-body">
+                    <img src="/cfs/files/farmcats/{{cat.cat_father}}" width="100%">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">แม่ </h3>
+                </div>
+                <div class="panel-body">
+                    <img src="/cfs/files/farmcats/{{cat.cat_mother}}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
