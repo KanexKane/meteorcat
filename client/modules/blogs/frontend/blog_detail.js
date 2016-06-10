@@ -1,21 +1,33 @@
 Template.BlogDetail.helpers({
-    categoryName: function(){
-        // function findArrayData อยู่ที่ collections/blogs เพราะเรียกใช้หลายที่
-        return findArrayData(this.categories, this.post.post_category, 'category_name');
-    },
-    postDate: function(){
-        return moment(this.post_date).add(543, 'years').format('DD/MM/YYYY HH:ss');
-    },
-    postFeaturedImage: function(){
-        if(this.post.post_featured_image === ''){
-            return "/images/noimage.png"
-        }else{
-            return this.post.post_featured_image;
+
+    postFeaturedImage: function( image ){
+
+        if( !image || image.trim() === '' ) {
+
+            return "/images/noimage.png";
+
+        } else if ( image.indexOf('http://') !== -1 ) {
+
+            return image;
+
+        } else if ( image.indexOf('/cfs/files/') !== -1 ) {
+
+            // ถ้าเป็นพวก /cfs/files/ แสดงว่าเป็นลิงค์แบบโดยตรงเหมือนกัน
+            return image;
+
         }
-    },
-    linkToCategory: function(){
-        // function findCategorySlug อยู่ที่ collections/blogs เพราะเรียกใช้หลายที่
-        var link = "/blogs/categories" + findCategorySlug(this.post.post_category);
-        return link;
+        else {
+            var image = BlogImages.findOne( image );
+
+            if ( image ) {
+
+                return image.url();
+
+            } else {
+
+                return "/images/noimage.png";
+
+            }
+        }
     }
 });

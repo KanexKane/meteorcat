@@ -114,7 +114,7 @@ Template.AdminBlogEdit.events({
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
         if(!fileLink && file){
             BlogImages.insert(file, function(err, fileObj){
-                post['post_featured_image'] = '/cfs/files/blogimages/' + fileObj._id;
+                post['post_featured_image'] = fileObj._id;
                 Meteor.call('blogEdit', post, currentId, function(error, result){
                     //display the error to the user and abort
                     if(error){

@@ -19,5 +19,8 @@ Template.FarmCatDetail.helpers({
         var index = parseInt(index) + 2;
         var cat = Cats.find({}).fetch()[0];
         return cat.cat_name + ' ' + index;
+    },
+    catThumbImage: ( imageId ) => {
+        return farmCats.findOne( imageId ).url( { store: 'farmcatthumbs' } );
     }
 });

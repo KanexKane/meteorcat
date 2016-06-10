@@ -15,18 +15,21 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
     farmUrl: () => {
         if( Meteor.userId() ) {
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-            return farm.farm_url;
-        } else {
-            return '';
-        }
+            if( farm || farm.length > 0 ) {
+                return farm.farm_url;
+            }
+            
+        } 
         
     },
     farmName: () => {
         if( Meteor.userId() ) {
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-            return farm.farm_name;
-        } else {
-            return '';
-        }
+
+            if ( farm || farm.length > 0 ) {
+                return farm.farm_name;
+            }
+            
+        } 
     }
 });

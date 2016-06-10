@@ -179,3 +179,18 @@ Meteor.publish('allCatBreedsInFarmByUserId', function(userId){
 Meteor.publish('detailCatBreedById', function(id){
     return CatBreeds.find({ _id: id.toString() });
 });
+// รูปภาพของฟาร์มทั้งหมด หาโดยใช้ farm_url
+Meteor.publish('imageFarmCatsByFarmUrl', (farm_url) => {
+    var farm = Farms.findOne({ farm_url: farm_url });
+    var userId = farm.farm_user_id;
+
+    return farmCats.find({ 
+        $query: {
+            'metadata.owner': userId
+        } 
+    });
+});
+
+Meteor.publish('allImageBlogs', () => {
+    return BlogImages.find({});
+});

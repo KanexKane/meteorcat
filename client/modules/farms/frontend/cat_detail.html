@@ -12,7 +12,7 @@
                 data-gallery="cat"
                 data-title="{{cat.cat_name}} 1">
                 <div class="img-cat-detail-gallery" 
-                style="background-image: url( /cfs/files/farmcats/{{cat.cat_featured_image}} );"></div>
+                style="background-image: url( '{{catThumbImage cat.cat_featured_image}}' );"></div>
             </a>
         </div>
    
@@ -23,7 +23,7 @@
                 data-type="image"
                 data-gallery="cat"
                 data-title="{{catName @index}}">
-                    <div class="img-cat-detail-gallery" style="background-image: url( /cfs/files/farmcats/{{image}} );"></div>
+                    <div class="img-cat-detail-gallery" style="background-image: url( '{{catThumbImage image}}' );"></div>
                 </a>
             </div>
         {{/each}}
