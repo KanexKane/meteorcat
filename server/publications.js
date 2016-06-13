@@ -191,6 +191,39 @@ Meteor.publish('imageFarmCatsByFarmUrl', (farm_url) => {
     });
 });
 
+Meteor.publish('imageFarmImagesByFarmUrl', (farm_url) => {
+    var farm = Farms.findOne({ farm_url: farm_url });
+    var userId = farm.farm_user_id;
+
+    return farmImages.find({ 
+        $query: {
+            'metadata.owner': userId
+        } 
+    });
+});
+
+Meteor.publish('imageFarmCoversByFarmUrl', (farm_url) => {
+    var farm = Farms.findOne({ farm_url: farm_url });
+    var userId = farm.farm_user_id;
+
+    return farmCovers.find({ 
+        $query: {
+            'metadata.owner': userId
+        } 
+    });
+});
+
+Meteor.publish('imageFarmLogosByFarmUrl', (farm_url) => {
+    var farm = Farms.findOne({ farm_url: farm_url });
+    var userId = farm.farm_user_id;
+
+    return farmLogos.find({ 
+        $query: {
+            'metadata.owner': userId
+        } 
+    });
+});
+
 Meteor.publish('allImageBlogs', () => {
     return BlogImages.find({});
 });
