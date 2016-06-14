@@ -1,4 +1,6 @@
 accounts-base@1.2.7
+accounts-facebook@1.0.9
+accounts-oauth@1.1.12
 accounts-password@1.1.8
 alanning:roles@1.2.15
 aldeed:autoform@5.8.1
@@ -61,6 +63,7 @@ ecmascript-runtime@0.2.10
 ejson@1.0.11
 email@1.0.12
 es5-shim@4.5.10
+facebook@1.2.6
 fastclick@1.0.11
 fortawesome:fontawesome@4.5.0
 fourseven:scss@3.3.3_3
@@ -125,6 +128,8 @@ msavin:jetsetter@2.0.0
 msavin:mongol@2.0.1
 npm-bcrypt@0.8.5
 npm-mongo@1.4.43
+oauth@1.1.10
+oauth2@1.1.9
 observe-sequence@1.0.11
 ordered-dict@1.0.7
 promise@0.6.7

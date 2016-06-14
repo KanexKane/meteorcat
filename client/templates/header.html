@@ -27,7 +27,7 @@
                             {{/linkTo}}
                         </li>
                         {{#if currentUser}}
-                        {{> loginButtons}}
+                            {{> loginButtons}}
                         {{/if}}
                     </ul>
                 </div>
@@ -53,10 +53,13 @@
     <a href="{{pathFor 'AdminHome'}}">
         <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Admin Dashboard</button>
     </a>
+
     <a href="{{pathFor 'MemberFarmHome'}}">
-        <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Farm Dashboard</button>
+        <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Member Dashboard</button>
     </a>
-    <a href="{{pathFor 'FarmHome' farm_url=farmUrl}}">
-        <button class="btn btn-default btn-block" id="login-buttons-edit-profile">{{farmName}}</button>
-    </a>
+    {{#if farmUrl}}
+        <a href="{{pathFor 'FarmHome' farm_url=farmUrl}}">
+            <button class="btn btn-default btn-block" id="login-buttons-edit-profile">{{farmName}}</button>
+        </a>
+    {{/if}}
 </template>

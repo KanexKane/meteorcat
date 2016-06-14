@@ -15,7 +15,8 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
     farmUrl: () => {
         if( Meteor.userId() ) {
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
-            if( farm || farm.length > 0 ) {
+
+            if( !!farm && farm.length > 0 ) {
                 return farm.farm_url;
             }
             
@@ -26,7 +27,7 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
         if( Meteor.userId() ) {
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
 
-            if ( farm || farm.length > 0 ) {
+            if ( !!farm && farm.length > 0 ) {
                 return farm.farm_name;
             }
             

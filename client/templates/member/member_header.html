@@ -7,25 +7,28 @@
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            แมว <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{pathFor 'MemberFarmCats'}}">รายการแมว</a></li>
-                            <li><a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมว</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            ตั้งค่าฟาร์ม <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{pathFor 'MemberFarmSettingGeneral'}}">ทั่วไป</a></li>
-                            <li><a href="{{pathFor 'MemberFarmSettingContactUs'}}">ติดต่อเรา</a></li>
-                            <li><a href="{{pathFor 'MemberFarmSettingPromotion'}}">โปรโมชั่น</a></li>
-                        </ul>
-                    </li>
+                    {{#if openFarm}}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                แมว <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{pathFor 'MemberFarmCats'}}">รายการแมว</a></li>
+                                <li><a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมว</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                ตั้งค่าฟาร์ม <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{pathFor 'MemberFarmSettingGeneral'}}">ทั่วไป</a></li>
+                                <li><a href="{{pathFor 'MemberFarmSettingContactUs'}}">ติดต่อเรา</a></li>
+                                <li><a href="{{pathFor 'MemberFarmSettingPromotion'}}">โปรโมชั่น</a></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    <li><a href="{{pathFor 'EditMemberProfile'}}">แก้ไขข้อมูลส่วนตัว</a></li>
                     {{#if currentUser}}
                         {{> loginButtons}}
                     {{/if}}

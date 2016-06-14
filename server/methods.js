@@ -283,4 +283,7 @@ Meteor.methods({
         check(_id, String);
         CatColors.remove(_id);
     },
+    addUserToRoles: function( userId, roleName, groupName ) {
+        Roles.addUsersToRoles(userId, roleName, groupName);
+    }
 });
