@@ -12,22 +12,24 @@ Template.header.helpers({
 });
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
-    farmUrl: () => {
+    farmUrl() {
         if( Meteor.userId() ) {
+
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
 
-            if( !!farm && farm.length > 0 ) {
+            if( !!farm  ) {
                 return farm.farm_url;
             }
             
         } 
         
     },
-    farmName: () => {
+    farmName() {
         if( Meteor.userId() ) {
+            
             var farm = Farms.findOne({ farm_user_id: Meteor.userId() });
 
-            if ( !!farm && farm.length > 0 ) {
+            if ( !!farm  ) {
                 return farm.farm_name;
             }
             

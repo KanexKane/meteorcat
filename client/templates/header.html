@@ -28,6 +28,12 @@
                         </li>
                         {{#if currentUser}}
                             {{> loginButtons}}
+                        {{else}}
+                            <li>
+                                {{#linkTo route="MemberLogin"}}
+                                    เข้าสู่ระบบ/สมัครสมาชิก
+                                {{/linkTo}}
+                            </li>
                         {{/if}}
                     </ul>
                 </div>
@@ -60,6 +66,10 @@
     {{#if farmUrl}}
         <a href="{{pathFor 'FarmHome' farm_url=farmUrl}}">
             <button class="btn btn-default btn-block" id="login-buttons-edit-profile">{{farmName}}</button>
+        </a>
+    {{else}}
+        <a href="{{pathFor 'RegisterFarm'}}">
+            <button class="btn btn-default btn-block" id="login-buttons-edit-profile">ลงทะเบียนเปิดฟาร์ม</button>
         </a>
     {{/if}}
 </template>

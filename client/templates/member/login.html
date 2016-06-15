@@ -147,7 +147,11 @@ body{
     <div class="login">
         <input type="text" placeholder="username" name="loginUsername"><br>
         <input type="password" placeholder="password" name="loginPassword"><br>
-        <input type="submit" action="submit" value="Login"><br><br><br>
+        <input type="submit" action="submit" value="Login"><br><br>
+        {{#linkTo route='RegisterUser' class='btn btn-default'}}
+            สมัครสมาชิก
+        {{/linkTo}}
+        <br>
         <p class="text-danger">{{errorMessage}}</p>
     </div>
     </form>
