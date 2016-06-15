@@ -1,8 +1,14 @@
 Template.FarmHeader.helpers({
     farmLogo: ( imageId ) => {
-        return farmLogos.findOne( imageId ).url();
+        var logo = farmLogos.findOne( imageId );
+        if( !!logo ) {
+            return logo.url();
+        }
     },
     farmCover: ( imageId ) => {
-        return farmCovers.findOne( imageId ).url();
+        var cover = farmCovers.findOne( imageId );
+        if( !!cover ) {
+            return cover.url();
+        }
     }
 });
