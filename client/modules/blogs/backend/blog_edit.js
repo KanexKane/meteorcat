@@ -42,7 +42,39 @@ Template.AdminBlogEdit.helpers({
     },
     categorySlug: function() {
         return categorySlugById(this.post.post_category);
-    }
+    },
+    postFeaturedImage: function( imageId ){
+
+        console.log(imageId);
+
+        if( !imageId || imageId.trim() === '' ) {
+
+            return "/images/noimage.png";
+
+        } else if ( imageId.indexOf('http://') !== -1 ) {
+
+            return imageId;
+
+        } else if ( imageId.indexOf('/cfs/files/') !== -1 ) {
+
+            // ถ้าเป็นพวก /cfs/files/ แสดงว่าเป็นลิงค์แบบโดยตรงเหมือนกัน
+            return imageId;
+
+        }
+        else {
+            var image = BlogImages.findOne( imageId );
+
+            if ( image ) {
+
+                return image.url( { store: 'blogimagethumbs'} );
+
+            } else {
+
+                return "/images/noimage.png";
+
+            }
+        }
+    },
 });
 
 Template.AdminBlogEdit.events({
@@ -112,7 +144,7 @@ Template.AdminBlogEdit.events({
         // check files
         var fileLink = $(e.target).find('[name=post_featured_image_url]').val();
         var file = $(e.target).find('[name=post_featured_image]')[0].files[0];
-        if(!fileLink && file){
+        if(file){
             BlogImages.insert(file, function(err, fileObj){
                 post['post_featured_image'] = fileObj._id;
                 Meteor.call('blogEdit', post, currentId, function(error, result){
