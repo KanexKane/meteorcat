@@ -285,5 +285,18 @@ Meteor.methods({
     },
     addUserToRoles: function( userId, roleName, groupName ) {
         Roles.addUsersToRoles(userId, roleName, groupName);
+    },
+    checkExistsFarmUrl( url ) {
+        check(url, String);
+
+        var userId = Meteor.userId();
+
+        var farm = Farms.find( { farm_user_id: { $ne: userId }, farm_url: url } );
+
+        if( farm.count() > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 });
