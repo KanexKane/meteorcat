@@ -1,32 +1,45 @@
 <template name="FarmFooter">
-    <footer>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="/images/instagram.png">
-                <a href="https://www.facebook.com/mtlfarm/" style="font-size: 25px;">
-                    <strong>{{farm.farm_instagram}}</strong>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <img src="/images/line@.png">
-                <a href="https://www.facebook.com/mtlfarm/" style="font-size: 25px;">
-                    <strong>{{farm.farm_line}}</strong>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <img src="/images/facebook.png">
-                <a href="{{farm.farm_facebook_url}}" style="font-size: 25px;">
-                    <strong>{{farm.farm_facebook}}</strong>
-                </a>
+    <footer class="footer">
+        <div class="information">
+            <div class="row">
+                <div class="container">
+                    <div class="text-center">
+                        <p class="farm-title">{{farm.farm_name}}</p>
+                        <p>{{#striptags}}{{farm.farm_desc}}{{/striptags}}</p>
+                    </div>
+                    <div class="visible-xs-block">
+                        <div class="col-xs-12">
+                            <a href="http://line.me/ti/p/{{farm.farm_line}}">
+                                <img src="/images/line@.png">{{farm.farm_line}}
+                            </a>
+                        </div>
+                        <div class="col-xs-12">
+                            <a href="{{farm.farm_facebook_url}}">
+                                <img src="/images/facebook.png">{{farm.farm_facebook}}
+                            </a>
+                        </div>
+                        <div class="col-xs-12">
+                            <a href="https://www.instagram.com/{{farm.farm_instagram}}">
+                                <img src="/images/instagram.png">{{farm.farm_instagram}}    
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hidden-xs">
+                        <a href="http://line.me/ti/p/{{farm.farm_line}}">
+                                <img src="/images/line@.png">{{farm.farm_line}}
+                            </a>
+                        <a href="{{farm.farm_facebook_url}}">
+                                <img src="/images/facebook.png">{{farm.farm_facebook}}
+                            </a>
+                        <a href="https://www.instagram.com/{{farm.farm_instagram}}">
+                                <img src="/images/instagram.png">{{farm.farm_instagram}}    
+                            </a>   
+                    </div>
+                    
+                </div>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>{{farm.farm_name}} © 2016</h5>
-                <h5>{{#striptags}}{{farm.farm_desc}}{{/striptags}}</h5>
-                <h5>ตลาดฟาร์มแมว catland.online</h5>
-            </div>
-        </div>
+        <div class="copyright"><img src="/images/logo60.png" alt=""> Copyright ©2016 catland.online All right reserved - Powered by
+        <a href="http://www.facebook.com/toskysoft/" target="_blank">toSKYsoft</a></div>
     </footer>
 </template>

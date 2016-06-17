@@ -1,40 +1,41 @@
+$pinkBorderColor = #FDB6B3
+$pinkButtonColor = #FF807B
+$pinkBGColor = #F9BFBE
+$yellowBorderColor = #FFD383
+$yellowBGColor = #F8E0B7
+$yellowLight = #FFA97E
+$grayBGColor = #EBEBEB
+
+@import 'https://fonts.googleapis.com/css?family=Athiti|Prompt&subset=thai';
+
+// font-family 'Athiti', sans-serif
+// font-family 'Prompt', sans-serif
+
 .farm
+    font-family 'Prompt', sans-serif
     overflow-x hidden
     width 100%
-    .jumbotron
-        margin 0
-        border-radius 0
-        color white
-    .hero-technology
-        color white
-        text-align center
-        background-size cover
-        background-position center
-        background-repeat no-repeat
-        width 100%
-    .hero-title
-        text-shadow 0 2px 2px rgba(black,0.3)
-        color white
-        font-weight 500
+    .wrapper
+        background-color $yellowBGColor
+        border 1px solid $yellowBorderColor
+    .cat-bg-image
+        height 430px
     .hero-subtitle
-        max-width 700px
-        margin 25px auto
+        float right
+        margin-top 8%
+        max-width 500px
+        text-align right
         padding 10px 15px
-        background-color rgba(black,0.4)
+        background-color $yellowLight
+        border 2px solid $yellowBorderColor
         color white
-        text-shadow 0 1px 1px rgba(black,0.7)
         font-weight 500
         font-size 28px
-    .cat-list
-        padding 2%
-    .cat-thumbnail
-        width 100%
-        box-shadow 0 4px 8px 0 rgba(black, 0.2), 0 6px 20px 0 rgba(black, 0.19)
-    .cat-list-info
-        width 100%
-        font-size 20px
-        font-weight bold
-        text-align content ''
+        &:after
+            content ''
+            display block
+            clear both
+    
     .cat-detail-gallery
         margin-top 20px
     .thumbnail-cat-detail-gallery
@@ -45,11 +46,70 @@
         background-size cover
         width 100%
         height 250px
+    .farm-cover
+        width 100%
+        img
+            width 100%
+            
+    .farm-desc
+        font-size 18px
+        h1
+            text-align left
+            text-shadow 1px 1px 2px #ffffff, 0 0 25px #ffffff, 0 0 10px #ffffff
+    .farm-info
+        background-color $grayBGColor
+        width 100%
+        padding 2% 0
+    .nav-farm-menu
+        button
+            width 100%
+            background-color $pinkButtonColor
+            border 2px solid $yellowBorderColor
+            color black
+            padding 20px
+            font-size 1.3em
+            &.active
+                background-color white
+                border 2px solid $pinkButtonColor
+                color $pinkButtonColor
     .farm-editor-header
         padding 2% 0 1% 0
-    .farm-cover
-        height 300px
+        background-color $pinkBGColor
+        border 2px solid $yellowBorderColor
+    .cat-breed
+        padding 3% 0 10% 0
+        border-bottom 1px solid $yellowBorderColor
+    .cat-breed-title
+        text-align right
+    .cat-list
+        padding 0
+        border 1px solid $yellowBorderColor
+    .cat-thumbnail
         width 100%
-        background-repeat no-repeat
-        background-position top center
-        background-size cover
+    .cat-list-info
+        width 100%
+        background-color #CBDDCC
+        font-size 20px
+        font-weight bold
+        text-align center
+        color #762D0D
+    .footer
+        background-color #929292
+        padding 0
+        .copyright
+            background-color $pinkButtonColor
+            text-align center
+            img
+                max-height 44px
+        .information
+            font-size 1.2em
+            padding 10px 0
+            text-align center
+            img
+                max-width 50px
+                max-height 40px
+                @media (min-width: 768px)
+                    margin-left 50px
+            .farm-title
+                font-size 1.5em
+                color #00EEFE

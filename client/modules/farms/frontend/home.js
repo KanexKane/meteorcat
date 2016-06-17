@@ -30,5 +30,21 @@ Template.FarmHome.helpers({
     },
     price: ( price ) => {
         return price === undefined ? 0 : price;
+    },
+    catFeaturedImage( imageId ) {
+        if ( !!imageId ) {
+            var image = farmCats.findOne( imageId );
+            return image;
+        } else {
+            return 'images/no-cat-image.jpg';
+        }
+    },
+    catFeaturedImageCover( imageId ) {
+        if ( !!imageId ) {
+            var image = farmCats.findOne( imageId );
+            return image;
+        } else {
+            return 'images/no-cat-image-cover.jpg';
+        }
     }
 });
