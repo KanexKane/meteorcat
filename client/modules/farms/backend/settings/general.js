@@ -5,7 +5,9 @@ Template.MemberFarmSettingGeneral.events({
         var farmUrl = document.getElementsByName('farm_url')[0].value.trim();
 
         Meteor.call( 'checkExistsFarmUrl', farmUrl, function(err, result) {
-            
+            // check in server: farm url already exists
+            // if exists return true
+            // else return false
             if( result ) {
 
                 objExampleUrl.setAttribute('class','text-danger');
