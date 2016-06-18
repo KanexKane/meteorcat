@@ -34,7 +34,7 @@ Template.FarmHome.helpers({
     catFeaturedImage( imageId ) {
         if ( !!imageId ) {
             var image = farmCats.findOne( imageId );
-            return image;
+            return image.url();
         } else {
             return 'images/no-cat-image.jpg';
         }
@@ -42,7 +42,7 @@ Template.FarmHome.helpers({
     catFeaturedImageCover( imageId ) {
         if ( !!imageId ) {
             var image = farmCats.findOne( imageId );
-            return image;
+            return image.url();
         } else {
             return 'images/no-cat-image-cover.jpg';
         }

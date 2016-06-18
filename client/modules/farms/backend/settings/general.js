@@ -1,5 +1,5 @@
 Template.MemberFarmSettingGeneral.events({
-    'keyup [name=farm_url]': function(e){
+    'blur [name=farm_url]': function(e){
 
         var objExampleUrl = document.getElementById('exampleUrl');
         var farmUrl = document.getElementsByName('farm_url')[0].value.trim();
