@@ -28,3 +28,15 @@ if(BlogPosts.find().count() === 0){
     }
     
 }
+
+if( BannerPositions.find().count() === 0 ) {
+    var positions = ['A', 'B', 'C', 'D'];
+    _.each( positions, function(position) {
+        let data = {
+            name: 'ตำแหน่ง ' + position,
+            code: position 
+        };
+
+        BannerPositions.insert(data);
+    });
+}

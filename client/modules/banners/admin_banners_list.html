@@ -1,0 +1,84 @@
+<template name="AdminBannersList">
+    <div class="row">
+        <div class="card">
+            <div class="header">
+                <div class="pull-left">
+                    <h2>รายการโฆษณา</h2>
+                </div>
+                <div class="pull-right">
+                    <br/>
+                    <a href="{{pathFor 'AdminBannerCreate'}}" class="btn btn-primary"><i class="fa fa-plus"></i> เพิ่มโฆษณา</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group margin-bottom-sm">
+                        <span class="input-group-addon">เลือกดูตามตำแหน่งโฆษณา</span>
+                        <select name="bannerPosition" id="bannerPosition" class="form-control">
+                            <option value="">ทั้งหมด</option>
+                            {{#each positions}}
+
+                                {{#if positionEqualsCode}}
+                                    <option value="{{code}}" selected="true">{{name}}</option>
+                                {{else}}
+                                    <option value="{{code}}">{{name}}</option>
+                                {{/if}}
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="input-group margin-bottom-sm">
+                        <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+                        <input class="form-control" type="text" id="searchKeyword" placeholder="คำค้นหา" value="{{searchKeyword}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 content">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>รูปโฆษณา</th>
+                                    <th>ตำแหน่ง</th>
+                                    <th>ชื่อโฆษณา</th>
+                                    <th>เริ่ม-สิ้นสุด</th>
+                                    <th>ผู้เช่า</th>
+                                    <th>ราคา</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each banners}}
+                                    <tr>
+                                        <td>
+                                            <a href="{{url}}" target="_blank" alt="{{name}}">
+                                                <img src="{{bannerImage image}}" alt="">
+                                            </a>
+                                        </td>
+                                        <td>{{position}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{bannerStart start}} - {{bannerEnd end}}</td>                                    
+                                        <td>{{rent_name}}</td>
+                                        <td>{{price}}</td>
+                                        <td>
+                                            {{#linkTo route='AdminBannerEdit' id=_id class='btn btn-success' }}
+                                                <i class="fa fa-edit"></i>
+                                            {{/linkTo}}
+
+                                            <a href="#" data-id="{{_id}}" class="delete btn btn-danger"><i class="fa fa-remove"></i></a>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{paging}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

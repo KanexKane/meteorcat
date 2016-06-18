@@ -1,0 +1,10 @@
+<template name="AdminBannerEdit">
+    <div class="row">
+        <div class="card">
+            <h2 class="header">แก้ไขโฆษณา</h2>
+            <div class="content">
+                {{> quickForm collection="Banners" doc=this id="updateBanner" type="update"}}
+            </div>
+        </div>
+    </div>
+</template>

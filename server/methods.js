@@ -298,5 +298,9 @@ Meteor.methods({
         } else {
             return false;
         }
-    }
+    },
+    bannerDelete: function( _id ){
+        check(_id, String);
+        Banners.remove(_id);
+    },
 });
