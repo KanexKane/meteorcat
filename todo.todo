@@ -1,5 +1,8 @@
  ☐ เพิ่มเก็บเพจวิวให้ แมว และ บทความ
  ☐ เก็บ Unique pageview ip ให้ แมว และ บทความ
- ☐ ติด Google Analytics
- ☐ ติด Google Adsense
+ ✔ ติด Google Analytics ที่ Footer Banner @done (16-06-20 04:24)
+ ✔ ติด Google Adsense ที่ Footer Banner @done (16-06-20 04:35)
  ☐ ติด Facebook Page Widgets
+ ✔ ซ่อน Footer Banner ไปก่อน @done (16-06-20 04:17)
+ ✔ อัพเกรดเป็น Meteor version 1.3.3 @done (16-06-20 04:21)
+
