@@ -11,11 +11,11 @@ Template.AdminBlogCreate.onRendered(function() {
         callbacks: {
             onImageUpload: function(files, editor, $editable) {
                 BlogImages.insert(files[0], function(err, fileObj) {
-                    imagesURL = '/cfs/files/blogimages/' + fileObj._id;
+                    var image = BlogImages.findOne( fileObj._id );
                     Meteor.setTimeout(function(){
-                      $dom = $("<img>").attr('src',imagesURL);
-                      $("#post_content").summernote("insertNode", $dom[0]);
-                  }, 1000);
+                        $dom = $("<img>").attr('src', image.url() );
+                        $("#post_content").summernote("insertNode", $dom[0]);
+                    }, 2000);
                 });
             }
         }
