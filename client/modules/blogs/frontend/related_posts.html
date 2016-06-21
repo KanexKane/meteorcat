@@ -1,0 +1,31 @@
+<template name="RelatedPosts">
+    <div class="related-posts">
+        <h2>บทความที่เกี่ยวข้อง</h2>
+        <div class="row content related-post">
+            
+            <div id="owl" class="owl-carousel">
+                {{#each relatedPosts}}
+                    {{addObject}}
+                    {{> RelatedPost}}  
+                    
+                {{/each}}
+            </div>
+            
+        </div>
+    </div>
+</template>
+
+<template name="RelatedPost">
+    <div class="entry-post">
+        <figure class="post-thumbnail">
+            <a href="{{linkToPost}}">
+                <img src="{{relatedPostImage post_featured_image}}">
+            </a>
+        </figure>
+        <div class="post-title">
+            <a href="{{linkToPost}}">
+                {{post_title}}
+            </a>
+        </div>
+    </div>
+</template>

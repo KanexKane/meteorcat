@@ -318,3 +318,15 @@ Meteor.publish('allImageBanners', function() {
 Meteor.publish('bannerDetail', function( id ) {
     return Banners.find({ _id: id });
 });
+
+Meteor.publish('farmcatimages', function () {
+    return farmImages.find({ 
+        $query: {
+            'metadata.owner': this.userId
+        } 
+    });
+});
+
+Meteor.publish('FileManagerGroups', function() {
+    return FileManagerGroups.find({});
+});

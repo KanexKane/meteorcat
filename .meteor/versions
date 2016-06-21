@@ -50,6 +50,7 @@ check@1.2.3
 cmather:handlebars-server@2.0.0
 coffeescript@1.1.1
 copleykj:tagstripper@1.0.0
+dbernhard:cfs-file-manager@0.0.2
 dburles:google-maps@1.1.5
 ddp@1.2.5
 ddp-client@1.2.8
@@ -90,6 +91,9 @@ livedata@1.0.18
 localstorage@1.0.11
 logging@1.0.13
 manuelschoebel:ms-seo@0.4.1
+markoshust:owl-carousel-2@2.0.0-beta.3a
+matb33:bootstrap-base@10.0.0
+matb33:bootstrap-grid@10.0.0
 mdg:validation-error@0.2.0
 meteor@1.1.15
 meteor-base@1.0.4
