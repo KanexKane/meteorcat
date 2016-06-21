@@ -8,6 +8,13 @@ Template.header.helpers({
         });
 
         return active && 'active';
+    },
+    noFarm: function () {
+        if ( Roles.userIsInRole(Meteor.userId(), 'farm', 'user-group') ) {
+            return false;
+        } else {
+            return true;
+        }
     }
 });
 

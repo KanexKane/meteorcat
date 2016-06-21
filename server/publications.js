@@ -25,6 +25,10 @@ Meteor.publish('blogInCategory', function(category_slug){
     var category_id = BlogCategories.findOne({ category_slug: category_slug})._id;
     return BlogPosts.find({ post_category: category_id });
 });
+Meteor.publish('blogInCategoryByPostSlug', function( slug ){
+    var post = BlogPosts.findOne( { post_slug: slug });
+    return BlogPosts.find({ post_category: post.post_category });
+});
 Meteor.publish('categories', function(category_slug){
     if(category_slug){
         return BlogCategories.find({ category_slug: category_slug });

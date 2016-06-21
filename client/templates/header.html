@@ -28,10 +28,17 @@
                         </li> -->
                         {{#if currentUser}}
                             {{> loginButtons}}
+                            {{#if noFarm}}
+                                <li>
+                                    {{#linkTo route="RegisterFarm"}}
+                                        สมัครเปิดฟาร์มฟรี
+                                    {{/linkTo}}
+                                </li>
+                            {{/if}}
                         {{else}}
                             <li>
                                 {{#linkTo route="MemberLogin"}}
-                                    เข้าสู่ระบบ/สมัครสมาชิก
+                                    เข้าสู่ระบบ/สมัครสมาชิกเปิดฟาร์มฟรี
                                 {{/linkTo}}
                             </li>
                         {{/if}}

@@ -1,3 +1,8 @@
+Template.BlogDetail.onRendered( function () {
+    var post = Template.currentData().post;
+    BlogPosts.update( { _id: post._id }, { $inc: { views: 1 } } );
+});
+
 Template.BlogDetail.helpers({
 
     postFeaturedImage: function( image ){
