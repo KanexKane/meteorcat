@@ -1,0 +1,37 @@
+<template name="AdminFileManager">
+    <div class="row">
+        <div class="card">
+            <h2 class="header">File Manager</h2>
+            <div class="content">
+                {{#each rowsData}}
+                    <div class="row">    
+                        {{#each rows}}
+                            <div class="col-sm-3" style="margin-bottom:2%">
+                                <div data-id="{{_id}}" class="entry-post">
+                                    <figure class="post-thumbnail" style="max-height:170px;overflow-y:hidden;">
+                                        <img src="{{this.url}}" class="img-responsive">
+                                    </figure>
+                                    <div class="post-title">
+                                        <input type="text" value="http://catland.online{{this.url}}" class="form-control">
+                                        <div class="text-right">
+                                            <a class="copy-link btn btn-default" href="javascript:void(0);">
+                                                <i class="fa fa-clone" title="Copy Link" aria-hidden="true"></i>
+                                                <span class="sr-only">Copy Link</span>
+                                            </a>
+                                            <a class="delete-image btn btn-danger" href="javascript:void(0);">
+                                                <i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>
+                                                <span class="sr-only">Delete</span>
+                                            </a>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

@@ -303,4 +303,9 @@ Meteor.methods({
         check(_id, String);
         Banners.remove(_id);
     },
+    deleteBlogImage: function ( id ) {
+        check( id, String );
+        BlogImages.remove({ _id: id });
+        return true;
+    }
 });

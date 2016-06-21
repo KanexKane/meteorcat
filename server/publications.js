@@ -330,3 +330,7 @@ Meteor.publish('farmcatimages', function () {
 Meteor.publish('FileManagerGroups', function() {
     return FileManagerGroups.find({});
 });
+
+Meteor.publish('allAssetImage', function () {
+    return BlogImages.find()
+});
