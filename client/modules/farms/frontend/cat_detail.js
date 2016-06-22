@@ -1,4 +1,8 @@
+
 Template.FarmCatDetail.onRendered(function(){
+    var cat = Template.currentData().cat;
+    Meteor.call('updateViewCat', cat._id, function (error, result) {});
+
     $( document ).ready( function() {
         // delegate calls to data-toggle="lightbox"
         $('*[data-toggle="lightbox"]').click( function(event) {
@@ -6,6 +10,8 @@ Template.FarmCatDetail.onRendered(function(){
             $(this).ekkoLightbox();
         });
     } );
+
+    
 });
 
 Template.FarmCatDetail.helpers({

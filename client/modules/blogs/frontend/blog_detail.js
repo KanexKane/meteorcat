@@ -1,6 +1,6 @@
 Template.BlogDetail.onRendered( function () {
     var post = Template.currentData().post;
-    BlogPosts.update( { _id: post._id }, { $inc: { views: 1 } } );
+    Meteor.call('updateViewBlog', post._id, function (error, result) {});
 });
 
 Template.BlogDetail.helpers({

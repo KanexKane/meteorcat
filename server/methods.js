@@ -307,5 +307,17 @@ Meteor.methods({
         check( id, String );
         BlogImages.remove({ _id: id });
         return true;
+    },
+    updateViewBlog: function ( id ) {
+        check( id, String );
+        BlogPosts.update( { _id: id }, { $inc: { views: 1 } } );
+    },
+    updateViewCat: function ( id ) {
+        check( id, String );
+
+        var cat = Cats.findOne( id );
+        cat.views = cat.views + 1;
+
+        Cats.update( { _id: id }, { $set: cat } );
     }
 });
