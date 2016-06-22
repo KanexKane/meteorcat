@@ -213,12 +213,31 @@ body
             img
                 max-width 100%
         .related-posts
-            .entry-post
+            .item
                 border 2px solid #FF932B
-            .post-title
-                background-color $pinkColor
+                .item-thumbnail
+                    position relative
+                    background-color white
+                    overflow hidden
+                    height 150px
+                    a
+                        color white
+                        text-decoration none
+                        &:hover
+                            color #575757
+                .item-title
+                    text-align center
+                    font-size 1.2em
+                    padding 10px 10px
+                    height 3.2em
+                    overflow hidden
+                    background-color $pinkColor
+                    word-wrap break-word
+                    color white
+                    a
+                        color white
             .related-post
-                padding-top 2%
+                padding 2% 0
                 background-color #929292
             .row
                 margin 0
@@ -233,8 +252,5 @@ body
                 left 0
             .owl-next 
                 right 0
-            .owl-stage-outer
-                width 90%
-                margin 0 auto
 .text-blue-light
     color #00EEFE

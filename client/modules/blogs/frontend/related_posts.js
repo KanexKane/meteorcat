@@ -1,3 +1,4 @@
+
 Template.RelatedPosts.onRendered(function () {
     
     $(document).ready(function() {
@@ -6,15 +7,13 @@ Template.RelatedPosts.onRendered(function () {
             loop:true,
             margin:10,
             nav:true,
+            stagePadding: 50,
             navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
             responsive:{
                 0:{
                     items:1
                 },
                 600:{
-                    items:3
-                },
-                1000:{
                     items:3
                 }
             }
@@ -40,16 +39,10 @@ Template.RelatedPosts.helpers({
 
         var posts = BlogPosts.find({ 
                         post_category: category 
-                    }, {
-                        skip: Math.random()*countAllPost, 
-                        limit: 9
                     }).fetch();
 
-        return posts;
-    }
-});
-
-Template.RelatedPost.helpers({
+        return _.shuffle(posts);
+    },
     relatedPostImage: function ( image ) {
 
         if( !image || image.trim() === '' ) {

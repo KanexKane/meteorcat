@@ -2,30 +2,26 @@
     <div class="related-posts">
         <h2>บทความที่เกี่ยวข้อง</h2>
         <div class="row content related-post">
-            
-            <div id="owl" class="owl-carousel">
+        
+            <div class="owl-carousel owl-theme">
                 {{#each relatedPosts}}
-                    {{addObject}}
-                    {{> RelatedPost}}  
+
+                    <div class="item">
+                        <figure class="item-thumbnail">
+                            <a href="{{linkToPost}}">
+                                <img src="{{relatedPostImage post_featured_image}}">
+                            </a>
+                        </figure>
+                        <div class="item-title">
+                            <a href="{{linkToPost}}">
+                                {{post_title}}
+                            </a>
+                        </div>
+                    </div>
                     
                 {{/each}}
             </div>
             
-        </div>
-    </div>
-</template>
-
-<template name="RelatedPost">
-    <div class="entry-post">
-        <figure class="post-thumbnail">
-            <a href="{{linkToPost}}">
-                <img src="{{relatedPostImage post_featured_image}}">
-            </a>
-        </figure>
-        <div class="post-title">
-            <a href="{{linkToPost}}">
-                {{post_title}}
-            </a>
         </div>
     </div>
 </template>
