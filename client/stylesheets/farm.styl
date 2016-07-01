@@ -90,13 +90,16 @@ $maxWidthMD = 1199px
             margin-top -15%
             max-width 150px 
             @media (min-width $maxWidthXS) and (max-width $maxWidthSM)
-                margin-top -10%
+                margin-top -20%
+                max-width 325px
+                max-height 325px
             @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
                 margin-top -40%
                 max-width 100%  
             @media (min-width $maxWidthMD)
-                margin-top -53%
-                max-width 100%
+                margin-top -40%
+                max-width 325px
+                max-height 325px
     .farm-desc
         font-size 1.2em
         margin-bottom 10px
@@ -187,7 +190,15 @@ $maxWidthMD = 1199px
         a
             text-decoration none
     .cat-thumbnail
-        width 100%
+        @media (max-width $maxWidthSM)
+            width 351px
+            height 351px
+        @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
+            width 302px
+            height 302px
+        @media (min-width $maxWidthMD)
+            width 271px
+            height 271px
     .cat-list-info
         width 100%
         background-color #ffd479

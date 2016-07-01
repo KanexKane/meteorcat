@@ -58,35 +58,39 @@
             <div class="container">
                 <div class="row">
                     <div class="visible-xs visible-sm">
-                        <div class="row">
-                            <div class="farm-logo col-xs-12 col-sm-12">
-                                <img src="{{farmLogo farm.farm_logo}}" width="100%">
+                        <div class="container">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="farm-logo col-xs-12 col-sm-12">
+                                        <img src="{{farmLogo farm.farm_logo}}" width="100%">
+                                    </div>
+                                    <div class="farm-desc col-xs-12 visible-xs col-sm-12 visible-sm">
+                                        <h1>{{farm.farm_name}}</h1>
+                                        <div>{{{ farm.farm_editor_header }}}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="farm-desc col-xs-12 visible-xs col-sm-12 visible-sm">
-                                <h1>{{farm.farm_name}}</h1>
-                                <div>{{{ farm.farm_editor_header }}}</div>
-                            </div>
+                            <div class="row nav-farm-menu">
+                                <div class="container">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <img src="/images/cat-over-btn.png" class="cat-over-btn">
+                                        <a href="/@{{farm.farm_url}}">
+                                            <button class="{{activeRouteClass 'FarmHome'}}">หน้าแรกฟาร์ม</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <a href="/@{{farm.farm_url}}/promotion">
+                                            <button class="{{activeRouteClass 'FarmPromotion'}}">โปรโมชั่น</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <a href="/@{{farm.farm_url}}/contactus">
+                                            <button class="{{activeRouteClass 'FarmContactUs'}}">ติดต่อฟาร์ม</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
-                        <div class="row nav-farm-menu">
-                            <div class="container">
-                                <div class="col-xs-12 col-sm-12">
-                                    <img src="/images/cat-over-btn.png" class="cat-over-btn">
-                                    <a href="/@{{farm.farm_url}}">
-                                        <button class="{{activeRouteClass 'FarmHome'}}">หน้าแรกฟาร์ม</button>
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-12">
-                                    <a href="/@{{farm.farm_url}}/promotion">
-                                        <button class="{{activeRouteClass 'FarmPromotion'}}">โปรโมชั่น</button>
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-12">
-                                    <a href="/@{{farm.farm_url}}/contactus">
-                                        <button class="{{activeRouteClass 'FarmContactUs'}}">ติดต่อฟาร์ม</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>  
                     </div>
                     <div class="visible-md visible-lg">
                         <div class="row">
