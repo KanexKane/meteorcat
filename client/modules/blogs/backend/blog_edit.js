@@ -45,8 +45,6 @@ Template.AdminBlogEdit.helpers({
     },
     postFeaturedImage: function( imageId ){
 
-        console.log(imageId);
-
         if( !imageId || imageId.trim() === '' ) {
 
             return "/images/noimage.png";

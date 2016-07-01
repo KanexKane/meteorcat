@@ -41,6 +41,15 @@ Meteor.publish('blogimages', function(){
     return BlogImages.find({});
 });
 
+Meteor.publish('userimages', () => {
+    var userImages = UserImages.find();
+    if (userImages.count() == 0) {
+        return this.ready();
+    } else {
+        return userImages;
+    }
+})
+
 //==================================================
 // Farm
 //==================================================

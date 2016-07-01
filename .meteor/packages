@@ -21,8 +21,6 @@ iron:router
 twbs:bootstrap
 underscore
 sacha:spin
-ian:accounts-ui-bootstrap-3
-accounts-password
 check
 session
 fortawesome:fontawesome
@@ -54,7 +52,11 @@ themeteorchef:bert
 rajit:bootstrap3-datepicker
 aldeed:autoform-bs-datepicker
 tsega:bootstrap3-lightbox
-accounts-facebook
 okgrow:analytics
 dbernhard:cfs-file-manager
 markoshust:owl-carousel-2
+ian:accounts-ui-bootstrap-3
+accounts-password
+tomi:upload-server
+tomi:upload-jquery
+cfs:ui

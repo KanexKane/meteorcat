@@ -1,1 +1,63 @@
-<template name="EditMemberProfile"></template>
+<template name="EditMemberProfile">
+    <div class="row">
+        <div class="card">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="header">แก้ไขข้อมูลส่วนตัว</h2>
+                </div>
+            </div>
+            
+            <div class="content">
+                <form class="main form page">
+                    <div class="form-group {{errorClass 'firstname'}}">
+                        <label for="firstname" class="control-label">ชื่อ</label>
+                        <div class="controls">
+                            <input type="text" id="firstname" class="form-control" name="firstname" placeholder="ชื่อ" value="{{user.profile.firstname}}">
+                            <span class="help-block">{{errorMessage 'firstname'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group {{errorClass 'lastname'}}">
+                        <label for="lastname" class="control-label">นามสกุล</label>
+                        <div class="controls">
+                            <input type="text" id="lastname" class="form-control" name="lastname" placeholder="นามสกุล" value="{{user.profile.lastname}}">
+                            <span class="help-block">{{errorMessage 'lastname'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group {{errorClass 'email'}}">
+                        <label for="email" class="control-label">Email</label>
+                        <div class="controls">
+                            <input type="text" id="email" class="form-control" name="email" placeholder="Email" value="{{user.emails.address}}">
+                            <span class="help-block">{{errorMessage 'email'}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group {{errorClass 'image'}}">
+                        <label for="profile_image" class="control-label">Profile Image</label>
+                        <div class="controls">
+
+                            <button type="button" class="btn btn-default af-select-file js-af-select-file">
+                                เลือกรูป
+                                <input type="file" id="profile_image" class="js-file">
+                            </button>
+                            <br>
+                            {{#if isUploading}}
+                                {{> FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true}}
+                            {{/if}}
+                            
+                            {{#if user.profile.image}}
+                                <br>
+                                <div class="text-center">
+                                    <img src="{{profileImage user.profile.image}}" alt="Profile Image">
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr>
+                        <input type="submit" class="btn btn-primary" value="บันทึก">
+                        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">                   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
