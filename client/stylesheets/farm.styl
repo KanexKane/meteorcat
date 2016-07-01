@@ -6,6 +6,10 @@ $yellowBGColor = #F8E0B7
 $yellowLight = #FFA97E
 $grayBGColor = #EBEBEB
 
+$maxWidthXS = 767px
+$maxWidthSM = 991px
+$maxWidthMD = 1199px
+
 @import 'https://fonts.googleapis.com/css?family=Athiti|Prompt&subset=thai';
 
 // font-family 'Athiti', sans-serif
@@ -15,19 +19,46 @@ $grayBGColor = #EBEBEB
     font-family 'Prompt', sans-serif
     overflow-x hidden
     width 100%
+    .nav .open > a, .nav .open > a:hover, .nav .open > a:focus
+        background-color #73fcd6
+        color $pinkColor
+    .navbar
+        border-radius 0
+        .icon-bar
+            background-color #73fcd6
+    .navbar-cat
+        background-color #ff7e79
+        color white
+        margin-bottom 0
+        li
+            a
+                color white
+                text-decoration none
+                &:hover, &:focus
+                    background-color transparent
+            &:hover
+                a
+                    color #fff67e
+                    text-decoration underline
+            &.active
+                a
+                    color #fff67e
+                    text-decoration underline
+    .navbar-brand
+        img
+            height 50px
+            margin-top -14px
     .wrapper
-        background-color $yellowBGColor
         border 1px solid $yellowBorderColor
     .cat-bg-image
         height 430px
-    .hero-subtitle
+    .cat-bg-image-subtitle
         float right
-        margin-top 8%
-        max-width 500px
-        text-align right
-        padding 10px 15px
-        background-color $yellowLight
-        border 2px solid $yellowBorderColor
+        height 430px
+        max-width 70%
+        text-align left
+        padding 5% 5% 2% 5%
+        background-color rgba(black, 0.5)
         color white
         font-weight 500
         font-size 28px
@@ -35,6 +66,9 @@ $grayBGColor = #EBEBEB
             content ''
             display block
             clear both
+        .price
+            text-decoration underline
+            text-align right
     
     .cat-detail-gallery
         margin-top 20px
@@ -51,51 +85,138 @@ $grayBGColor = #EBEBEB
         img
             width 100%
     .farm-logo
+        text-align center
         img
-            margin-top -40%
+            margin-top -15%
+            max-width 150px 
+            @media (min-width $maxWidthXS) and (max-width $maxWidthSM)
+                margin-top -10%
+            @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
+                margin-top -40%
+                max-width 100%  
+            @media (min-width $maxWidthMD)
+                margin-top -53%
+                max-width 100%
     .farm-desc
-        font-size 18px
+        font-size 1.2em
+        margin-bottom 10px
         h1
-            text-align left
-            margin-top 10px
-            text-shadow 1px 1px 2px #ffffff, 0 0 25px #ffffff, 0 0 10px #ffffff
+            text-align center
+            text-decoration underline
+            margin-top 0
     .farm-info
         background-color $grayBGColor
         width 100%
         padding 2% 0
+        @media (min-width $maxWidthSM)
+            padding 2% 0 0 0
     .nav-farm-menu
         button
             width 100%
-            background-color $pinkButtonColor
+            background-color #ffd386
             border 2px solid $yellowBorderColor
-            color black
-            padding 20px
-            font-size 1.3em
-            &.active
-                background-color white
-                border 2px solid $pinkButtonColor
-                color $pinkButtonColor
+            color #6e2800
+            text-decoration underline
+            font-size 1.5em
+            @media (max-width $maxWidthSM)
+                padding 5px
+                margin-bottom 10px
+        @media (max-width $maxWidthXS)
+            margin-top 20px
+        @media (min-width $maxWidthSM)
+            background-color #ffd386
+        @media (min-width $maxWidthMD)
+            width 109%
+        .cat-over-btn
+            width 100%
+            @media (max-width $maxWidthXS)
+                width 40%
+            @media (max-width $maxWidthSM)
+                width 25%
+            @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
+                width 150%
+                position absolute
+                top -15px
+                left -39px
+            @media (min-width $maxWidthMD)
+                width 150%
+                position absolute
+                top -29px
+                left -35px
+                z-index 1
     .farm-editor-header
-        padding 2% 0 1% 0
-        background-color $pinkBGColor
+        padding 2%
+        font-size 1.2em
+        background-color #ffbebc
         border 2px solid $yellowBorderColor
     .cat-breed
-        padding 3% 0 10% 0
+        padding 3% 0 5% 0
         border-bottom 1px solid $yellowBorderColor
+        color #945200
+        background-color #ffe9bb
+        &:nth-of-type(even)
+            background-color #ffbebb
     .cat-breed-title
-        text-align right
+        text-align center
+        text-decoration underline
     .cat-list
         padding 0
-        border 1px solid $yellowBorderColor
+        border 1px solid #ffd479
+        margin-bottom 2%
+        @media (max-width $maxWidthSM)
+            width 49%
+            float left
+            &:nth-of-type(even)
+                margin-right 2%
+        @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
+            width 32.3%
+            float left
+            &:nth-child(3n-1)
+                margin 0 1% 0 1%
+        @media (min-width $maxWidthMD)
+            width 24%
+            float left
+            &:nth-child(4n-3)
+                margin 0 1% 0 1%
+            &:nth-child(4n-2)
+                margin 0 1% 0 0
+            
+        &.is-first
+            @media (max-width $maxWidthSM)
+                margin-right 2%;
+        a
+            text-decoration none
     .cat-thumbnail
         width 100%
     .cat-list-info
         width 100%
-        background-color #CBDDCC
-        font-size 20px
-        font-weight bold
-        text-align center
+        background-color #ffd479
+        font-size 1.1em
         color #762D0D
+        padding 10px 10px 5px 10px
+        p
+            line-height 1em
+            &:last-child
+                padding-bottom 0
+                margin-bottom 0
+    .cat-info-price
+        background-color #ff7e79
+        color #FFF
+        font-size 1.2em
+        width 100%
+        padding 5px 0
+        text-align center
+        text-decoration underline
+    .btn-cat-all
+        margin-top 5%
+        background-color #9437ff
+        border-radius 15px
+        font-size 1.5em
+        color #f9fae2
+        text-decoration underline
+        padding 5px 0
+        text-align center
+        border 2px solid #ffd479
     .footer
         background-color #929292
         padding 0

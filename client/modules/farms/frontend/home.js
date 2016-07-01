@@ -5,13 +5,19 @@ Template.FarmHome.helpers({
         _.each( CatBreeds.find({}).fetch(), function ( breed, i ) {
             var rowsNumber = i;
             var isFirst = false;
-            _.each( Cats.find({}).fetch(), function ( cat, i ) {
-                if ( breed._id === cat.cat_breed ) {
+            _.each( Cats.find({ cat_breed: breed._id }).fetch(), function ( cat, i, list ) {
+
                     // ไว้เช็คว่าเป็นตัวแรกของสายพันธุ์นั้นๆ
                     if ( !isFirst ) {
                         cat.isFirst = true;
                         isFirst = true;
                     }
+                    
+                    // ถ้าตัวต่อไปไม่ใช่ breed id เดียวกันแล้วให้ถือว่าอันนี้เป็นอันสุดท้าย
+                    if ( list.length - 1 === i ) {
+                        cat.isLast = true;
+                    }
+
                     cat.breed_name = breed.breed_name;
                     cat.breed_thai_name = breed.breed_thai_name;
                     cat.farm_url = farm.farm_url;
@@ -19,7 +25,6 @@ Template.FarmHome.helpers({
                         rows[rowsNumber] = {cats:[]};
                     }
                     rows[rowsNumber].cats.push( cat );
-                }
             } );
         } );
 

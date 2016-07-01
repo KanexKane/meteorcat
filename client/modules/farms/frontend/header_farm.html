@@ -1,5 +1,52 @@
 <template name="FarmHeader">
-
+    <header>
+        <nav class="navbar navbar-cat">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="{{pathFor 'home'}}">
+                        <img src="/images/logo60.png" alt="">
+                    </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="{{activeRouteClass 'home'}}">
+                            <a href="{{pathFor 'home'}}">Home</a>
+                        </li>
+                        <li class="{{activeRouteClass 'Blogs'}}">
+                            <a href="{{pathFor 'Blogs'}}">Blogs</a>
+                        </li>
+                        <!-- <li class="{{activeRouteClass 'AboutUs'}}">
+                            {{#linkTo route="AboutUs"}}
+                                เกี่ยวกับเรา
+                            {{/linkTo}}
+                        </li> -->
+                        {{#if currentUser}}
+                            {{> loginButtons}}
+                            {{#if noFarm}}
+                                <li>
+                                    {{#linkTo route="RegisterFarm"}}
+                                        สมัครเปิดฟาร์มฟรี
+                                    {{/linkTo}}
+                                </li>
+                            {{/if}}
+                        {{else}}
+                            <li>
+                                {{#linkTo route="MemberLogin"}}
+                                    เข้าสู่ระบบ/สมัครสมาชิกเปิดฟาร์มฟรี
+                                {{/linkTo}}
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="row">
         <div class="farm-cover col-xs-12" style="">
             <!-- Farm Cover -->
@@ -9,47 +56,78 @@
     <div class="row">
         <div class="farm-info">
             <div class="container">
-                <div>
-                    <div class="farm-logo col-xs-5 col-sm-3 col-md-2">
-                        <img src="{{farmLogo farm.farm_logo}}" width="100%">
-                    </div>
-                    <div class="farm-desc visible-sm col-sm-9 col-md-10">
-                        <h1>{{farm.farm_name}}</h1>
-                        <p>{{{ farm.farm_editor_header }}}</p>
-                    </div>
-
-                    <div class="farm-desc col-xs-12 visible-xs">
-                        <h1>{{farm.farm_name}}</h1>
-                        <div>{{{ farm.farm_editor_header }}}</div>
-                    </div>
-
-                </div>
-                
-                
-                <div class="col-xs-12 nav-farm-menu">
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="/@{{farm.farm_url}}">
-                                <button class="{{activeRouteClass 'FarmHome'}}">หน้าแรกฟาร์ม</button>
-                            </a>
+                <div class="row">
+                    <div class="visible-xs visible-sm">
+                        <div class="row">
+                            <div class="farm-logo col-xs-12 col-sm-12">
+                                <img src="{{farmLogo farm.farm_logo}}" width="100%">
+                            </div>
+                            <div class="farm-desc col-xs-12 visible-xs col-sm-12 visible-sm">
+                                <h1>{{farm.farm_name}}</h1>
+                                <div>{{{ farm.farm_editor_header }}}</div>
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="/@{{farm.farm_url}}/promotion">
-                            <button class="{{activeRouteClass 'FarmPromotion'}}">โปรโมชั่น</button>
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <a href="/@{{farm.farm_url}}/contactus">
-                                <button class="{{activeRouteClass 'FarmContactUs'}}">ติดต่อฟาร์ม</button>
-                            </a>
+                        <div class="row nav-farm-menu">
+                            <div class="container">
+                                <div class="col-xs-12 col-sm-12">
+                                    <img src="/images/cat-over-btn.png" class="cat-over-btn">
+                                    <a href="/@{{farm.farm_url}}">
+                                        <button class="{{activeRouteClass 'FarmHome'}}">หน้าแรกฟาร์ม</button>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
+                                    <a href="/@{{farm.farm_url}}/promotion">
+                                        <button class="{{activeRouteClass 'FarmPromotion'}}">โปรโมชั่น</button>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-12">
+                                    <a href="/@{{farm.farm_url}}/contactus">
+                                        <button class="{{activeRouteClass 'FarmContactUs'}}">ติดต่อฟาร์ม</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="visible-md visible-lg">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="farm-logo">
+                                    <img src="{{farmLogo farm.farm_logo}}" width="100%">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="farm-desc">
+                                    <h1>{{farm.farm_name}}</h1>
+                                    <div>{{{ farm.farm_editor_header }}}</div>
+                                </div>
+                                <div class="nav-farm-menu row">
+                                    <div class="col-md-2">
+                                        <img src="/images/cat-over-btn.png" class="cat-over-btn">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="/@{{farm.farm_url}}">
+                                            <button class="{{activeRouteClass 'FarmHome'}}">หน้าแรกฟาร์ม</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="/@{{farm.farm_url}}/promotion">
+                                            <button class="{{activeRouteClass 'FarmPromotion'}}">โปรโมชั่น</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="/@{{farm.farm_url}}/contactus">
+                                            <button class="{{activeRouteClass 'FarmContactUs'}}">ติดต่อฟาร์ม</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="row ">
+    <div class="row">
         <div class="farm-editor-header">
             <div class="container">
                 <div class="col-xs-12">

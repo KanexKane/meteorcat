@@ -1,43 +1,90 @@
 <template name="FarmHome">
         {{#each rowCats}}
             <div class="row cat-breed">
-                {{#each cats}}
-                    {{#if isFirst}}
-                        <h1 class="cat-breed-title">แมวสายพันธุ์ {{breed_name}}</h1>
-                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
-                            <div class="cat-bg-image" style="background: url('{{catFeaturedImageCover cat_featured_image}}');background-repeat:no-repeat;width:100%;background-position:top center;background-size:cover;">
-                                <p class="hero-subtitle">
-                                    ชื่อ: {{cat_name}}<br>
-                                    สายพันธุ์: {{breed_thai_name}}<br>
-                                    เพศ: {{cat_sex}}<br>
-                                    ลักษณะพิเศษ: {{cat_character}}<br>
-                                    เกิด: {{dayOfBirth cat_dayofbirth}}<br>
-                                    {{#if cat_price_sale}}
-                                        <u>ราคาพิเศษสุด ๆ ในตอนนี้เลยเพียง {{cat_price_sale}} บาทเท่านั้น</u>
-                                    {{else}}
-                                        <u>ราคา {{price cat_price}} บาท</u>
-                                    {{/if}}
-                                    
-                                </p>
-                            </div>
-                        </a>
-                    {{else}}
-                        <div class="col-xs-6 col-sm-4 col-md-3 text-center cat-list">
-                            <a href="/@{{farm_url}}/cat/{{cat_slug}}">
-                                <img src="{{catFeaturedImage cat_featured_image}}" class="cat-thumbnail" />
-                            </a>
-                            <a href="/@{{farm_url}}/cat/{{cat_slug}}">
-                                <div class="cat-list-info">
-                                    ชื่อ: {{cat_name}}
-                                    <br/>
-                                    เพศ: {{cat_sex}}<br>
-                                    ลักษณะพิเศษ: {{cat_character}}<br>
-                                    ราคา {{price cat_price}} บาท
+                <div class="container">
+                    <div class="container">
+                        {{#each cats}}
+                            {{#if isFirst}}
+                                <h1 class="cat-breed-title">แมวสายพันธุ์ {{breed_name}}</h1>
+                                <div class="col-md-12 visible-md visible-lg" style="padding:0 1% 0 0;margin:0;">
+                                    <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                        <div class="cat-bg-image" style="background: url('{{catFeaturedImage cat_featured_image}}'); background-repeat:no-repeat; background-position:top center; background-size:cover;">
+                                            <p class="cat-bg-image-subtitle">
+                                                <p>ชื่อ: {{cat_name}}</p>
+                                                <p>สายพันธุ์: {{breed_thai_name}}</p>
+                                                <p>เพศ: {{cat_sex}}</p>
+                                                <p>ลักษณะพิเศษ: {{cat_character}}</p>
+                                                <p>วันเกิด: {{dayOfBirth cat_dayofbirth}}</p>
+                                                <br>
+                                                <p class="price">ราคา {{price cat_price}} บาท</p>
+                                            </p>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    {{/if}}  
-                {{/each}}
+                                <div class="visible-xs visible-sm cat-list is-first">
+                                    <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                        <img src="{{catFeaturedImage cat_featured_image}}" class="cat-thumbnail" />
+                                    </a>
+                                    <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                        <div class="cat-list-info">
+                                            <p>ชื่อ: {{cat_name}}</p>
+                                            <p>สายพันธุ์: {{breed_thai_name}}</p>
+                                            <p>เพศ: {{cat_sex}}</p>
+                                            <p>ลักษณะพิเศษ: {{cat_character}}</p>
+                                            <p>วันเกิด: {{dayOfBirth cat_dayofbirth}}</p>
+                                            
+                                        </div>
+                                        <div class="cat-info-price">
+                                            ราคา {{price cat_price}} บาท
+                                        </div>
+                                    </a>
+                                </div>
+                            {{else}}
+                                {{#if isLast}}
+                                    <div class="cat-list">
+                                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                            <img src="{{catFeaturedImage cat_featured_image}}" class="cat-thumbnail" />
+                                        </a>
+                                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                            <div class="cat-list-info">
+                                                <p>ชื่อ: {{cat_name}}</p>
+                                                <p>สายพันธุ์: {{breed_thai_name}}</p>
+                                                <p>เพศ: {{cat_sex}}</p>
+                                                <p>ลักษณะพิเศษ: {{cat_character}}</p>
+                                                <p>วันเกิด: {{dayOfBirth cat_dayofbirth}}</p>
+                                            </div>
+                                            <div class="cat-info-price">
+                                                ราคา {{price cat_price}} บาท
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4 col-md-offset-8 btn-cat-all">
+                                        ดูแมวทั้งหมด
+                                    </div>
+                                {{else}}
+                                    <div class="cat-list">
+                                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                            <img src="{{catFeaturedImage cat_featured_image}}" class="cat-thumbnail" />
+                                        </a>
+                                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                                            <div class="cat-list-info">
+                                                <p>ชื่อ: {{cat_name}}</p>
+                                                <p>สายพันธุ์: {{breed_thai_name}}</p>
+                                                <p>เพศ: {{cat_sex}}</p>
+                                                <p>ลักษณะพิเศษ: {{cat_character}}</p>
+                                                <p>วันเกิด: {{dayOfBirth cat_dayofbirth}}</p>
+                                                
+                                            </div>
+                                            <div class="cat-info-price">
+                                                ราคา {{price cat_price}} บาท
+                                            </div>
+                                        </a>
+                                    </div>
+                                {{/if}}
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
             </div>
         {{/each}}    
 </template>
