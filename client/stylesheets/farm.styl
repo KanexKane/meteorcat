@@ -55,13 +55,15 @@ $maxWidthMD = 1199px
     .cat-bg-image-subtitle
         float right
         height 430px
-        max-width 70%
+        width 54%
         text-align left
         padding 5% 5% 2% 5%
         background-color rgba(black, 0.5)
         color white
         font-weight 500
         font-size 28px
+        @media (min-width $maxWidthMD)
+            width 60%
         &:after
             content ''
             display block
@@ -233,6 +235,10 @@ $maxWidthMD = 1199px
         border 2px solid #ffd479
     .promotion-content
         background-color #ffbebc
+        h1
+            text-align center
+    .contactus-content
+        background-color #baeaff
         h1
             text-align center
     .footer

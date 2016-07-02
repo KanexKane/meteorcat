@@ -1,31 +1,20 @@
 <template name="FarmContactUs">
-    <h1 style="padding : 2%">ติดต่อฟาร์ม </h1>
-    <div class="row" style="padding : 2% 5% 2% 5%;">
-        <div class="col-md-12">
-            <div class="panel panel-warning">
-                <div class="panel-heading" style="font-size: 30px;background-color: #FF9800">
-                    <h2 class="text-center panel-title text-white" style="font-size: 30px">MTL - Farm<img src="{{farmLogo farm.farm_logo}}" width="100px"></h2></div>
-                <div class="panel-body" style="font-size: 28px; padding: 5% 10% 0% 10%;">
-                    {{{farm.farm_editor_contactus}}}
-                    <hr>
-                    <h3 class="text-center text-warning">สามารถมาที่ฟาร์มได้ตามที่อยู่และแผนที่ด้านล่างค่ะ </h3>
-                    <div class="text-center"></div>
-                    <div class="row">
-                        <div class="col-md-6 text-center"><img src="{{farmMapImage farm.farm_map_image}}" width="90%" class="text-center"></div>
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <p class="text-center" style="margin : 0 0 -11.5px">แผนที่ฟาร์ม </p>
-                                </div>
-                                <div class="panel-body">
-                                    <div id="map"></div>
-                                    <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
-                                    <div><iframe src="{{farm.farm_map}}" width="100%" frameborder="0" style="border:0" allowfullscreen=""></iframe></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="row contactus-content">
+        <div class="col-xs-12">
+            <div class="container">
+                <h1>ติดต่อฟาร์มแมว</h1>
+                {{{farm.farm_editor_contactus}}}
+                <img src="{{farmMapImage farm.farm_map_image}}" />
+            </div>
+        </div>
+    </div>
+    <div class="row contactus-map">
+        <div class="col-xs-12">
+            <div class="container">
+                <h1>แผนที่ฟาร์มแมว Google Map</h1>
+                <div id="map"></div>
+                
+               <!--  <div><iframe src="{{farm.farm_map}}" width="100%" frameborder="0" style="border:0" allowfullscreen=""></iframe></div> -->
             </div>
         </div>
     </div>
