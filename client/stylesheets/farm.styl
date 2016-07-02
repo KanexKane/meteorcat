@@ -190,7 +190,10 @@ $maxWidthMD = 1199px
         a
             text-decoration none
     .cat-thumbnail
-        @media (max-width $maxWidthSM)
+        @media (max-width $maxWidthXS)
+            width 171px
+            height 171px
+        @media (min-width $maxWidthXS) and (max-width $maxWidthSM)
             width 351px
             height 351px
         @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
@@ -228,6 +231,10 @@ $maxWidthMD = 1199px
         padding 5px 0
         text-align center
         border 2px solid #ffd479
+    .promotion-content
+        background-color #ffbebc
+        h1
+            text-align center
     .footer
         background-color #929292
         padding 0
