@@ -7,8 +7,11 @@ $yellowLight = #FFA97E
 $grayBGColor = #EBEBEB
 
 $maxWidthXS = 767px
+$minWidthSM = 768px
 $maxWidthSM = 991px
+$minWidthMD = 992px
 $maxWidthMD = 1199px
+$minWidthLG = 1200px
 
 @import 'https://fonts.googleapis.com/css?family=Athiti|Prompt&subset=thai';
 
@@ -237,10 +240,44 @@ $maxWidthMD = 1199px
         background-color #ffbebc
         h1
             text-align center
+            img
+                margin-top -18px
+                @media (max-width $maxWidthXS)
+                    max-width 80px
+                @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                    max-width 100px
+                @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                    max-width 120px
+                @media (min-width $minWidthLG)
+                    max-width 150px
     .contactus-content
         background-color #baeaff
         h1
             text-align center
+        @media (max-width $maxWidthXS)
+            img
+                max-width 100%
+    .contactus-editor
+        font-size 1.2em
+    .contactus-map
+        text-align center
+        img
+            max-width 100%
+            margin 0 auto
+    .contactus-google-map
+    .contactus-google-map2
+        text-align center
+        iframe
+            @media (max-width $maxWidthXS)
+                height 250px
+            @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                height 350px
+            @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                height 450px
+            @media (min-width $minWidthLG)
+                height 300px
+    .contactus-google-map2 
+        background-color #ffbebb
     .footer
         background-color #929292
         padding 0
