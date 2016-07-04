@@ -1,70 +1,145 @@
 <template name="FarmCatDetail">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12">
+            <div class="container">
                 <h1>แมวสายพันธุ์ {{breed.breed_name}}</h1>
+            </div>
         </div>
     </div>
-    <div class="row cat-detail-gallery">
-        <div class="col-xs-6 col-sm-4">
-            <a href="/cfs/files/farmcats/{{cat.cat_featured_image}}"
-                data-toggle="lightbox"
-                data-type="image"
-                data-gallery="cat"
-                data-title="{{cat.cat_name}} 1">
-                <div class="img-cat-detail-gallery" 
-                style="background-image: url( '{{catThumbImage cat.cat_featured_image}}' );"></div>
-            </a>
-        </div>
-   
-        {{#each cat.cat_gallery}}
-            <div class="col-xs-6 col-sm-4 thumbnail-cat-detail-gallery">
-                <a href="/cfs/files/farmcats/{{image}}"
-                data-toggle="lightbox"
-                data-type="image"
-                data-gallery="cat"
-                data-title="{{catName @index}}">
-                    <div class="img-cat-detail-gallery" style="background-image: url( '{{catThumbImage image}}' );"></div>
-                </a>
-            </div>
-        {{/each}}
 
+    <div class="row cat-detail-gallery">  
+        <div class="col-xs-12 main-pic">
+            <div class="container">
+                <img id="mainPic" src="{{catMainImage cat.cat_featured_image}}" alt="">
+            </div>
+        </div>
+        <div class="col-xs-12 list-pic">
+            <div class="container">
+                <div class="list-pic-thumbnail col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <div class="img-cat-detail-gallery" data-image="{{catMainImage cat.cat_featured_image}}"
+                    style="
+                    background-image: url( '{{catThumbImage cat.cat_featured_image}}' );
+                    background-repeat: no-repeat;
+                    background-position: top center;
+                    background-size: cover;"></div>
+                </div>
+                {{#each cat.cat_gallery}}
+                    <div class="list-pic-thumbnail col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="img-cat-detail-gallery" data-image="{{catMainImage image}}" style="
+                        background-image: url( '{{catThumbImage image}}' );
+                        background-repeat: no-repeat;
+                        background-position: top center;
+                        background-size: cover;"></div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
     </div>
+
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    ชื่อ : {{cat.cat_name}}
-                </div>
-                <div class="panel-body" style="font-size: 20px ;">
-                    <p>เกิด : {{dayOfBirth cat_dayofbirth}}</p>
-                    <p>สี : {{color.color_name}}</p>
-                    <p>ลักษณะพิเศษ : {{cat.cat_character}}</p>
-                    <p>ประวัติทางการแพทย์ : {{cat.cat_medical_history}}</p>
-                    <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">พ่อ </h3>
-                </div>
-                <div class="panel-body">
-                    <img src="/cfs/files/farmcats/{{cat.cat_father}}" width="100%">
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">แม่ </h3>
-                </div>
-                <div class="panel-body">
-                    <img src="/cfs/files/farmcats/{{cat.cat_mother}}" width="100%">
+        <div class="cat-detail-cat col-xs-12">
+            <div class="container">
+                <h2>ชื่อแมว: {{cat.cat_name}}</h2>
+                <p>เกิด : {{dayOfBirth cat_dayofbirth}}</p>
+                <p>สี : {{color.color_name}}</p>
+                <p>ลักษณะพิเศษ : {{cat.cat_character}}</p>
+                <p>ประวัติทางการแพทย์ : {{cat.cat_medical_history}}</p>
+                <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
+                <div class="cat-price">
+                    {{#if cat.cat_price_sale }}
+                        ราคาพิเศษ: {{price cat.cat_price_sale}} จาก <span>{{price cat.cat_price}}</span>
+                    {{else}}
+                        ราคา: {{price cat.cat_price}} บาท
+                    {{/if}}
+                    
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row visible-xs visible-sm">
+        <div class="cat-father">
+            <div class="container">
+                <div class="col-xs-12 cat-father-info">
+                    <a href="{{catMainImage cat.cat_father}}"
+                        data-toggle="lightbox"
+                        data-type="image"
+                        data-title="คุณพ่อ"
+                        >
+                        <div class="cat-father-thumbnail" style="
+                        background-image: url( '{{catThumbImage cat.cat_father}}' );
+                        background-repeat: no-repeat;
+                        background-position: top center;
+                        background-size: cover;"></div>
+                        <div class="cat-father-desc">
+                            คุณพ่อ
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="cat-mother">
+            <div class="container">
+                <div class="col-xs-12 cat-mother-info">
+                    <a href="{{catMainImage cat.cat_mother}}"
+                        data-toggle="lightbox"
+                        data-type="image"
+                        data-title="คุณแม่"
+                        >
+                        <div class="cat-mother-thumbnail" style="
+                        background-image: url( '{{catThumbImage cat.cat_mother}}' );
+                        background-repeat: no-repeat;
+                        background-position: top center;
+                        background-size: cover;"></div>
+                        <div class="cat-mother-desc">
+                            คุณแม่
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row visible-md visible-lg">
+        <div class="cat-father-mother">  
+            <div class="container">
+                <div class="col-md-6 cat-father-info">
+                    <a href="{{catMainImage cat.cat_father}}"
+                        data-toggle="lightbox"
+                        data-type="image"
+                        data-title="คุณพ่อ"
+                        >
+                        <div class="cat-father-thumbnail" style="
+                        background-image: url( '{{catThumbImage cat.cat_father}}' );
+                        background-repeat: no-repeat;
+                        background-position: top center;
+                        background-size: cover;"></div>
+                        <div class="cat-father-desc">
+                            คุณพ่อ
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 cat-mother-info">
+                    <a href="{{catMainImage cat.cat_mother}}"
+                        data-toggle="lightbox"
+                        data-type="image"
+                        data-title="คุณแม่"
+                        >
+                        <div class="cat-mother-thumbnail" style="
+                        background-image: url( '{{catThumbImage cat.cat_mother}}' );
+                        background-repeat: no-repeat;
+                        background-position: top center;
+                        background-size: cover;"></div>
+                        <div class="cat-mother-desc">
+                            คุณแม่
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{> RelatedCats}}
+
 </template>

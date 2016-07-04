@@ -1,0 +1,32 @@
+<template name="RelatedCats">
+    <div class="related-cats">
+        <div class="container">
+            <h2>{{breed.breed_name}} เพิ่มเติม</h2>
+            <div class="row content related-cat">
+                
+                <div class="owl-carousel owl-theme">
+                    {{#each relatedCats}}
+                        {{#if notOverSix @index}}
+                        <div class="item">
+                            <figure class="item-thumbnail">
+                                <a href="{{linkToCat}}">
+                                    <img src="{{relatedCatImage cat_featured_image}}">
+                                </a>
+                            </figure>
+                            <div class="item-title">
+                                <a href="{{linkToCat}}">
+                                    {{#if cat_price_sale }}
+                                        {{price cat_price_sale}} บาท
+                                    {{else}}
+                                        {{price cat_price}} บาท
+                                    {{/if}}
+                                </a>
+                            </div>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
