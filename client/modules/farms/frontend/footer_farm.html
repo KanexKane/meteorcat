@@ -7,39 +7,61 @@
                         <p class="farm-title">{{farm.farm_name}}</p>
                         <p>{{#striptags}}{{farm.farm_editor_header}}{{/striptags}}</p>
                     </div>
+
                     <div class="visible-xs-block">
-                        <div class="col-xs-12">
-                            <a href="http://line.me/ti/p/{{farm.farm_line}}">
-                                <img src="/images/line@.png">{{farm.farm_line}}
-                            </a>
+                        <div class="col-xs-6 text-right">
+                            <p>
+                                <img src="/images/line@.png">
+                            </p>
+                            <p>
+                                <img src="/images/facebook.png">
+                            </p>
+                            <p>
+                                <img src="/images/instagram.png">
+                            </p>
                         </div>
-                        <div class="col-xs-12">
-                            <a href="{{farm.farm_facebook_url}}">
-                                <img src="/images/facebook.png">{{farm.farm_facebook}}
-                            </a>
-                        </div>
-                        <div class="col-xs-12">
-                            <a href="https://www.instagram.com/{{farm.farm_instagram}}">
-                                <img src="/images/instagram.png">{{farm.farm_instagram}}    
-                            </a>
+                        <div class="col-xs-6 text-left">
+                            <p>
+                                <a href="http://line.me/ti/p/{{farm.farm_line}}"></a>{{farm.farm_line}}
+                            </p>
+                            <p>
+                                <a href="{{farm.farm_facebook_url}}">{{farm.farm_facebook}}</a>
+                            </p>
+                            <p>
+                                <a href="https://www.instagram.com/{{farm.farm_instagram}}">{{farm.farm_instagram}}</a>
+                            </p>
                         </div>
                     </div>
                     <div class="hidden-xs">
                         <a href="http://line.me/ti/p/{{farm.farm_line}}">
-                                <img src="/images/line@.png">{{farm.farm_line}}
-                            </a>
+                            <img src="/images/line@.png">{{farm.farm_line}}
+                        </a>
                         <a href="{{farm.farm_facebook_url}}">
-                                <img src="/images/facebook.png">{{farm.farm_facebook}}
-                            </a>
+                            <img src="/images/facebook.png">{{farm.farm_facebook}}
+                        </a>
                         <a href="https://www.instagram.com/{{farm.farm_instagram}}">
-                                <img src="/images/instagram.png">{{farm.farm_instagram}}    
-                            </a>   
-                    </div>
-                    
+                            <img src="/images/instagram.png">{{farm.farm_instagram}}    
+                        </a>  
+                    </div>         
                 </div>
             </div>
         </div>
-        <div class="copyright"><img src="/images/logo60.png" alt=""> Copyright ©2016 catland.online All right reserved - Powered by
-        <a href="http://www.facebook.com/toskysoft/" target="_blank">toSKYsoft</a></div>
+        <div class="copyright">
+            <div class="row visible-xs">
+                <div class="container">
+                    <div class="col-xs-3">
+                        <img src="/images/logo60.png" alt="">
+                    </div>
+                    <div class="col-xs-9" style="padding:2% 2% 0 2%">
+                        Copyright ©2016 catland.online All right reserved - Powered by <a href="http://www.facebook.com/toskysoft/" target="_blank">toSKYsoft</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs">
+                
+                <img src="/images/logo60.png" alt=""> Copyright ©2016 catland.online All right reserved - Powered by
+                <a href="http://www.facebook.com/toskysoft/" target="_blank">toSKYsoft</a>
+            </div>
+        </div>
     </footer>
 </template>

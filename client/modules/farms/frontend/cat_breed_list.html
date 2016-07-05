@@ -1,0 +1,38 @@
+<template name="FarmCatBreed">
+    <div class="row cats-in-breed">
+        <div class="container">
+            <h1>
+                {{farm.farm_name}} / {{breed.breed_thai_name}}
+            </h1>
+            {{#each rowData}}
+                
+                   
+                   <div class="cat-list">
+                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                            <div class="cat-thumbnail" 
+                                style="
+                                background: url('{{catFeaturedImage cat_featured_image}}');
+                                background-repeat: no-repeat;
+                                background-position: top center;
+                                background-size: cover;">
+                            </div>
+                        </a>
+                        <a href="/@{{farm_url}}/cat/{{cat_slug}}">
+                            <div class="cat-list-info">
+                                <p>ชื่อ: {{cat_name}}</p>
+                                <p>สายพันธุ์: {{breed_thai_name}}</p>
+                                <p>เพศ: {{cat_sex}}</p>
+                                <p>ลักษณะพิเศษ: {{cat_character}}</p>
+                                <p>วันเกิด: {{dayOfBirth cat_dayofbirth}}</p>
+                            </div>
+                            <div class="cat-info-price">
+                                ราคา {{price cat_price}} บาท
+                            </div>
+                        </a>
+                    </div>
+                   
+               
+            {{/each}}
+        </div>
+    </div>
+</template>

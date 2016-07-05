@@ -2,6 +2,15 @@ Meteor.publish(null, function (){
   return Meteor.roles.find({})
 });
 
+Meteor.publish('recommendedCats', function() {
+    return Cats.find({}, { 
+        sort: { 
+            views: 1 
+        }, 
+        limit: 6 
+    });
+});
+
 Meteor.publish('notifications', function(){
     return Notifications.find({ user_id: this.userId, read: false});
 });

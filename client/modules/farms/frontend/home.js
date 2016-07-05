@@ -20,6 +20,7 @@ Template.FarmHome.helpers({
 
                     cat.breed_name = breed.breed_name;
                     cat.breed_thai_name = breed.breed_thai_name;
+                    cat.breed_slug = breed.breed_slug;
                     cat.farm_url = farm.farm_url;
                     if ( rows[rowsNumber] == null ) {
                         rows[rowsNumber] = {cats:[]};

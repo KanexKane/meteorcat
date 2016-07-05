@@ -76,14 +76,15 @@ $minWidthLG = 1200px
             text-align right
     
     .cat-detail-gallery
-        margin-top 20px
+        padding-top 20px
+        background-color #ffbebb
         .main-pic
             text-align center
             margin-bottom 3%
             img
                 max-width 100%
         .list-pic
-            background-color rgba(black,0.5)
+            background-color rgba(black,0.3)
             padding 1% 0
             .list-pic-thumbnail
                 margin 2% 0
@@ -130,8 +131,11 @@ $minWidthLG = 1200px
     .thumbnail-cat-detail-gallery
         margin-bottom 10px
     .img-cat-detail-gallery
+        transition:all .2s
         width 100%
         cursor pointer
+        &:hover
+            border 5px solid white
         @media (max-width $maxWidthXS)
             height 100px
         @media (min-width $minWidthSM) and (max-width $maxWidthSM)
@@ -149,15 +153,20 @@ $minWidthLG = 1200px
         img
             margin-top -15%
             max-width 150px 
-            @media (min-width $maxWidthXS) and (max-width $maxWidthSM)
+            @media (max-width $maxWidthXS)
+                margin-top -30%
+                max-width 225px
+                max-height 225px
+            @media (min-width $minWidthSM) and (max-width $maxWidthSM)
                 margin-top -20%
                 max-width 325px
+                max-height 325px  
+            @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                margin-top -32%
+                max-width 325px
                 max-height 325px
-            @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
-                margin-top -40%
-                max-width 100%  
-            @media (min-width $maxWidthMD)
-                margin-top -40%
+            @media (min-width $minWidthLG)
+                margin-top -31%
                 max-width 325px
                 max-height 325px
     .farm-desc
@@ -210,48 +219,91 @@ $minWidthLG = 1200px
     .farm-editor-header
         padding 2%
         font-size 1.2em
-        background-color #ffbebc
+        background-color #ffe9bb
         border 2px solid $yellowBorderColor
     .cat-breed
+    .cats-in-breed
         padding 3% 0 5% 0
         border-bottom 1px solid $yellowBorderColor
         color #945200
         background-color #ffe9bb
         &:nth-of-type(even)
             background-color #ffbebb
+    .cats-in-breed
+        background-color #bbbfff
+        h1
+            color white
+            text-align right
+            @media (max-width $maxWidthXS)
+                font-size 1.4em
+                padding-right 2%
+            @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                font-size 1.8em
+            @media (min-width $minWidthMD)
+                font-size 2em
+                padding-right 1%
+        .cat-list
+            padding 0
+            border 1px solid #ffd479
+            margin-bottom 2%
+            @media (max-width $maxWidthXS)
+                width 49%
+                float left
+                &:nth-of-type(odd)
+                    margin-right 2%
+            @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                width 49%
+                float left
+                &:nth-of-type(odd)
+                    margin-right 2%
+            @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                width 32.3%
+                float left
+                &:nth-child(3n-0)
+                    margin 0 1% 0 1%
+            @media (min-width $minWidthLG)
+                width 24%
+                float left
+                &:nth-child(4n-1)
+                    margin 0 1% 0 1%
+                &:nth-child(4n-0)
+                    margin 0 1% 0 0
+            a
+                text-decoration none
     .cat-breed-title
         text-align center
         text-decoration underline
-    .cat-list
-        padding 0
-        border 1px solid #ffd479
-        margin-bottom 2%
-        @media (max-width $maxWidthSM)
-            width 49%
-            float left
-            &:nth-of-type(even)
-                margin-right 2%
-        @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
-            width 32.3%
-            float left
-            &:nth-child(3n-1)
-                margin 0 1% 0 1%
-        @media (min-width $maxWidthMD)
-            width 24%
-            float left
-            &:nth-child(4n-3)
-                margin 0 1% 0 1%
-            &:nth-child(4n-2)
-                margin 0 1% 0 0
-            
-        &.is-first
+    .cat-breed
+        .cat-list
+            padding 0
+            border 1px solid #ffd479
+            margin-bottom 2%
             @media (max-width $maxWidthSM)
-                margin-right 2%;
-        a
-            text-decoration none
+                width 49%
+                float left
+                &:nth-of-type(even)
+                    margin-right 2%
+            @media (min-width $maxWidthSM) and (max-width $maxWidthMD)
+                width 32.3%
+                float left
+                &:nth-child(3n-1)
+                    margin 0 1% 0 1%
+            @media (min-width $maxWidthMD)
+                width 24%
+                float left
+                &:nth-child(4n-3)
+                    margin 0 1% 0 1%
+                &:nth-child(4n-2)
+                    margin 0 1% 0 0
+                
+            &.is-first
+                @media (max-width $maxWidthSM)
+                    margin-right 2%;
+            a
+                text-decoration none
     .cat-thumbnail
         @media (max-width $maxWidthXS)
-            width 171px
+            width 100%
             height 171px
         @media (min-width $maxWidthXS) and (max-width $maxWidthSM)
             width 351px
@@ -291,10 +343,15 @@ $minWidthLG = 1200px
         padding 5px 0
         text-align center
         border 2px solid #ffd479
+        a
+            text-decoration none
+            color white
     .promotion-content
         background-color #ffbebc
         h1
             text-align center
+            @media (max-width $maxWidthXS)
+                font-size 1.8em
             img
                 margin-top -18px
                 @media (max-width $maxWidthXS)
@@ -333,15 +390,18 @@ $minWidthLG = 1200px
                 height 300px
     .contactus-google-map2 
         background-color #ffbebb
-    // page cat detail
+    
     .footer
         background-color #929292
         padding 0
         .copyright
             background-color $pinkButtonColor
             text-align center
+            font-size 1em
             img
                 max-height 44px
+                @media (max-height $maxWidthXS)
+                    max-height 65px
         .information
             font-size 1.2em
             padding 10px 0
@@ -349,11 +409,16 @@ $minWidthLG = 1200px
             img
                 max-width 50px
                 max-height 40px
-                @media (min-width: 768px)
+                @media (min-width: $minWidthSM)
                     margin-left 50px
             .farm-title
                 font-size 1.5em
                 color #00EEFE
+            .visible-xs-block
+                p
+                    line-height 45px
+                .col-xs-6.text-left
+                    padding 0
     .related-cats
         text-align center
         padding 1% 0 3% 0

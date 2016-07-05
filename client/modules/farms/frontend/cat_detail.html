@@ -1,13 +1,11 @@
 <template name="FarmCatDetail">
-    <div class="row">
-        <div class="col-xs-12">
+    <div class="row cat-detail-gallery">
+        <div class="col-xs-12 text-right">
             <div class="container">
-                <h1>แมวสายพันธุ์ {{breed.breed_name}}</h1>
+                <h1>{{farm.farm_name}} / {{breed.breed_thai_name}} / {{cat.cat_name}}</h1>
             </div>
         </div>
-    </div>
-
-    <div class="row cat-detail-gallery">  
+        
         <div class="col-xs-12 main-pic">
             <div class="container">
                 <img id="mainPic" src="{{catMainImage cat.cat_featured_image}}" alt="">
@@ -47,7 +45,7 @@
                 <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
                 <div class="cat-price">
                     {{#if cat.cat_price_sale }}
-                        ราคาพิเศษ: {{price cat.cat_price_sale}} จาก <span>{{price cat.cat_price}}</span>
+                        ราคาพิเศษ: {{price cat.cat_price_sale}} บาท จาก <span>{{price cat.cat_price}} บาท</span>
                     {{else}}
                         ราคา: {{price cat.cat_price}} บาท
                     {{/if}}

@@ -11,7 +11,7 @@
     {{#each rowCats}}
         <div class="row cat-breed">
             <div class="container">
-                <div class="container">
+               
                     {{#each cats}}
                         {{#if isFirst}}
                             <h1 class="cat-breed-title">แมวสายพันธุ์ {{breed_name}}</h1>
@@ -80,7 +80,9 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-12 col-md-4 col-md-offset-8 btn-cat-all">
-                                    ดูแมวทั้งหมด
+                                    <a href="/@{{farm_url}}/cat/{{breed_slug}}">
+                                        ดูแมวทั้งหมด
+                                    </a>
                                 </div>
                             {{else}}
                                 <div class="cat-list">
@@ -110,7 +112,7 @@
                             {{/if}}
                         {{/if}}
                     {{/each}}
-                </div>
+                
             </div>
         </div>
     {{/each}}    

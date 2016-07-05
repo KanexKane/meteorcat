@@ -2,6 +2,13 @@ $pinkColor = #ff7e79
 $purpleColor = #9437ff
 $greenColor = #73fcd6
 
+$maxWidthXS = 767px
+$minWidthSM = 768px
+$maxWidthSM = 991px
+$minWidthMD = 992px
+$maxWidthMD = 1199px
+$minWidthLG = 1200px
+
 body
     margin 0
     padding 0
@@ -194,15 +201,24 @@ body
             .copyright
                 background-color $pinkColor
                 text-align center
+                .row
+                    text-align left
                 img
                     max-height 44px
+                    @media (max-width $maxWidthXS)
+                        max-height 65px
             .information
                 padding 10px 0
-                text-align center
                 img
                     max-width 50px
                     @media (min-width: 768px)
                         margin-left 50px
+                .visible-xs-block
+                    div
+                        padding-right 0
+                        padding-left 2%
+                    p
+                        line-height 45px
         .post-content-header
             margin-bottom 40px
             word-wrap break-word
@@ -252,5 +268,7 @@ body
                 left 0
             .owl-next 
                 right 0
+        .popular-cats
+            background-color #327191
 .text-blue-light
     color #00EEFE
