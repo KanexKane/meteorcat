@@ -5,7 +5,7 @@ Meteor.publish(null, function (){
 Meteor.publish('recommendedCats', function() {
     return Cats.find({}, { 
         sort: { 
-            views: 1 
+            views: -1 
         }, 
         limit: 6 
     });
@@ -362,4 +362,8 @@ Meteor.publish('FileManagerGroups', function() {
 
 Meteor.publish('allAssetImage', function () {
     return BlogImages.find()
+});
+
+Meteor.publish('allImageFarmCats', function () {
+    return farmCats.find();
 });

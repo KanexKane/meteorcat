@@ -219,6 +219,8 @@ body
                         padding-left 2%
                     p
                         line-height 45px
+                a
+                    color white
         .post-content-header
             margin-bottom 40px
             word-wrap break-word
@@ -270,5 +272,65 @@ body
                 right 0
         .popular-cats
             background-color #327191
+            width 100%
+            padding 0 0 3% 0
+            h2
+                color white
+                text-align right
+                margin-right 7%
+            .item
+                .item-thumbnail
+                    position relative
+                    background-color white
+                    overflow hidden
+                    height 200px
+                    @media(max-width $maxWidthXS)
+                        height 185px
+                    @media(min-width $minWidthMD) and (max-width $maxWidthMD)
+                        height 195px
+                    a
+                        color white
+                        text-decoration none
+                        &:hover
+                            color #575757
+                .item-title
+                    text-align center
+                    font-size 2em
+                    padding 10px 10px
+                    color black
+                    position absolute
+                    margin-top -18%
+                    z-index 1
+                    background-color rgba(white, 0.7)
+                    @media(max-width $maxWidthXS)
+                        font-size 1.5em
+                    a
+                        color black
+                        text-decoration underline
+            .row
+                margin 0
+            .owl-carousel 
+                position relative
+                width 90%
+                margin 0 0 0 3.5%
+                @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                    margin 0 0 0 4%
+                @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                    margin 0 0 0 5%
+                @media (min-width $minWidthLG)
+                    margin 0 0 0 5%
+            .owl-prev,
+            .owl-next 
+                position absolute
+                top 50%
+                margin-top -10px
+            .owl-prev 
+                left -7%
+                @media (min-width $minWidthLG)
+                    left -5%
+            .owl-next 
+                right -7%
+                @media (min-width $minWidthLG)
+                    right -5%
 .text-blue-light
     color #00EEFE

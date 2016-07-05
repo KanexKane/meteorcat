@@ -1,28 +1,37 @@
 <template name="home">
-    <div class="text-center">
-        <h2>Cat Land Online</h2>
-    </div>
+    <div class="frontend">
+        {{> header}}
+        
+        <div class="content">
     
-    <div class="popular-cats">
-        <div class="row">
-            <div class="container">
-                <div class="owl-carousel owl-theme">
-                    {{#each popularCats}}
-                        <div class="item">
-                            <figure class="item-thumbnail">
-                                <a href="{{linkToCat farm_id cat_slug}}">
-                                    <img src="{{popularCatImage cat_featured_image}}">
-                                </a>
-                            </figure>
-                            <div class="item-title">
-                                <a href="{{linkToPost}}">
-                                    รายละเอียดแมว
-                                </a>
-                            </div>
+            <div class="popular-cats">
+                <div class="row">
+                    <div class="container">
+                        <h2>แมวยอดนิยม</h2>
+                        <div class="owl-carousel owl-theme">
+                            {{#each popularCats}}
+                                <div class="item">
+                                    <figure class="item-thumbnail">
+                                        <a href="{{linkToCat farm_id cat_slug}}">
+                                            <img src="{{popularCatImage cat_featured_image}}">
+                                        </a>
+                                    </figure>
+                                    <div class="item-title">
+                                        <a href="{{linkToCat farm_id cat_slug}}">
+                                            {{farmName farm_id}}
+                                        </a>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
-                    {{/each}}
+                    </div>
                 </div>
             </div>
+            
         </div>
+        {{> FooterBanner}}
+       
+        {{> footer}}
     </div>
+
 </template>

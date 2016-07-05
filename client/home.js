@@ -3,16 +3,19 @@ Template.home.onRendered(function() {
         loop:true,
         margin:10,
         nav:true,
+        autoplay: true,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
         navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
         responsive:{
             0:{
                 items:1
             },
             600:{
-                items:3
+                items:2
             },
             900: {
-                items:4
+                item:3
             }
         }
     });
@@ -26,7 +29,13 @@ Template.home.helpers({
         if ( !imageId ) {
             return 'images/no-cat-image.jpg';
         }
-        return farmCats.findOne( imageId ).url();
+        var image = farmCats.findOne( imageId );
+        if( image ) {
+            return image.url({store: 'farmcatthumbs'});
+        }
+    },
+    farmName: function( farmId ) {
+        return Farms.findOne( farmId ).farm_name;
     },
     linkToCat: function( farmId, catSlug ) {
         var farm = Farms.findOne( farmId );
