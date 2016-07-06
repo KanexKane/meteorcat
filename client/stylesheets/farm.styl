@@ -89,13 +89,17 @@ $minWidthLG = 1200px
             .list-pic-thumbnail
                 margin 2% 0
     .cat-detail-cat
-        padding-top 3%
-        padding-bottom 3%
         background-color #ffe9bb
         h2
             text-decoration underline
             text-align right
-            margin-bottom 5%
+        img
+            max-height 300px
+            float left
+            margin-top -6%
+            margin-right 2%
+            @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                margin-left -4%
         .cat-price
             text-align right
             font-size 1.3em
