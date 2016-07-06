@@ -2,7 +2,7 @@
     <div class="row cat-detail-gallery">
         <div class="col-xs-12 text-right">
             <div class="container">
-                <h1>{{farm.farm_name}} / {{breed.breed_thai_name}} / {{cat.cat_name}}</h1>
+                <h1>{{farm.farm_name}} / {{breed.breed_name}} / {{cat.cat_name}}</h1>
             </div>
         </div>
         
@@ -39,11 +39,25 @@
             <div class="container">
                 <h2>ชื่อแมว: {{cat.cat_name}}</h2>
                 <img src="/images/cat-detail-01.png" alt="" class="hidden-xs hidden-sm">
-                <p>เกิด : {{dayOfBirth cat_dayofbirth}}</p>
-                <p>สี : {{color.color_name}}</p>
-                <p>ลักษณะพิเศษ : {{cat.cat_character}}</p>
-                <p>ประวัติทางการแพทย์ : {{cat.cat_medical_history}}</p>
-                <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
+                <p>สายพันธุ์: {{breed.breed_thai_name}}</p>
+                {{#if cat_dayofbirth}}
+                    <p>เกิด : {{dayOfBirth cat_dayofbirth}}</p>
+                {{/if}}
+                {{#if cat.cat_sex}}
+                    <p>เพศ: {{cat.cat_sex}}</p>
+                {{/if}}
+                {{#if color.color_name}}
+                    <p>สี : {{color.color_name}}</p>
+                {{/if}}
+                {{#if cat.cat_character}}
+                    <p>ลักษณะพิเศษ : {{cat.cat_character}}</p>
+                {{/if}}
+                {{#if cat.cat_medical_history}}
+                    <p>ประวัติทางการแพทย์ : {{cat.cat_medical_history}}</p>
+                {{/if}}
+                {{#if cat.cat_pedigree_cert}}
+                    <p>ใบกะรันตี : {{cat.cat_pedigree_cert}}</p>
+                {{/if}}
                 <div class="cat-price">
                     {{#if cat.cat_price_sale }}
                         ราคาพิเศษ: {{price cat.cat_price_sale}} บาท จาก <span>{{price cat.cat_price}} บาท</span>
