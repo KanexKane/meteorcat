@@ -2,6 +2,9 @@
   "public": {
     "analyticsSettings": {
       "Google Analytics" : {"trackingId": "UA-79597519-1"}
+    },
+    "persistent_session": {
+      "default_method": "persistent"
     }
   }
 }

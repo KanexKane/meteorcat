@@ -8,7 +8,6 @@ Template.AdminFileManager.helpers({
             }
             rows[rowsNumber].rows.push(data);
         });
-        console.log(rows);
         return rows;
     },
 });
