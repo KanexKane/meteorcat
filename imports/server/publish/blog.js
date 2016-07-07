@@ -29,11 +29,14 @@ Meteor.publish('categories', function(category_slug){
     }
 });
 
-Meteor.publish('comments', function ( findOptions ) {
+Meteor.publish('comments', function ( postSlug, findOptions ) {
+    check( postSlug, String );
     check( findOptions, {
         sort: Object,
         limit: Number
     });
 
-    return BlogComments.find({}, findOptions);
+    var postId = BlogPosts.findOne({ post_slug: postSlug })._id;
+
+    return BlogComments.find({ post_id: postId }, findOptions);
 });

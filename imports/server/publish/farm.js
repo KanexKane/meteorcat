@@ -152,3 +152,14 @@ Meteor.publish('recommendedCats', function() {
         limit: 6 
     });
 });
+
+Meteor.publish('catComments', function ( catId, findOptions ) {
+    check( catId, String );
+    check( findOptions, {
+        sort: Object,
+        limit: Number
+    });
+
+
+    return CatComments.find({ cat_id: catId }, findOptions);
+});

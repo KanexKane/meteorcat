@@ -167,5 +167,52 @@ Meteor.methods({
         farm.updated_at = new Date();
 
         Farms.update( { _id: id }, { $set: farm } );
-    }
+    },
+    catCommentInsert: function(commentAttributes) {
+        check(commentAttributes, {
+          cat_id: String,
+          body: String,
+          author: String,
+        });
+
+        var cat = Cats.findOne(commentAttributes.cat_id);
+        
+        var clientIp = this.connection.clientAddress;
+
+        var comment = {
+            cat_id: commentAttributes.cat_id,
+            created_at: new Date(),
+            ip: clientIp,
+            comment_message: commentAttributes.body,
+            comment_author: commentAttributes.author,
+
+        };
+
+        if (!cat)
+          throw new Meteor.Error('invalid-comment', 'You must comment on a post');
+
+        if ( !Meteor.user() ) {
+            comment = _.extend(comment, {
+                comment_author_id: 'not register user',
+            });
+        } 
+
+        // create the comment, save the id
+        comment._id = CatComments.insert(comment);
+
+        // update the post with the number of comments
+        if ( cat.commentsCount ) {
+            cat.commentsCount = cat.commentsCount + 1;    
+        } else {
+            cat.commentsCount = 1;
+        }
+        
+        
+        Cats.update(comment.cat_id, { $set: cat });
+
+        // now create a notification, informing the user that there's been a comment
+        //createCommentNotification(comment);
+
+        return comment._id;
+    },
 })

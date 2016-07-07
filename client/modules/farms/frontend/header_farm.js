@@ -3,7 +3,7 @@ Template.FarmHeader.onRendered( function () {
     if ( !!Session.get('visitor_already_date') ) {
         // มีการเก็บ date ไว้ด้วยว่า Session นี้เป็นของวันไหน เอาแค่ส่วนของวันไม่เอาเวลาเพราะต้องการดูว่ามันข้ามวันหรือยัง ถ้าข้ามแล้วจะทำการ Reset Session นี้
         // เอามา diff กัน 
-        var date1 = new Date(moment( Session.get('visitor_already_date') ).format('MM/DD/YYYY'));
+        var date1 = new Date( Session.get('visitor_already_date') );
         var date2 = new Date();
 
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -17,7 +17,7 @@ Template.FarmHeader.onRendered( function () {
 
 
     this.autorun(function (c) {
-        if ( Template.currentData().farm ) {
+        if ( Template.currentData() && Template.currentData().farm ) {
             var farm = Template.currentData().farm;
 
             // update views

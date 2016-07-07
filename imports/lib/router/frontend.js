@@ -143,22 +143,19 @@ BlogDetailController = RouteController.extend({
         this.postsSub = Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug);
         this.categoriesSub = Meteor.subscribe('categories');
         this.imagesBlogSub = Meteor.subscribe('allImageBlogs');
-        this.commentsSub = Meteor.subscribe('comments', this.findOptions());
+        this.commentsSub = Meteor.subscribe('comments', this.params.post_slug ,this.findOptions());
     },
     findOptions: function () {
         return { sort: { created_at: -1 }, limit: this.commentsLimit() };
     },
-    // waitOn: function () {
-    //     return [
-    //         
-    //         Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug),
-    //         Meteor.subscribe('categories'),
-    //         Meteor.subscribe('allImageBlogs'),
-    //         Meteor.subscribe('comments', this.findOptions())
-    //     ];
-    // },
+    postId: function() {
+        var post = BlogPosts.findOne({ post_slug: this.params.post_slug });
+        if ( post ) {
+            return post._id ;
+        }
+    },
     comments: function () {
-        return BlogComments.find({}, this.findOptions());
+        return BlogComments.find({ post_id: this.postId() }, this.findOptions());
     },
     data: function () {
         var hasMore = this.comments().count() === this.commentsLimit();
@@ -233,6 +230,7 @@ FarmController = RouteController.extend({
         }
     }
 });
+
 
 Router.route('/', {
     name: 'home',
@@ -383,11 +381,25 @@ Router.route('/@:farm_url/cat/:breed_slug/', {
 
     }
 });
-Router.route('/@:farm_url/cat/:breed_slug/:cat_slug', {
-    name: "FarmCatDetail",
-    parent: 'FarmCatBreed',
+
+FarmCatDetailController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
-    waitOn: function () {
+    increment: 2,
+    commentsLimit: function () {
+        return parseInt(this.params.commentsLimit) || this.increment;
+    },
+    catData: function () {
+        return Cats.findOne({ cat_slug: this.params.breed_slug + '/' + this.params.cat_slug });
+    },
+    findOptions: function () {
+        return { sort: { created_at: -1 }, limit: this.commentsLimit() };
+    },
+    subscriptions: function() {
+        if ( this.catData() ) {
+            this.catCommentsSub = Meteor.subscribe('catComments', this.catData()._id, this.findOptions());    
+        }
+    },
+    waitOn: function() {
         return [
             Meteor.subscribe('farmInfoByUrl', this.params.farm_url),
             Meteor.subscribe('allCatsInBreedSlugByFarmUrl', this.params.farm_url, this.params.breed_slug),
@@ -398,36 +410,79 @@ Router.route('/@:farm_url/cat/:breed_slug/:cat_slug', {
             Meteor.subscribe('imageFarmLogosByFarmUrl', this.params.farm_url)
         ];
     },
+    comments: function () {
+        return CatComments.find({ cat_id: this.catData()._id }, this.findOptions());
+    },
     data: function () {
-        var catSlug = this.params.breed_slug + '/' + this.params.cat_slug;
-        var cat = Cats.findOne({ cat_slug: catSlug });
+        var cat = this.catData() ? Cats.findOne( this.catData()._id ) : null;
         if (cat) {
+            var hasMore = this.comments().count() === this.commentsLimit();
+            var nextComment = this.route.path({
+                farm_url: this.params.farm_url,
+                breed_slug: this.params.breed_slug,
+                cat_slug: this.params.cat_slug,
+                commentsLimit: this.commentsLimit() + this.increment 
+            });
+
             var cat_breed = cat.cat_breed;
             var cat_color = cat.cat_color;
-            return {
-                farm: Farms.findOne({farm_url: this.params.farm_url}),
-                cat: cat,
-                breed: CatBreeds.findOne(cat_breed),
-                color: CatColors.findOne(cat_color),
-                allcats: Cats.find()
-            };
-        }
+            var farm = Farms.findOne({farm_url: this.params.farm_url});
 
+            if ( farm ) {
+
+                return {
+                    farm: farm,
+                    cat: cat,
+                    breed: CatBreeds.findOne(cat_breed),
+                    color: CatColors.findOne(cat_color),
+                    allcats: Cats.find(),
+                    comments: this.comments(),
+                    ready: this.catCommentsSub.ready,
+                    nextComment: hasMore ? nextComment : null
+                };
+            }
+        }
     },
     onAfterAction: function () {
         if (!Meteor.isClient) {
             return;
         }
-        cat = this.data().cat;
-        if (cat) {
-            SEO.set({
-                title: cat.cat_name + ' | ' + SEO.config().title,
-                meta: {
-                    'description': cat.cat_desc
-                }
-            });
+
+        if ( !!this.data() ) {
+            cat = this.data().cat;
+            if( cat ) {        
+                SEO.set({
+                    title: cat.cat_name + ' | ' + SEO.config().title,
+                    meta: {
+                        'description': cat.cat_desc
+                    }
+                });
+            }
+            
         }
+
     }
+});
+Router.route('/@:farm_url/cat/:breed_slug/:cat_slug/:commentsLimit?', {
+    name: "FarmCatDetail",
+    parent: 'FarmCatBreed',
+    controller: FarmCatDetailController
+    // data: function () {
+    //     var catSlug = this.params.breed_slug + '/' + this.params.cat_slug;
+    //     var cat = Cats.findOne({ cat_slug: catSlug });
+    //     if (cat) {
+    //         var cat_breed = cat.cat_breed;
+    //         var cat_color = cat.cat_color;
+    //         return {
+    //             farm: Farms.findOne({farm_url: this.params.farm_url}),
+    //             cat: cat,
+    //             breed: CatBreeds.findOne(cat_breed),
+    //             color: CatColors.findOne(cat_color),
+    //             allcats: Cats.find()
+    //         };
+    //     }
+
+    // }
 });
 Router.route('/@:farm_url/promotion', {
     name: "FarmPromotion",

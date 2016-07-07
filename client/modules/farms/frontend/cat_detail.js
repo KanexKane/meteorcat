@@ -1,3 +1,6 @@
+Template.FarmCatDetail.onCreated(function(){
+    Session.set('commentSubmitErrors', {});
+});
 
 Template.FarmCatDetail.onRendered(function(){
     var cat = Template.currentData().cat;
@@ -30,6 +33,12 @@ Template.FarmCatDetail.helpers({
     catMainImage: ( imageId ) => {
         return farmCats.findOne( imageId ).url();
     },
+    errorMessage: function(field){
+        return Session.get('commentSubmitErrors')[field];
+    },
+    errorClass: function(field){
+        return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
+    }
 });
 
 Template.FarmCatDetail.events({
@@ -43,5 +52,35 @@ Template.FarmCatDetail.events({
         $('html, body').animate({
             scrollTop: objMainPic.offset().top
         }, 200);
+    },
+    'submit form': function(e, template){
+        e.preventDefault();
+
+        var $body = $(e.target).find('[name=body]');
+        var $author = $(e.target).find('[name=commentAuthor]');
+        var catSlug = Router.current().params.breed_slug + '/' + Router.current().params.cat_slug;
+
+        var catId = Cats.findOne( { cat_slug: catSlug })._id;
+
+        var comment = {
+            body: $body.val(),
+            cat_id: catId,
+            author:  $author.val()
+        };
+        
+        var errors = {};
+        if(! comment.body){
+            errors.body = "กรุณาใส่ข้อความ";
+            return Session.set('commentSubmitErrors', errors);
+        }
+
+        Meteor.call('catCommentInsert', comment, function(error, commentId){
+            //display the error to the user and abort
+            if(error){
+                return throwError(error.reason);
+            }else{
+                $body.val('');
+            }
+        });
     }
 })

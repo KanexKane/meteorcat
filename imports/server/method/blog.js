@@ -197,7 +197,7 @@ Meteor.methods({
 
         // update the post with the number of comments
         // หรือก็คือ commentsCount++
-        BlogPosts.update(comment.postId, { $inc: { commentsCount: 1 } });
+        BlogPosts.update(comment.post_id, { $inc: { commentsCount: 1 } });
 
         // now create a notification, informing the user that there's been a comment
         //createCommentNotification(comment);

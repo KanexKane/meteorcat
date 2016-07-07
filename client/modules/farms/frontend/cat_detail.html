@@ -154,5 +154,44 @@
     </div>
 
     {{> RelatedCats}}
+    
+    <form class="comment-form form" name="comment">
+        <div class="form-group {{errorClass 'author'}}">
+            <div class="controls">
+                <label for="commentAuthor">ชื่อของคุณ</label>
+                {{#if currentUser }}
+                    <input type="text" name="commentAuthor" id="commentAuthor" class="form-control" value="{{currentUser.username}}" readonly>
+                {{else}}
+                    <input type="text" name="commentAuthor" id="commentAuthor" class="form-control"> 
+                {{/if}}
+                <span class="help-block">{{errorMessage 'commentAuthor'}}</span>
+            </div>
+        </div>
+        <div class="form-group {{errorClass 'body'}}">
+            <div class="controls">
+                <label for="body">Comment on this post</label>
+                <textarea name="body" id="body" cols="30" rows="3" class="form-control"></textarea>
+                <span class="help-block">{{errorMessage 'body'}}</span>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Comment</button>
+    </form>
+    <ul class="comments">
+        {{#each comments}}
+            <li>
+                <h4>{{@index}}
+                    <span class="author">{{comment_author}}</span>
+                    <span class="date">{{created_at}}</span>
+                </h4>
+                <p>{{comment_message}}</p>
+            </li>
+        {{/each}}
+    </ul>
 
+    {{#if nextComment}}
+        <a href="{{nextComment}}" class="load-more">ดูความคิดเห็นเพิ่มเติม</a>
+        {{#unless ready}}
+            {{> spinner}}
+        {{/unless}}
+    {{/if}}
 </template>
