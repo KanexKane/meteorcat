@@ -162,5 +162,47 @@ Meteor.methods({
     updateViewBlog: function ( id ) {
         check( id, String );
         BlogPosts.update( { _id: id }, { $inc: { views: 1 } } );
-    }
+    },
+    commentInsert: function(commentAttributes) {
+        check(commentAttributes, {
+          post_id: String,
+          body: String,
+          author: String,
+        });
+
+        var post = BlogPosts.findOne(commentAttributes.post_id);
+        
+        var clientIp = this.connection.clientAddress;
+
+        var comment = {
+            post_id: commentAttributes.post_id,
+            created_at: new Date(),
+            ip: clientIp,
+            comment_message: commentAttributes.body,
+            comment_author: commentAttributes.author,
+
+        };
+
+        if (!post)
+          throw new Meteor.Error('invalid-comment', 'You must comment on a post');
+
+        if ( Meteor.user() ) {
+            comment = _.extend(comment, {
+                comment_author_id: 'not register user',
+            });
+        } 
+
+        // create the comment, save the id
+        comment._id = BlogComments.insert(comment);
+
+        // update the post with the number of comments
+        // หรือก็คือ commentsCount++
+        BlogPosts.update(comment.postId, { $inc: { commentsCount: 1 } });
+
+        // now create a notification, informing the user that there's been a comment
+        //createCommentNotification(comment);
+
+        return comment._id;
+    },
+
 });

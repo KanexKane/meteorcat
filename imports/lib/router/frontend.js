@@ -129,6 +129,71 @@ BlogCategoryController = FrontEndController.extend({
         }
     }
 });
+BlogDetailController = RouteController.extend({
+    layoutTemplate: 'Layout',
+    increment: 20,
+    title: function () {
+        let post = BlogPosts.findOne({post_slug: this.params.post_slug});
+        return post.post_title;
+    },
+    commentsLimit: function () {
+        return parseInt(this.params.commentsLimit) || this.increment;
+    },
+    subscriptions: function() {
+        this.postsSub = Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug);
+        this.categoriesSub = Meteor.subscribe('categories');
+        this.imagesBlogSub = Meteor.subscribe('allImageBlogs');
+        this.commentsSub = Meteor.subscribe('comments', this.findOptions());
+    },
+    findOptions: function () {
+        return { sort: { created_at: -1 }, limit: this.commentsLimit() };
+    },
+    // waitOn: function () {
+    //     return [
+    //         
+    //         Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug),
+    //         Meteor.subscribe('categories'),
+    //         Meteor.subscribe('allImageBlogs'),
+    //         Meteor.subscribe('comments', this.findOptions())
+    //     ];
+    // },
+    comments: function () {
+        return BlogComments.find({}, this.findOptions());
+    },
+    data: function () {
+        var hasMore = this.comments().count() === this.commentsLimit();
+
+        var nextComment = this.route.path({ 
+            category_slug: this.params.category_slug,
+            post_slug: this.params.post_slug,
+            commentsLimit: this.commentsLimit() + this.increment 
+        });
+
+        return {
+            post: BlogPosts.findOne({ post_slug: this.params.post_slug}),
+            categories: BlogCategories.find({}),
+            comments: this.comments(),
+            ready: this.commentsSub.ready,
+            nextComment: hasMore ? nextComment : null
+        };
+    },
+    onAfterAction: function () {
+        var post;
+        if (!Meteor.isClient) {
+            return;
+        }
+        post = this.data().post;
+        if (post) {
+            SEO.set({
+                title: post.post_title + ' | ' + SEO.config().title,
+                meta: {
+                    'description': post.post_content
+                }
+            });
+        }
+
+    }
+});
 FarmController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
     waitOn: function () {
@@ -172,6 +237,9 @@ FarmController = RouteController.extend({
 Router.route('/', {
     name: 'home',
     title: 'Home',
+    onBeforeAction: function () {
+        Router.go('/blogs');
+    },
     waitOn: function() {
         return [
             Meteor.subscribe('recommendedCats'),
@@ -191,11 +259,7 @@ Router.route('/', {
                 title: title + ' | ' + SEO.config().title,
             });
         }
-    }
-    // onBeforeAction: function () {
-    //     Router.go('/blogs');
-    // },
-    
+    }    
 });
 
 Router.route('/accessdenied', {
@@ -271,44 +335,10 @@ Router.route('/blogs/:category_slug', {
         return category.category_name;
     }
 });
-Router.route('/blogs/:category_slug/:post_slug', {
+Router.route('/blogs/:category_slug/:post_slug/:commentsLimit?', {
     name: 'BlogDetail',
-    title: function () {
-        let post = BlogPosts.findOne({post_slug: this.params.post_slug});
-        return post.post_title;
-    },
     parent: 'BlogCategoryList',
-    controller: FrontEndController,
-    waitOn: function () {
-        return [
-            //Meteor.subscribe('blogDetailBySlug', this.params.post_slug),
-            Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug),
-            Meteor.subscribe('categories'),
-            Meteor.subscribe('allImageBlogs')
-        ];
-    },
-    data: function () {
-        return {
-            post: BlogPosts.findOne({ post_slug: this.params.post_slug}),
-            categories: BlogCategories.find({})
-        };
-    },
-    onAfterAction: function () {
-        var post;
-        if (!Meteor.isClient) {
-            return;
-        }
-        post = this.data().post;
-        if (post) {
-            SEO.set({
-                title: post.post_title + ' | ' + SEO.config().title,
-                meta: {
-                    'description': post.post_content
-                }
-            });
-        }
-
-    }
+    controller: BlogDetailController
 });
 
 Router.route('/@:farm_url', {

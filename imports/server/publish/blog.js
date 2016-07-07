@@ -28,3 +28,12 @@ Meteor.publish('categories', function(category_slug){
         return BlogCategories.find({});
     }
 });
+
+Meteor.publish('comments', function ( findOptions ) {
+    check( findOptions, {
+        sort: Object,
+        limit: Number
+    });
+
+    return BlogComments.find({}, findOptions);
+});
