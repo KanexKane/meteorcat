@@ -38,6 +38,27 @@ Template.FarmCatDetail.helpers({
     },
     errorClass: function(field){
         return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
+    },
+    UserProfileImage: function( id ) {
+        if ( id != 'not register user' ) {
+            var user = Meteor.users.findOne( id );
+            if( user ) {
+                if ( user.profile.profile_image ) {
+                    var image = UserImages.findOne( user.profile.profile_image );
+                    if ( image ) {
+
+                        return image.url({store: 'userimagethumbs'})
+                    }
+                } 
+            }
+        }
+        return '/images/no-image-logo.png';
+    },
+    created_at: function() {
+        return moment(this).format('DD/MM/YYYY');
+    },
+    numIndex: function( index ) {
+        return parseInt(index) + 1;
     }
 });
 

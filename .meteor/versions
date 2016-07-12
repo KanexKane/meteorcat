@@ -65,7 +65,7 @@ email@1.0.15
 es5-shim@4.5.13
 fastclick@1.0.12
 fortawesome:fontawesome@4.5.0
-fourseven:scss@3.3.3_3
+fourseven:scss@3.8.0_1
 geojson-utils@1.0.9
 handlebars@1.0.7
 hot-code-push@1.0.4
@@ -92,7 +92,7 @@ manuelschoebel:ms-seo@0.4.1
 markoshust:owl-carousel-2@2.0.0-beta.3a
 matb33:bootstrap-base@10.0.0
 matb33:bootstrap-grid@10.0.0
-mdg:validation-error@0.2.0
+mdg:validation-error@0.5.1
 meteor@1.1.16
 meteor-base@1.0.4
 meteortoys:allthings@3.0.0
@@ -156,7 +156,7 @@ standard-minifier-css@1.0.8
 standard-minifier-js@1.0.8
 stolinski:stylus-multi@1.4.3
 stylus@2.512.4
-summernote:standalone@0.7.3
+summernote:standalone@0.8.1
 summernote:summernote@0.8.1
 templating@1.1.13
 templating-tools@1.0.4

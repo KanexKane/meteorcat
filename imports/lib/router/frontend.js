@@ -411,6 +411,11 @@ Router.route('/@:farm_url/cat/:breed_slug/', {
 FarmCatDetailController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
     increment: 2,
+    subscriptions: function() {
+        if ( this.catData() ) {
+            this.catCommentsSub = Meteor.subscribe('catComments', this.catData()._id, this.findOptions());    
+        }
+    },
     commentsLimit: function () {
         return parseInt(this.params.commentsLimit) || this.increment;
     },
@@ -420,11 +425,6 @@ FarmCatDetailController = RouteController.extend({
     findOptions: function () {
         return { sort: { created_at: -1 }, limit: this.commentsLimit() };
     },
-    subscriptions: function() {
-        if ( this.catData() ) {
-            this.catCommentsSub = Meteor.subscribe('catComments', this.catData()._id, this.findOptions());    
-        }
-    },
     waitOn: function() {
         return [
             Meteor.subscribe('farmInfoByUrl', this.params.farm_url),
@@ -433,7 +433,9 @@ FarmCatDetailController = RouteController.extend({
             Meteor.subscribe('allCatColors'),
             Meteor.subscribe('imageFarmCatsByFarmUrl', this.params.farm_url),
             Meteor.subscribe('imageFarmCoversByFarmUrl', this.params.farm_url),
-            Meteor.subscribe('imageFarmLogosByFarmUrl', this.params.farm_url)
+            Meteor.subscribe('imageFarmLogosByFarmUrl', this.params.farm_url),
+            Meteor.subscribe('users'),
+            Meteor.subscribe('userimages')
         ];
     },
     comments: function () {

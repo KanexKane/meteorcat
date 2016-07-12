@@ -1,22 +1,27 @@
 
 Template.RelatedCats.onRendered(function () {
     
-
-        $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            stagePadding: 50,
-            navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:3
+    this.autorun(function (c) {
+        if ( Template.currentData() && Template.currentData().cat ) {
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                stagePadding: 50,
+                navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:3
+                    }
                 }
-            }
-        });
+            });
+
+            c.stop();
+        }
+    });
 
 
 });
