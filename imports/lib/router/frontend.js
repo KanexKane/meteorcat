@@ -48,15 +48,20 @@ BlogController = FrontEndController.extend({
         return [
             Meteor.subscribe('blogs'),
             Meteor.subscribe('categories'),
-            Meteor.subscribe('allImageBlogs')
+            Meteor.subscribe('allImageBlogs'),
+            Meteor.subscribe('users')
         ];
     },
     data: function () {
-        return {
-            posts: BlogPosts.find({}, this.findOptions()),
-            categories: BlogCategories.find({}),
-            countPosts: BlogPosts.find().count()
-        };
+        var posts = BlogPosts.find({}, this.findOptions());
+        var categories = BlogCategories.find({});
+        if( posts && categories ) {
+            return {
+                posts: posts,
+                categories: categories,
+                countPosts: BlogPosts.find().count()
+            };
+        }
     }
 });
 BlogCategoryController = FrontEndController.extend({
@@ -132,18 +137,22 @@ BlogCategoryController = FrontEndController.extend({
 BlogDetailController = RouteController.extend({
     layoutTemplate: 'Layout',
     increment: 20,
-    title: function () {
-        let post = BlogPosts.findOne({post_slug: this.params.post_slug});
-        return post.post_title;
-    },
-    commentsLimit: function () {
-        return parseInt(this.params.commentsLimit) || this.increment;
-    },
     subscriptions: function() {
         this.postsSub = Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug);
         this.categoriesSub = Meteor.subscribe('categories');
         this.imagesBlogSub = Meteor.subscribe('allImageBlogs');
         this.commentsSub = Meteor.subscribe('comments', this.params.post_slug ,this.findOptions());
+        this.usersSub = Meteor.subscribe('users');
+        this.userImagesSub = Meteor.subscribe('userimages');
+    },
+    title: function () {
+        let post = BlogPosts.findOne({post_slug: this.params.post_slug});
+        if ( post ) {
+            return post.post_title;
+        }
+    },
+    commentsLimit: function () {
+        return parseInt(this.params.commentsLimit) || this.increment;
     },
     findOptions: function () {
         return { sort: { created_at: -1 }, limit: this.commentsLimit() };
@@ -155,38 +164,52 @@ BlogDetailController = RouteController.extend({
         }
     },
     comments: function () {
-        return BlogComments.find({ post_id: this.postId() }, this.findOptions());
+        var comments = BlogComments.find({ post_id: this.postId() }, this.findOptions());
+        if ( comments ) {
+            return comments;
+        }
     },
     data: function () {
-        var hasMore = this.comments().count() === this.commentsLimit();
+        var comments = this.comments();
+        if ( comments ) {       
+            var hasMore = comments.count() === this.commentsLimit();
 
-        var nextComment = this.route.path({ 
-            category_slug: this.params.category_slug,
-            post_slug: this.params.post_slug,
-            commentsLimit: this.commentsLimit() + this.increment 
-        });
+            var nextComment = this.route.path({ 
+                category_slug: this.params.category_slug,
+                post_slug: this.params.post_slug,
+                commentsLimit: this.commentsLimit() + this.increment 
+            });
+        }
 
-        return {
-            post: BlogPosts.findOne({ post_slug: this.params.post_slug}),
-            categories: BlogCategories.find({}),
-            comments: this.comments(),
-            ready: this.commentsSub.ready,
-            nextComment: hasMore ? nextComment : null
-        };
+        var posts = BlogPosts.findOne({ post_slug: this.params.post_slug});
+        var categories = BlogCategories.find({});
+
+        if ( posts && categories && comments ) {      
+            return {
+                post: BlogPosts.findOne({ post_slug: this.params.post_slug}),
+                categories: BlogCategories.find({}),
+                comments: comments,
+                ready: this.commentsSub.ready,
+                nextComment: hasMore ? nextComment : null
+            };
+        }
+
     },
     onAfterAction: function () {
         var post;
         if (!Meteor.isClient) {
             return;
         }
-        post = this.data().post;
-        if (post) {
-            SEO.set({
-                title: post.post_title + ' | ' + SEO.config().title,
-                meta: {
-                    'description': post.post_content
-                }
-            });
+        if ( this.data() ) {
+            post = this.data().post;
+            if (post) {
+                SEO.set({
+                    title: post.post_title + ' | ' + SEO.config().title,
+                    meta: {
+                        'description': post.post_content
+                    }
+                });
+            }
         }
 
     }
@@ -330,7 +353,10 @@ Router.route('/blogs/:category_slug', {
     perpage: 12,
     title: function () {
         let category = BlogCategories.findOne({category_slug: this.params.category_slug});
-        return category.category_name;
+        if ( category ) {
+
+            return category.category_name;
+        }
     }
 });
 Router.route('/blogs/:category_slug/:post_slug/:commentsLimit?', {

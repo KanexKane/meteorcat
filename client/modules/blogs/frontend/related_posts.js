@@ -1,24 +1,31 @@
 
 Template.RelatedPosts.onRendered(function () {
     
-    $(document).ready(function() {
+    this.autorun(function (c) {
+        if ( Template.currentData() && Template.currentData().post ) {
+            $(document).ready(function() {
 
-        $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            stagePadding: 50,
-            navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:3
-                }
-            }
-        });
-     
+                $('.owl-carousel').owlCarousel({
+                    loop:true,
+                    margin:10,
+                    nav:true,
+                    stagePadding: 50,
+                    navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:3
+                        }
+                    }
+                });
+             
+            });
+
+            c.stop();
+        }
+
     });
 
 });
@@ -34,14 +41,17 @@ Template.RelatedPosts.events({
 
 Template.RelatedPosts.helpers({
     relatedPosts: function () {
-        var countAllPost = BlogPosts.find().count();
-        var category = this.post.post_category;
+        if ( this.post ) {
+            var countAllPost = BlogPosts.find().count();
 
-        var posts = BlogPosts.find({ 
-                        post_category: category 
-                    }).fetch();
+            var category = this.post.post_category;
 
-        return _.shuffle(posts);
+            var posts = BlogPosts.find({ 
+                            post_category: category 
+                        }).fetch();
+
+            return _.shuffle(posts);
+        }
     },
     relatedPostImage: function ( image ) {
 
@@ -75,8 +85,10 @@ Template.RelatedPosts.helpers({
     
     },
     linkToPost: function(){
-        var category_slug = BlogCategories.findOne(this.post_category).category_slug;
-        var link = "/blogs/" + category_slug + "/" + this.post_slug;
-        return link;
+        if ( this.post ) {
+            var category_slug = BlogCategories.findOne(this.post_category).category_slug;
+            var link = "/blogs/" + category_slug + "/" + this.post_slug;
+            return link;
+        }
     },
 });
