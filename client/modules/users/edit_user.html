@@ -6,7 +6,7 @@
                     <h2 class="header">แก้ไขข้อมูลส่วนตัว</h2>
                 </div>
             </div>
-            
+
             <div class="content">
                 <form class="main form page">
                     <div class="form-group {{errorClass 'firstname'}}">
@@ -42,11 +42,11 @@
                             {{#if isUploading}}
                                 {{> FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true}}
                             {{/if}}
-                            
+
                             {{#if user.profile.image}}
                                 <br>
                                 <div class="text-center">
-                                    <img src="{{profileImage user.profile.image}}" alt="Profile Image">
+                                    <img src="{{profileImage user.profile.image}}" alt="Profile Image" class="profile-image">
                                 </div>
                             {{/if}}
                         </div>
@@ -54,7 +54,7 @@
                     <div class="footer">
                         <hr>
                         <input type="submit" class="btn btn-primary" value="บันทึก">
-                        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">                   
+                        <input type="button" class="cancel-process btn btn-warning" value="ยกเลิก">
                     </div>
                 </form>
             </div>

@@ -7,10 +7,18 @@ $pinkColor = #ff7e79
 $purpleColor = #9437ff
 $greenColor = #73fcd6
 
+$maxWidthXS = 767px
+$minWidthSM = 768px
+$maxWidthSM = 991px
+$minWidthMD = 992px
+$maxWidthMD = 1199px
+$minWidthLG = 1200px
+
 .member
     width 100%
     height 100vh
     background-color rgba(203, 203, 210, 0.15)
+    overflow-x hidden
     h4, .h4
         font-size 22px
         line-height 30px
@@ -19,6 +27,7 @@ $greenColor = #73fcd6
         box-shadow 0 1px 2px rgba(black, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1)
         background-color #FFF
         margin-bottom 30px
+        margin-top 20px
         .header
             padding 1em
             color $babelColor
@@ -57,6 +66,7 @@ $greenColor = #73fcd6
     .navbar-default
         background-color white
         border-bottom 1px solid #CCC
+        margin-bottom 0
         .navbar-nav
             .active
                 a
@@ -73,15 +83,15 @@ $greenColor = #73fcd6
                     &:hover
                         background-color $babelColor
                         color white
-                    
+
         .navbar-brand
             color $babelColor
             font-weight bold
-    ul.paging 
+    ul.paging
         display inline-block
         padding 0
         margin 0
-        li 
+        li
             display inline
             a
                 color black
@@ -93,3 +103,105 @@ $greenColor = #73fcd6
                     color white
                 &:hover:not(.active)
                     background-color #ddd
+    p.circle
+        background-color #F5B6B3
+        border-radius 50%
+        color black
+        display table
+        font-weight bold
+        font-size 1.3em
+        width auto
+        margin 0 auto
+        margin-bottom 20px
+        &:hover
+            background-color #B1E1F5
+        @media(max-width $maxWidthXS)
+            width 130px
+            height 130px
+        @media(min-width $minWidthSM) and (max-width $maxWidthSM)
+            font-size 2em
+            width 220px
+            height 220px
+        @media(min-width $minWidthMD)
+            font-size 2em
+            width 200px
+            height 200px
+        span
+            display table-cell
+            vertical-align middle
+            text-align center
+            padding 0 15px
+        a
+            color black
+    p.square
+        background-color #B1E1F5
+        padding 10%
+        text-align center
+        font-size 1.5em
+        &:hover
+            background-color #F5B6B3
+        @media(min-width $minWidthSM) and (max-width $maxWidthSM)
+            padding 5%
+            font-size 2em
+        @media(min-width $minWidthMD)
+            padding 15% 5%
+            font-size 2em
+            margin 10% 0
+        a
+            color black
+    img.over-square
+        height 15vh
+        position absolute
+        right 0
+        z-index 1
+        margin-top -60px
+        @media(min-width $minWidthSM) and (max-width $maxWidthSM)
+            margin-top -105px
+    .bg-member-01
+        background url('/images/bg-member-01.png')
+        background-repeat no-repeat
+        background-position right
+        background-color #EFEFEF
+        background-size contain
+        border-top 1px solid #7AFBD7
+        border-bottom 1px solid #979797
+    .bg-member-02
+        background url('/images/bg-member-02.png')
+        padding-top 20px
+        min-height 150px
+        background-repeat no-repeat
+        background-position 40%
+        background-color #EFEFEF
+        background-size contain
+        border-bottom 2px solid #FF7E79
+        color #0096FF
+        .counter-views
+            font-size 3em
+    .footer
+        background-color #929292
+        color white
+        .copyright
+            background-color $pinkColor
+            text-align center
+            .row
+                text-align left
+            img
+                max-height 44px
+                @media (max-width $maxWidthXS)
+                    max-height 65px
+        .information
+            padding 10px 0
+            img
+                max-width 50px
+                @media (min-width: 768px)
+                    margin-left 50px
+            .visible-xs-block
+                div
+                    padding-right 0
+                    padding-left 2%
+                p
+                    line-height 45px
+            a
+                color white
+    .profile-image
+        max-width 100%

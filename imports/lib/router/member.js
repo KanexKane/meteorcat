@@ -70,7 +70,7 @@ MemberFarmCatController = RouteController.extend({
             Meteor.subscribe('farmInfoByUserId', Meteor.userId())
         ];
     },
-    
+
     onAfterAction: function () {
         if (!Meteor.isClient) {
             return;
@@ -119,12 +119,13 @@ Router.route('/user/editprofile', {
             user: Meteor.user()
         }
     }
- 
+
 })
 
 Router.route('/myfarm/', {
     name: "MemberFarmHome",
-    controller: MemberFarmController
+    controller: MemberFarmController,
+    layoutTemplate: ''
 });
 Router.route('/myfarm/settings/general', {
     name: "MemberFarmSettingGeneral",

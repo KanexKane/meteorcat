@@ -1,3 +1,77 @@
 <template name="MemberFarmHome">
-
+    <div class="member">
+        {{> MemberHeader}}
+        <div class="container visible-xs visible-sm">
+            <div class="row">
+                <div class="col-xs-12 text-center"><h1>จัดการฟาร์มแมว</h1></div>
+                <div class="col-xs-6">
+                    <p class="circle pull-right"><span><a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมว</a></span></p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="circle pull-left"><span><a href="{{pathFor 'MemberFarmCats'}}">รายการแมวทั้งหมด</a></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <img src="/images/icon-g3.png" alt="" class="over-square">
+                <div class="col-xs-12 col-sm-12">
+                    <p class="square">
+                        <a href="{{pathFor 'MemberFarmSettingGeneral'}}">ตั้งค่าฟาร์มแมว</a>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-12">
+                    <p class="square">
+                        <a href="{{pathFor 'MemberFarmSettingContactUs'}}">ข้อมูลหน้าติดต่อเรา</a>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-12">
+                    <p class="square">
+                        <a href="{{pathFor 'MemberFarmSettingPromotion'}}">ข้อมูลหน้าโปรโมชั่น</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="visible-md-visible-lg">
+            <div class="row bg-member-01">
+                <div class="container">
+                    <div class="col-md-12 text-right"><h1>จัดการฟาร์มแมว</h1></div>
+                    <div class="col-md-offset-3 col-md-3">
+                        <p class="circle"><span><a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมว</a></span></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="circle"><span><a href="{{pathFor 'MemberFarmCats'}}">รายการแมวทั้งหมด</a></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="square">
+                                <a href="{{pathFor 'MemberFarmSettingGeneral'}}">ตั้งค่าฟาร์มแมว</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="square">
+                                <a href="{{pathFor 'MemberFarmSettingContactUs'}}">ข้อมูลหน้าติดต่อเรา</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="square">
+                                <a href="{{pathFor 'MemberFarmSettingPromotion'}}">ข้อมูลหน้าโปรโมชั่น</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-member-02">
+                <div class="container">
+                    <div class="col-md-10 text-right"><h2>จำนวนผู้เข้าชมฟาร์ม</h2></div>
+                    <div class="col-md-10 text-right counter-views">
+                        {{views}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{> MemberFooter}}
+    </div>
 </template>
