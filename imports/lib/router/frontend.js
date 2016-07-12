@@ -155,7 +155,7 @@ BlogDetailController = RouteController.extend({
         return parseInt(this.params.commentsLimit) || this.increment;
     },
     findOptions: function () {
-        return { sort: { created_at: -1 }, limit: this.commentsLimit() };
+        return { sort: { created_at: 1 }, limit: this.commentsLimit() };
     },
     postId: function() {
         var post = BlogPosts.findOne({ post_slug: this.params.post_slug });
@@ -410,7 +410,7 @@ Router.route('/@:farm_url/cat/:breed_slug/', {
 
 FarmCatDetailController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
-    increment: 2,
+    increment: 20,
     subscriptions: function() {
         if ( this.catData() ) {
             this.catCommentsSub = Meteor.subscribe('catComments', this.catData()._id, this.findOptions());    
@@ -423,7 +423,7 @@ FarmCatDetailController = RouteController.extend({
         return Cats.findOne({ cat_slug: this.params.breed_slug + '/' + this.params.cat_slug });
     },
     findOptions: function () {
-        return { sort: { created_at: -1 }, limit: this.commentsLimit() };
+        return { sort: { created_at: 1 }, limit: this.commentsLimit() };
     },
     waitOn: function() {
         return [

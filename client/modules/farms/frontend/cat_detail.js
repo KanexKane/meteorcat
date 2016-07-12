@@ -54,8 +54,8 @@ Template.FarmCatDetail.helpers({
         }
         return '/images/no-image-logo.png';
     },
-    created_at: function() {
-        return moment(this).format('DD/MM/YYYY');
+    createdAt: function( created ) {
+        return moment(created).format('DD/MM/YYYY hh:mm');
     },
     numIndex: function( index ) {
         return parseInt(index) + 1;
