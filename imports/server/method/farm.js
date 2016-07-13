@@ -195,7 +195,11 @@ Meteor.methods({
             comment = _.extend(comment, {
                 comment_author_id: 'not register user',
             });
-        } 
+        } else {
+            comment = _.extend(comment, {
+                comment_author_id: Meteor.userId(),
+            });
+        }
 
         // create the comment, save the id
         comment._id = CatComments.insert(comment);

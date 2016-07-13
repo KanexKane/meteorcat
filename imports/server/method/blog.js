@@ -186,11 +186,15 @@ Meteor.methods({
         if (!post)
           throw new Meteor.Error('invalid-comment', 'You must comment on a post');
 
-        if ( Meteor.user() ) {
+        if ( !Meteor.user() ) {
             comment = _.extend(comment, {
                 comment_author_id: 'not register user',
             });
-        } 
+        } else {
+            comment = _.extend(comment, {
+                comment_author_id: Meteor.userId(),
+            });
+        }
 
         // create the comment, save the id
         comment._id = BlogComments.insert(comment);
