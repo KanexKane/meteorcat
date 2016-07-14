@@ -1,21 +1,16 @@
 FrontEndController = RouteController.extend({
     layoutTemplate: 'Layout',
-    waitOn() {
-        if (Meteor.userId()) {
-            return Meteor.subscribe('farmInfoByUserId', Meteor.userId());
-        }
-    },
     onAfterAction: function () {
-        if (typeof this.data !== 'function' || !this.data().post) {
-            if (!Meteor.isClient) {
-                return;
-            }
-            var title = this.route.options.title ? this.route.options.title : "Home";
-
-            SEO.set({
-                title: title + ' | ' + SEO.config().title,
-            });
+        
+        if (!Meteor.isClient) {
+            return;
         }
+        var title = this.route.options.title ? this.route.options.title : "Home";
+
+        SEO.set({
+            title: title + ' | ' + SEO.config().title,
+        });
+        
     }
 });
 BlogController = FrontEndController.extend({
@@ -45,12 +40,15 @@ BlogController = FrontEndController.extend({
         }
     },
     waitOn: function () {
+         
         return [
             Meteor.subscribe('blogs'),
             Meteor.subscribe('categories'),
             Meteor.subscribe('allImageBlogs'),
             Meteor.subscribe('users')
         ];
+
+        
     },
     data: function () {
         var posts = BlogPosts.find({}, this.findOptions());
@@ -79,7 +77,6 @@ BlogCategoryController = FrontEndController.extend({
                 page = page - 1;
             }
         }
-
         return page * this.perPage();
     },
     findOptions: function () {
@@ -93,39 +90,28 @@ BlogCategoryController = FrontEndController.extend({
     },
     waitOn: function () {
 
-        if (Meteor.userId()) {
-
-            return [
-                Meteor.subscribe('farmInfoByUserId', Meteor.userId()),
-                Meteor.subscribe('blogInCategory', this.params.category_slug),
-                Meteor.subscribe('categories', this.params.category_slug),
-                Meteor.subscribe('allImageBlogs')
-            ];
-
-        } else {
-
             return [
                 Meteor.subscribe('blogInCategory', this.params.category_slug),
                 Meteor.subscribe('categories', this.params.category_slug),
                 Meteor.subscribe('allImageBlogs')
             ];
-
-        }
-
 
     },
     data: function () {
-        return {
-            posts: BlogPosts.find({}, this.findOptions()),
-            categories: BlogCategories.find({}),
-            countPosts: BlogPosts.find().count()
-        };
+        var posts = BlogPosts.find({}, this.findOptions());
+        if ( posts ) {      
+            return {
+                posts: posts,
+                categories: BlogCategories.find({}),
+                countPosts: BlogPosts.find().count()
+            };
+        }
     },
     onAfterAction: function () {
         if (!Meteor.isClient) {
             return;
         }
-        if (this.data().categories.count() > 0) {
+        if (this.data() && this.data().categories.count() > 0) {
             var category = this.data().categories.fetch();
             var title = 'Blogs in Category ' + category[0].category_name;
             SEO.set({
@@ -138,6 +124,7 @@ BlogDetailController = RouteController.extend({
     layoutTemplate: 'Layout',
     increment: 20,
     subscriptions: function() {
+
         this.postsSub = Meteor.subscribe('blogInCategoryByPostSlug', this.params.post_slug);
         this.categoriesSub = Meteor.subscribe('categories');
         this.imagesBlogSub = Meteor.subscribe('allImageBlogs');
@@ -305,7 +292,7 @@ Router.route('/farms/register/', {
         this.next();
     },
     controller: FrontEndController,
-    waitOn() {
+    waitOn: function() {
         return Meteor.subscribe('allFarms');
     }
 });
@@ -348,6 +335,7 @@ Router.route('/blogs', {
 });
 Router.route('/blogs/:category_slug', {
     name: 'BlogCategoryList',
+    template: 'Blogs',
     parent: 'Blogs',
     controller: BlogCategoryController,
     perpage: 12,
@@ -495,22 +483,6 @@ Router.route('/@:farm_url/cat/:breed_slug/:cat_slug/:commentsLimit?', {
     name: "FarmCatDetail",
     parent: 'FarmCatBreed',
     controller: FarmCatDetailController
-    // data: function () {
-    //     var catSlug = this.params.breed_slug + '/' + this.params.cat_slug;
-    //     var cat = Cats.findOne({ cat_slug: catSlug });
-    //     if (cat) {
-    //         var cat_breed = cat.cat_breed;
-    //         var cat_color = cat.cat_color;
-    //         return {
-    //             farm: Farms.findOne({farm_url: this.params.farm_url}),
-    //             cat: cat,
-    //             breed: CatBreeds.findOne(cat_breed),
-    //             color: CatColors.findOne(cat_color),
-    //             allcats: Cats.find()
-    //         };
-    //     }
-
-    // }
 });
 Router.route('/@:farm_url/promotion', {
     name: "FarmPromotion",

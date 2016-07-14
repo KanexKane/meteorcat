@@ -1,3 +1,5 @@
+import '/imports/client/register-helpers-blog.js';
+
 Template.BlogDetail.onCreated(function(){
     Session.set('commentSubmitErrors', {});
 });
@@ -12,42 +14,6 @@ Template.BlogDetail.onRendered( function () {
 
 Template.BlogDetail.helpers({
 
-    postFeaturedImage: function( image ){
-
-        if( !image || image.trim() === '' ) {
-
-            return "/images/noimage.png";
-
-        } else if ( image.indexOf('http://') !== -1 ) {
-
-            return image;
-
-        } else if ( image.indexOf('/cfs/files/') !== -1 ) {
-
-            // ถ้าเป็นพวก /cfs/files/ แสดงว่าเป็นลิงค์แบบโดยตรงเหมือนกัน
-            return image;
-
-        }
-        else {
-            var image = BlogImages.findOne( image );
-
-            if ( image ) {
-
-                return image.url();
-
-            } else {
-
-                return "/images/noimage.png";
-
-            }
-        }
-    },
-    errorMessage: function(field){
-        return Session.get('commentSubmitErrors')[field];
-    },
-    errorClass: function(field){
-        return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
-    },
     UserProfileImage: function( id ) {
         if ( id != 'not register user' ) {
             var user = Meteor.users.findOne( id );
@@ -81,14 +47,19 @@ Template.BlogDetail.events({
         var postId = BlogPosts.findOne( { post_slug: postSlug })._id;
 
         var comment = {
-            body: $body.val(),
+            body: $.trim($body.val()),
             post_id: postId,
-            author:  $author.val()
+            author:  $.trim($author.val())
         };
         
         var errors = {};
         if(! comment.body){
             errors.body = "กรุณาใส่ข้อความ";
+        }
+        if(! comment.author){
+            errors.author = "กรุณากรอกชื่อ";
+        }
+        if ( !_.isEmpty(errors) ) {
             return Session.set('commentSubmitErrors', errors);
         }
 

@@ -1,53 +1,13 @@
+import '/imports/client/register-helpers-blog.js';
+
 Template.Blogs.helpers({
-    categoryName: function(post_category){
-        // function findArrayData อยู่ที่ collections/blogs เพราะเรียกใช้หลายที่
-        return findArrayData(Template.instance().data.categories, post_category, 'category_name');
-    },
     postDate: function(){
-        return moment(this.post_date).add(543, 'years').format('DD-MM-YYYY');
-    },
-    postUpdate: function(){
-        return moment(this.post_update).add(543, 'years').format('DD/MM/YYYY HH:ss');
-    },
-    postFeaturedImage: function(){
-
-        if( !this.post_featured_image || this.post_featured_image.trim() === '' ) {
-
-            return "/images/noimage.png";
-
-        } else if ( this.post_featured_image.indexOf('http://') !== -1 ) {
-
-            return this.post_featured_image;
-
-        } else if ( this.post_featured_image.indexOf('/cfs/files/') !== -1 ) {
-
-            // ถ้าเป็นพวก /cfs/files/ แสดงว่าเป็นลิงค์แบบโดยตรงเหมือนกัน
-            return this.post_featured_image;
-
-        }
-        else {
-            var image = BlogImages.findOne( this.post_featured_image );
-
-            if ( image ) {
-
-                return image.url( { store: 'blogimagethumbs'} );
-
-            } else {
-
-                return "/images/noimage.png";
-
-            }
-        }
-    },
-    linkToPost: function(){
-        // function findCategorySlug อยู่ที่ collections/blogs เพราะเรียกใช้หลายที่
-        var link = "/blogs/" + findCategorySlug(this.post_category) + "/" + this.post_slug;
-        return link
+        return moment(this.post_date).add(543, 'years').format('DD/MM/YYYY HH:mm');
     },
     postTitle: function(){
         var after = "";
         var text = TagStripper.strip(this.post_title);
-        return text + after
+        return text + after;
     },
     postContent: function(){
         var after = "";
@@ -55,7 +15,7 @@ Template.Blogs.helpers({
         if( text.length === 180 ){
             after = "...";
         }
-        return text + after
+        return text + after;
     },
     rowBlog: function(){
         var rows = [];

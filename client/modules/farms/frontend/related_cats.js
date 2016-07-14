@@ -1,27 +1,12 @@
+import '/imports/client/register-helpers-farm.js';
 
 Template.RelatedCats.onRendered(function () {
     
-    this.autorun(function (c) {
-        if ( Template.currentData() && Template.currentData().cat ) {
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:10,
-                nav:true,
-                stagePadding: 50,
-                navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    }
-                }
-            });
 
-            c.stop();
-        }
-    });
+        
+           
+ 
+            
 
 
 });
@@ -32,6 +17,20 @@ Template.RelatedCats.events({
     },
     'click .next': function () {
         $("#owl").trigger('owl.next');
+    },
+    'click .go-to-cat': function(e) {
+        e.preventDefault();
+        var obj = $(e.currentTarget);
+
+        var farm = Farms.findOne(obj.attr('data-farmid'));
+        var farmUrl = farm.farm_url;
+
+        var spliter = obj.attr('data-catslug').split('/');
+        var catSlug = spliter[1];
+        var breedSlug = spliter[0];
+
+        $('body').scrollTop(0);
+        Router.go('FarmCatDetail', { farm_url: farmUrl, breed_slug: breedSlug, cat_slug: catSlug });
     }
 });
 
@@ -40,32 +39,20 @@ Template.RelatedCats.helpers({
         var breedId = this.breed._id;
         var farmId = this.farm._id;
         var catId = this.cat._id;
+        if ( this.cat ) {
 
-        var cats = Cats.find({ 
-                        cat_breed: breedId,
-                        farm_id: farmId,
-                        _id: {
-                            $not: catId
-                        }
-                     });
-
-        
-        return cats;
-    },
-    relatedCatImage: function ( image ) {
-            var image = farmCats.findOne( image );
-
-            if ( image ) {
-
-                return image.url({ store: 'farmcatthumbs'});
-
-            } else {
-
-                return "/images/noimage.png";
-
-            }
-
-    
+            var cats =  Cats.find({ 
+                            cat_breed: breedId,
+                            farm_id: farmId,
+                            _id: {
+                                $not: catId
+                            }
+                         }).fetch();
+            var cats = cats.slice(0, 6);
+            var cats = _.shuffle(cats);
+            
+            return cats;
+        }
     },
     linkToCat: function(){
 
@@ -74,12 +61,31 @@ Template.RelatedCats.helpers({
         var link = "/@" + farmUrl + "/cat/" + this.cat_slug;
         return link;
     },
-    notOverSix: ( index ) => {
-        index = parseInt(index);
 
-        return index > 5 ? false: true;
-    },
-    price: ( price ) => {
-        return price === undefined ? 0 : formatMoney(price);
-    },
+    initializeCarousel: function() {
+        $('.owl-carousel').trigger('destroy.owl.carousel');
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            navText: ['<img src="/images/carousel-prev.png" alt="">','<img src="/images/carousel-next.png" alt="">'],
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                }
+            }
+        });
+        $('.owl-stage > .owl-item').each(function() {
+            if ( $.trim($(this).children().html()) === '' ) {
+                $(this).remove();
+            }
+        });
+    }
+});
+
+Template.RelatedCats.onDestroyed(function() {
+
 });

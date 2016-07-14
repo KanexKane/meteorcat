@@ -1,14 +1,20 @@
+import '/imports/client/register-helpers-common.js';
+
+Template.header.onCreated(function() {
+    if (Meteor.userId()) {
+        // ลองหาดูก่อนว่ามีการ subscribe Farms อยู่หรือเปล่า
+        // ถ้าไม่มีจะทำการ subscribe
+        var farmCount = Farms.find().count();
+        if ( farmCount == 0 ) { 
+            var self = this;
+            self.autorun(function() {
+                self.subscribe('farmInfoByUserId', Meteor.userId());
+            });
+        }
+    }
+});
+
 Template.header.helpers({
-    activeRouteClass: function(/* route names */) {
-        var args = Array.prototype.slice.call(arguments, 0);
-        args.pop();
-
-        var active = _.any(args, function(name) {
-          return Router.current() && Router.current().route.getName() === name
-        });
-
-        return active && 'active';
-    },
     noFarm: function () {
         if ( Roles.userIsInRole(Meteor.userId(), 'farm', 'user-group') ) {
             return false;

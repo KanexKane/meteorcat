@@ -1,43 +1,31 @@
+import '/imports/client/register-helpers-common.js';
+import '/imports/client/register-helpers-farm.js';
+
 Template.FarmCatDetail.onCreated(function(){
     Session.set('commentSubmitErrors', {});
 });
 
 Template.FarmCatDetail.onRendered(function(){
-    var cat = Template.currentData().cat;
-    Meteor.call('updateViewCat', cat._id, function (error, result) {});
+    if ( Template.currentData() ) {
 
-    $( document ).ready( function() {
+        var cat = Template.currentData().cat;
+        Meteor.call('updateViewCat', cat._id, function (error, result) {});
+
+        
         // delegate calls to data-toggle="lightbox"
         $('*[data-toggle="lightbox"]').click( function(event) {
             event.preventDefault();
             $(this).ekkoLightbox();
         });
-    } );
+    }
+
 });
 
 Template.FarmCatDetail.helpers({
-    dayOfBirth: ( date ) => {
-        return moment( date ).format('DD/MM/YYYY');
-    },
-    price: ( price ) => {
-        return price === undefined ? 0 : formatMoney(price);
-    },
     catName: ( index ) => {
         var index = parseInt(index) + 2;
         var cat = Cats.find({}).fetch()[0];
         return cat.cat_name + ' ' + index;
-    },
-    catThumbImage: ( imageId ) => {
-        return farmCats.findOne( imageId ).url( { store: 'farmcatthumbs' } );
-    },
-    catMainImage: ( imageId ) => {
-        return farmCats.findOne( imageId ).url();
-    },
-    errorMessage: function(field){
-        return Session.get('commentSubmitErrors')[field];
-    },
-    errorClass: function(field){
-        return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
     },
     UserProfileImage: function( id ) {
         if ( id != 'not register user' ) {

@@ -15,3 +15,9 @@ Router.configure({
     defaultBreadcrumbLastLink: true,
     loadingTemplate: 'loading',
 });
+
+if (Meteor.isClient) {
+    Accounts.onLogout(function() {
+        Router.go('home');
+    });
+}

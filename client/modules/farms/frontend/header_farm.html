@@ -1,52 +1,5 @@
 <template name="FarmHeader">
-    <header>
-        <nav class="navbar navbar-cat">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand navbar-link" href="{{pathFor 'home'}}">
-                        <img src="/images/logo60.png" alt="">
-                    </a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="{{activeRouteClass 'home'}}">
-                            <a href="{{pathFor 'home'}}">Home</a>
-                        </li>
-                        <li class="{{activeRouteClass 'Blogs'}}">
-                            <a href="{{pathFor 'Blogs'}}">Blogs</a>
-                        </li>
-                        <!-- <li class="{{activeRouteClass 'AboutUs'}}">
-                            {{#linkTo route="AboutUs"}}
-                                เกี่ยวกับเรา
-                            {{/linkTo}}
-                        </li> -->
-                        {{#if currentUser}}
-                            {{> loginButtons}}
-                            {{#if noFarm}}
-                                <li>
-                                    {{#linkTo route="RegisterFarm"}}
-                                        สมัครเปิดฟาร์มฟรี
-                                    {{/linkTo}}
-                                </li>
-                            {{/if}}
-                        {{else}}
-                            <li>
-                                {{#linkTo route="MemberLogin"}}
-                                    เข้าสู่ระบบ/สมัครสมาชิกเปิดฟาร์มฟรี
-                                {{/linkTo}}
-                            </li>
-                        {{/if}}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    {{> header}}
     <div class="row">
         <div class="farm-cover col-xs-12" style="">
             <!-- Farm Cover -->

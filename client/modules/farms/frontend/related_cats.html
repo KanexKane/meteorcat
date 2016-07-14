@@ -5,26 +5,28 @@
             <div class="row content related-cat">
                 
                 <div class="owl-carousel owl-theme">
+
                     {{#each relatedCats}}
-                        {{#if notOverSix @index}}
-                        <div class="item">
-                            <figure class="item-thumbnail">
-                                <a href="{{linkToCat}}">
-                                    <img src="{{relatedCatImage cat_featured_image}}">
-                                </a>
-                            </figure>
-                            <div class="item-title">
-                                <a href="{{linkToCat}}">
-                                    {{#if cat_price_sale }}
-                                        {{price cat_price_sale}} บาท
-                                    {{else}}
-                                        {{price cat_price}} บาท
-                                    {{/if}}
-                                </a>
+
+                            <div class="item">
+                                <figure class="item-thumbnail">
+                                    <a class="go-to-cat" data-link="{{linkToCat}}" data-farmid="{{farm_id}}" data-catslug="{{cat_slug}}">
+                                        <img src="{{catThumbImage cat_featured_image}}">
+                                    </a>
+                                </figure>
+                                <div class="item-title">
+                                    <a class="go-to-cat" data-link="{{linkToCat}}" data-farmid="{{farm_id}}" data-catslug="{{cat_slug}}">
+                                        {{#if cat_price_sale }}
+                                            {{price cat_price_sale}} บาท
+                                        {{else}}
+                                            {{price cat_price}} บาท
+                                        {{/if}}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        {{/if}}
+
                     {{/each}}
+                    {{initializeCarousel}}
                 </div>
             </div>
         </div>

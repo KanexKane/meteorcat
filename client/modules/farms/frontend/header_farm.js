@@ -1,3 +1,5 @@
+import '/imports/client/register-helpers-common.js';
+
 Template.FarmHeader.onRendered( function () {
     
     if ( !!Session.get('visitor_already_date') ) {
@@ -71,15 +73,5 @@ Template.FarmHeader.helpers({
         } else {
             return '/images/no-farm-cover.png' ;
         }
-    },
-    activeRouteClass: function(/* route names */) {
-        var args = Array.prototype.slice.call(arguments, 0);
-        args.pop();
-
-        var active = _.any(args, function(name) {
-            return Router.current() && Router.current().route.getName() === name
-        });
-
-        return active && 'active';
     }
 });

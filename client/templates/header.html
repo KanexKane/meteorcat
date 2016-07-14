@@ -21,9 +21,9 @@
                         <li class="{{activeRouteClass 'Blogs'}}">
                             <a href="{{pathFor 'Blogs'}}">Blogs</a>
                         </li>
-                        <li class="{{activeRouteClass 'Farms'}}">
+                       <!--  <li class="{{activeRouteClass 'Farms'}}">
                             <a href="{{pathFor 'Farms'}}">ฟาร์มทั้งหมด</a>
-                        </li>
+                        </li> -->
                         <!-- <li class="{{activeRouteClass 'AboutUs'}}">
                             {{#linkTo route="AboutUs"}}
                                 เกี่ยวกับเรา
@@ -50,21 +50,14 @@
             </div>
         </nav>
     </header>
+</template>
+<template name="HeaderCover">
     <div class="row">
         <div class="col-sm-12">
             <img src="/images/cover_catland.png" class="img-responsive" alt="Catland Cover" style="width:100%">
-            <!-- <img src="/images/logo100.png" alt="">
-            <p class="cover-title">
-                Cat Land Online
-            </p>
-            <p class="cover-slogan">
-                ดินแดนแห่งแมว สวรรค์ของทาสแมว
-            </p> -->
         </div>
     </div>
-
 </template>
-
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
     <a href="{{pathFor 'AdminHome'}}">
         <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Admin Dashboard</button>

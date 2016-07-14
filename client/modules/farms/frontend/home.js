@@ -1,3 +1,5 @@
+import '/imports/client/register-helpers-farm.js';
+
 Template.FarmHome.helpers({
     rowCats: function () {
         var rows = [];
@@ -30,27 +32,5 @@ Template.FarmHome.helpers({
         } );
 
         return rows;
-    },
-    dayOfBirth: ( date ) => {
-        return moment( date ).format('DD/MM/YYYY');
-    },
-    price: ( price ) => {
-        return price === undefined ? 0 : price;
-    },
-    catFeaturedImage( imageId ) {
-        if ( !!imageId ) {
-            var image = farmCats.findOne( imageId );
-            return image.url();
-        } else {
-            return 'images/no-cat-image.jpg';
-        }
-    },
-    catFeaturedImageCover( imageId ) {
-        if ( !!imageId ) {
-            var image = farmCats.findOne( imageId );
-            return image.url();
-        } else {
-            return 'images/no-cat-image-cover.jpg';
-        }
     }
 });
