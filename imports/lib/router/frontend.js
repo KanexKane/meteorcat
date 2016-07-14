@@ -279,7 +279,8 @@ Router.route('/accessdenied', {
 Router.route('/users/register/', {
     name: 'RegisterUser',
     title: 'สมัครสมาชิก',
-    controller: FrontEndController
+    controller: FrontEndController,
+    layoutTemplate: ''
 });
 Router.route('/farms/register/', {
     name: 'RegisterFarm',

@@ -1,21 +1,38 @@
 <template name="RegisterUser">
-    <header class="page-header">
-        <h1>สมัครสมาชิก</h1>
-        {{> Breadcrumb}}
-    </header>
-    <form id="register-form" action="action">
-        <div class="form-group">
-            <label for="account-username">Username</label>
-            <input type="username" id="account-username" class="form-control" placeholder="Username" />
+    <div class="frontend">
+        {{> header}}
+        {{> HeaderCover}}
+        <div class="content">
+            <div class="row">    
+                <form id="register-form-xs" class="register-form" action="action">
+                    <div class="col-xs-4 col-sm-4 col-lg-3">
+                        <img src="/images/cat-register.png" alt="" class="register-cat">
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-lg-offset-1 col-lg-5">
+                        <div class="register-header">สมัครสมาชิก</div>
+                        <div class="form-group">
+                            <label for="account-username">Username</label>
+                            <input type="username" id="account-username" class="form-control" placeholder="Username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="account-password">Password</label>
+                            <input type="password" id="account-password" class="form-control" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="account-email">Email address</label>
+                            <input type="email" class="form-control" id="account-email" placeholder="Email">
+                        </div>
+                        <button type="submit" class="btn hidden-xs" id="create-account">สมัครสมาชิก</button>
+                    </div>
+                    <div class="col-xs-12 visible-xs text-center">
+                        <button type="submit" class="btn" id="create-account">สมัครสมาชิก</button>
+                    </div>
+                </form>
+                   
+            </div>
+            {{> FooterBanner}}
         </div>
-        <div class="form-group">
-            <label for="account-password">Password</label>
-            <input type="password" id="account-password" class="form-control" placeholder="Password" />
-        </div>
-        <div class="form-group">
-            <label for="account-email">Email address</label>
-            <input type="email" class="form-control" id="account-email" placeholder="Email">
-        </div>
-        <button type="submit" class="btn btn-default" id="create-account">สมัครสมาชิก</button>
-    </form>
+        {{> footer}}
+    </div>
+
 </template>

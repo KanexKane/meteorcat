@@ -1,7 +1,5 @@
 Cat:
-  ✘ เก็บ Unique pageview ip ให้ แมว @cancelled (16-06-22 10:54)
 Blog:
-  ✘ เก็บ Unique pageview ip ให้ บทความ  @cancelled (16-06-22 10:54)
 Home:
   ☐ หน้าแสดงไฟล์ที่อัพโหลดขึ้นไปแล้ว ของเรา
     ☐ Add
@@ -9,14 +7,17 @@ Home:
 Footer:
   ☐ ติด Facebook Page Widgets
 Member:
-  ☐ สมาชิก แก้ไขข้อมูลส่วนตัว
+  ✔ ส่วนสมัครสมาชิกที่ออกแบบใหม่ทั้ง xs-sm, md-lg @done (16-07-14 23:05)
 Farm:
- ☐ Mobile Theme หน้าแรกฟาร์ม
-
-
+ ☐ แสดงฟาร์มทั้งหมด
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ สมาชิก แก้ไขข้อมูลส่วนตัว @done (16-07-14 22:11) @project(Member)
+ ✔ เพิ่มขนาด font size = 90px ตรงชื่อสายพันธุ์แมวที่หน้าแรกของฟาร์ม แต่เคนใช้ 6em แทนจะได้ประมาณ 84px @done (16-07-14 22:11) @project(Farm)
+ ✔ Mobile Theme หน้าแรกฟาร์ม @done (16-07-14 22:11) @project(Farm)
+ ✘ เก็บ Unique pageview ip ให้ แมว @cancelled (16-06-22 10:54) @project(Cat)
+ ✘ เก็บ Unique pageview ip ให้ บทความ  @cancelled (16-06-22 10:54) @project(Blog)
  ✔ เพิ่มเก็บเพจวิวให้ แมว @done (16-06-22 09:31)
  ✔ เพิ่มเก็บเพจวิวให้ บทความ @done (16-06-21 17:50)
  ✔ Delete @done (16-06-21 17:24)

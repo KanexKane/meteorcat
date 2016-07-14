@@ -35,6 +35,19 @@ Template.RelatedPosts.events({
     },
     'click .next': function () {
         $("#owl").trigger('owl.next');
+    },
+    'click .go-to-post': function(e) {
+        e.preventDefault();
+        var obj = $(e.currentTarget);
+
+        var category = BlogCategories.findOne(obj.attr('data-post-category'));
+        var categorySlug = category.category_slug;
+
+        $('html, body').animate({
+               scrollTop: $(".page-header").offset().top
+        }, 100);
+        
+        Router.go('BlogDetail', { category_slug: categorySlug, post_slug: obj.attr('data-post-slug') });
     }
 });
 

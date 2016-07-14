@@ -400,6 +400,34 @@ body
             text-decoration none
         &:hover
             text-shadow 0px 0 100px $pinkColor
-                    
+    .register-cat
+        @media (max-width $maxWidthXS)
+            width 140px
+            margin-left -20px
+            margin-top 
+        @media (min-width $minWidthSM)
+            max-width 100%
+    .register-header
+        color #FC6666
+        font-size 4em
+        text-align right
+        margin 3% 3% 0 0
+        font-family 'Prompt', sans-serif
+        @media (max-width $maxWidthXS)
+            font-size 2em
+            margin 5% 5% 3% 0
+    .register-form
+        font-family 'Prompt', sans-serif
+        label
+            color #0096FF
+            font-size 16px
+        button
+            background-color #5E5E5E
+            color #73FCD6
+            width 90%
+            margin 0 auto
+            font-size 20px
+            @media(min-width $minWidthSM)
+                width 100%          
 .text-blue-light
     color #00EEFE

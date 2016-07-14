@@ -29,7 +29,11 @@ Template.RelatedCats.events({
         var catSlug = spliter[1];
         var breedSlug = spliter[0];
 
-        $('body').scrollTop(0);
+        $('html, body').animate({
+               scrollTop: $(".cat-detail-gallery").offset().top
+        }, 100);
+
+        
         Router.go('FarmCatDetail', { farm_url: farmUrl, breed_slug: breedSlug, cat_slug: catSlug });
     }
 });
