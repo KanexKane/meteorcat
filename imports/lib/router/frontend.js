@@ -13,6 +13,7 @@ FrontEndController = RouteController.extend({
         
     }
 });
+
 BlogController = FrontEndController.extend({
     perPage: function () {
         return this.route.options.perpage;
@@ -201,6 +202,59 @@ BlogDetailController = RouteController.extend({
 
     }
 });
+AllFarmController = FrontEndController.extend({
+    increment: 21,
+    subscriptions: function() {
+        this.farmsSub = Meteor.subscribe('allFarms', this.params.query.search);
+    },
+    dataLimit: function () {
+        return parseInt(this.params.dataLimit) || this.increment;
+    },
+    findOptions: function () {
+        return { sort: { created_at: 1 }, limit: this.dataLimit() };
+    },
+    farmData: function () {
+        var searchKeyword = this.params.query.search;
+        var farms;
+        if ( searchKeyword ) {
+            farms = Farms.find( { farm_name: { $regex: new RegExp(searchKeyword.toLowerCase(), "i") } }, this.findOptions() );
+        } else {
+            farms = Farms.find({}, this.findOptions());
+        }
+        return farms;
+    },
+    waitOn: function() {
+        return [
+            Meteor.subscribe('allImageFarmCats'),
+            Meteor.subscribe('allImageFarmLogos'),
+            Meteor.subscribe('allImageFarmCovers')
+        ];
+    },
+    data: function () {
+        var farms = this.farmData();
+        var searchKeyword = this.params.query.search;
+        if (farms) {
+            var hasMore = farms.count() === this.dataLimit();
+            var nextFarm;
+            if ( searchKeyword ) {
+                nextFarm = this.route.path({
+                    dataLimit: this.dataLimit() + this.increment 
+                }, { query: 'search=' + searchKeyword });
+            } else {
+                nextFarm = this.route.path({
+                    dataLimit: this.dataLimit() + this.increment 
+                });
+            }
+
+            return {
+                farms: farms,
+                ready: this.farmsSub.ready,
+                nextFarm: hasMore ? nextFarm : null
+            };
+            
+        }
+    }
+});
 FarmController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
     waitOn: function () {
@@ -298,22 +352,11 @@ Router.route('/farms/register/', {
     }
 });
 
-Router.route('/farms', {
+Router.route('/farms/:dataLimit?', {
     name: 'Farms',
     title: 'ฟาร์มทั้งหมด',
-    parent: 'home',
-    controller: FrontEndController,
-    waitOn: function () {
-        return [
-            Meteor.subscribe('allFarms'),
-            Meteor.subscribe('allImageFarmCats')
-        ];
-    },
-    data: function () {
-        return {
-            farms: Farms.find()
-        }
-    }
+    perpage: 20,
+    controller: AllFarmController
 });
 Router.route('/aboutus', {
     name: 'AboutUs',

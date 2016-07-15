@@ -1,6 +1,17 @@
 // ฟาร์มทั้งหมด
-Meteor.publish('allFarms', function(){
-    return Farms.find({ });
+Meteor.publish('allFarms', function( searchKeyword ){
+    if( searchKeyword )
+    {
+        return Farms.find( { 
+            farm_name: {
+                $regex: new RegExp(searchKeyword.toLowerCase(), "i")
+            }
+        } );
+    }
+    else 
+    {
+        return Farms.find({  });
+    }  
 });
 // รายละเอียดฟาร์ม หาโดยใช้ userId
 Meteor.publish('farmInfoByUserId', function(userId){

@@ -1,6 +1,27 @@
 <template name="Farms">
-    {{#each farm in farms}}
-        {{farm.farm_name}}
-        
+    {{> HomePageHeader header_name="ฟาร์มทั้งหมด"}}
+    <!-- {{> AllFarmBanner}} -->
+    {{#each rowFarm}}
+        <div class="row">
+            {{#each this}}
+                <div class="col-xs-12 col-md-4 text-center all-farms-list">
+                    {{#linkTo route='FarmHome' farm_url=farm_url}}
+                        <img src="{{farmLogo farm_logo}}" alt="Logo {{farm_name}}" /><br />{{farm_name}}
+                    {{/linkTo}}
+                    <hr class="visible-xs visible-sm" />
+                </div>
+            {{/each}}
+        </div>
     {{/each}}
+    {{#if nextFarm}}
+        <div class="next-farm">
+            <a href="{{nextFarm}}" class="load-more">
+                ...ดูฟาร์มเพิ่มเติม...
+            </a>
+        </div>
+
+        {{#unless ready}}
+            {{> spinner}}
+        {{/unless}}
+    {{/if}}
 </template>

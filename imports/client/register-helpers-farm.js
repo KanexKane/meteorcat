@@ -1,6 +1,17 @@
 // Template.registerHelper('', function() {
 // });
-
+Template.registerHelper('farmLogo', function( imageId, isThumbnail = false ) {
+    var logo = farmLogos.findOne( imageId );
+    if ( !!logo ) {
+        if ( isThumbnail ) {
+            return logo.url({ store: 'farmlogothumbs' });
+        } else {
+            return logo.url();
+        }
+    } else {
+        return '/images/farm-cat-nologo.png'; 
+    }
+});
 Template.registerHelper('dayOfBirth', function( date ) {
     return moment( date ).format('DD/MM/YYYY');
 });

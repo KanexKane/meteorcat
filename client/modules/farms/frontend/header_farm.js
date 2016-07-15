@@ -1,4 +1,5 @@
 import '/imports/client/register-helpers-common.js';
+import '/imports/client/register-helpers-farm';
 
 Template.FarmHeader.onRendered( function () {
     
@@ -59,12 +60,6 @@ Template.FarmHeader.onRendered( function () {
 });
 
 Template.FarmHeader.helpers({
-    farmLogo: ( imageId ) => {
-        var logo = farmLogos.findOne( imageId );
-        if ( !!logo )        
-            return logo.url();
-        
-    },
     farmCover: ( imageId ) => {
         var cover = farmCovers.findOne( imageId );
 

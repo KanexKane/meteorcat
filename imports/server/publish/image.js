@@ -70,6 +70,12 @@ Meteor.publish('allAssetImage', function () {
 Meteor.publish('allImageFarmCats', function () {
     return farmCats.find();
 });
+Meteor.publish('allImageFarmLogos', function() {
+    return farmLogos.find({});
+});
+Meteor.publish('allImageFarmCovers', function() {
+    return farmCovers.find({});
+});
 
 Meteor.publish('userimages', () => {
     var userImages = UserImages.find();
