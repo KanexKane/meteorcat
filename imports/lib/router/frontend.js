@@ -211,7 +211,7 @@ AllFarmController = FrontEndController.extend({
         return parseInt(this.params.dataLimit) || this.increment;
     },
     findOptions: function () {
-        return { sort: { created_at: 1 }, limit: this.dataLimit() };
+        return { sort: { created_at: -1 }, limit: this.dataLimit() };
     },
     farmData: function () {
         var searchKeyword = this.params.query.search;

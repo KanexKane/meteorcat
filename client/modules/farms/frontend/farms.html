@@ -1,6 +1,23 @@
 <template name="Farms">
     {{> HomePageHeader header_name="ฟาร์มทั้งหมด"}}
     <!-- {{> AllFarmBanner}} -->
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="inputSearch">Search</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" 
+                        id="inputSearch" name="inputSearch" placeholder="คำค้นหา"
+                        value="{{searchKeyword}}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">ค้นหา</button>
+            </form> 
+        </div>
+    </div>
+    <br />
     {{#each rowFarm}}
         <div class="row">
             {{#each this}}
