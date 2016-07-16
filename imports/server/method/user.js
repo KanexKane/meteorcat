@@ -12,7 +12,6 @@ Meteor.methods({
 
         Meteor.users.update(newUser, { $set: { emails: { address: data.email } } });
 
-
         return newUser;        
     },
     updateUserProfile: ( userId, profile, email ) => {

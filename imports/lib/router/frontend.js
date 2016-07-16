@@ -1,3 +1,6 @@
+//=====================================================================
+// Controller
+//=====================================================================
 FrontEndController = RouteController.extend({
     layoutTemplate: 'Layout',
     onAfterAction: function () {
@@ -202,6 +205,7 @@ BlogDetailController = RouteController.extend({
 
     }
 });
+
 AllFarmController = FrontEndController.extend({
     increment: 21,
     subscriptions: function() {
@@ -294,152 +298,6 @@ FarmController = RouteController.extend({
         }
     }
 });
-
-
-Router.route('/', {
-    name: 'home',
-    title: 'Home',
-    onBeforeAction: function () {
-        Router.go('/blogs');
-    },
-    waitOn: function() {
-        return [
-            Meteor.subscribe('recommendedCats'),
-            Meteor.subscribe('allFarms'),
-            Meteor.subscribe('allImageFarmCats'),
-            Meteor.subscribe('farmInfoByUserId', Meteor.userId())
-        ];
-    },
-    onAfterAction: function () {
-        if (typeof this.data !== 'function' || !this.data().post) {
-            if (!Meteor.isClient) {
-                return;
-            }
-            var title = this.route.options.title ? this.route.options.title : "Home";
-
-            SEO.set({
-                title: title + ' | ' + SEO.config().title,
-            });
-        }
-    }    
-});
-
-Router.route('/accessdenied', {
-    name: 'AccessDenied',
-    title: 'Access Denied',
-    controller: FrontEndController
-});
-
-Router.route('/users/register/', {
-    name: 'RegisterUser',
-    title: 'สมัครสมาชิก',
-    controller: FrontEndController,
-    layoutTemplate: ''
-});
-Router.route('/farms/register/', {
-    name: 'RegisterFarm',
-    title: 'สมัครเปิดฟาร์ม',
-    onBeforeAction: function() {
-        if ( !Meteor.userId() ) {
-            Router.go('home');
-        }
-
-        this.next();
-    },
-    controller: FrontEndController,
-    waitOn: function() {
-        return Meteor.subscribe('allFarms');
-    }
-});
-
-Router.route('/farms/:dataLimit?', {
-    name: 'Farms',
-    title: 'ฟาร์มทั้งหมด',
-    perpage: 20,
-    controller: AllFarmController
-});
-Router.route('/aboutus', {
-    name: 'AboutUs',
-    controller: FrontEndController,
-    waitOn: function () {
-    return [    
-            Meteor.subscribe('blogimages'),
-            Meteor.subscribe('farmcatimages'),
-            Meteor.subscribe('FileManagerGroups')
-        ];
-    }
-});
-
-Router.route('/blogs', {
-    name: 'Blogs',
-    title: 'Blogs',
-    controller: BlogController,
-    perpage: 12,
-
-});
-Router.route('/blogs/:category_slug', {
-    name: 'BlogCategoryList',
-    template: 'Blogs',
-    parent: 'Blogs',
-    controller: BlogCategoryController,
-    perpage: 12,
-    title: function () {
-        let category = BlogCategories.findOne({category_slug: this.params.category_slug});
-        if ( category ) {
-
-            return category.category_name;
-        }
-    }
-});
-Router.route('/blogs/:category_slug/:post_slug/:commentsLimit?', {
-    name: 'BlogDetail',
-    parent: 'BlogCategoryList',
-    controller: BlogDetailController
-});
-
-Router.route('/@:farm_url', {
-    name: "FarmHome",
-    controller: FarmController,
-});
-Router.route('/@:farm_url/cat/:breed_slug/', {
-    name: 'FarmCatBreed',
-    parent: 'FarmHome',
-    layoutTemplate: 'LayoutFarm',
-    waitOn: function () {
-        return [
-            Meteor.subscribe('farmInfoByUrl', this.params.farm_url),
-            Meteor.subscribe('allCatsInFarmByUrl', this.params.farm_url),
-            Meteor.subscribe('allCatBreedsInFarmByUrl', this.params.farm_url),
-            Meteor.subscribe('imageFarmCatsByFarmUrl', this.params.farm_url),
-            Meteor.subscribe('imageFarmImagesByFarmUrl', this.params.farm_url),
-            Meteor.subscribe('imageFarmCoversByFarmUrl', this.params.farm_url),
-            Meteor.subscribe('imageFarmLogosByFarmUrl', this.params.farm_url)
-        ];
-    },
-    data: function () {
-        return {
-            farm: Farms.findOne({farm_url: this.params.farm_url})
-        };
-    },
-    onAfterAction: function () {
-        if (!Meteor.isClient) {
-            return;
-        }
-
-        let farm = Farms.findOne({ farm_url: this.params.farm_url });
-        let breed = CatBreeds.findOne({ breed_slug: this.params.breed_slug });
-        if (breed) {
-            var title = 'Cats in ' + breed.breed_name + ' | ' + farm.farm_name;
-
-            SEO.set({
-                title: title
-            });
-        }
-        
-
-    }
-});
-
 FarmCatDetailController = RouteController.extend({
     layoutTemplate: 'LayoutFarm',
     increment: 20,
@@ -523,6 +381,155 @@ FarmCatDetailController = RouteController.extend({
 
     }
 });
+
+//=====================================================================
+// Router
+//=====================================================================
+
+Router.route('/', {
+    name: 'home',
+    title: 'Home',
+    onBeforeAction: function () {
+        //Router.go('/blogs');
+        this.next();
+    },
+    waitOn: function() {
+        return [
+            Meteor.subscribe('recommendedCats'),
+            Meteor.subscribe('allFarms'),
+            Meteor.subscribe('allImageFarmCats'),
+            Meteor.subscribe('farmInfoByUserId', Meteor.userId())
+        ];
+    },
+    onAfterAction: function () {
+        if (typeof this.data !== 'function' || !this.data().post) {
+            if (!Meteor.isClient) {
+                return;
+            }
+            var title = this.route.options.title ? this.route.options.title : "Home";
+
+            SEO.set({
+                title: title + ' | ' + SEO.config().title,
+            });
+        }
+    }    
+});
+
+Router.route('/accessdenied', {
+    name: 'AccessDenied',
+    title: 'Access Denied',
+    controller: FrontEndController
+});
+
+Router.route('/users/register/', {
+    name: 'RegisterUser',
+    title: 'สมัครสมาชิก',
+    controller: FrontEndController,
+    layoutTemplate: ''
+});
+Router.route('/farms/register/', {
+    name: 'RegisterFarm',
+    title: 'สมัครเปิดฟาร์ม',
+    onBeforeAction: function() {
+        if ( !Meteor.userId() ) {
+            Router.go('home');
+        }
+
+        this.next();
+    },
+    controller: FrontEndController,
+    waitOn: function() {
+        return Meteor.subscribe('allFarms');
+    }
+});
+
+Router.route('/farms/:dataLimit?', {
+    name: 'Farms',
+    title: 'ฟาร์มทั้งหมด',
+    perpage: 20,
+    controller: AllFarmController
+});
+Router.route('/aboutus', {
+    name: 'AboutUs',
+    controller: FrontEndController,
+    waitOn: function () {
+    return [    
+            Meteor.subscribe('blogimages'),
+            Meteor.subscribe('farmcatimages'),
+            Meteor.subscribe('FileManagerGroups')
+        ];
+    }
+});
+
+Router.route('/blogs', {
+    name: 'Blogs',
+    title: 'Blogs',
+    controller: BlogController,
+    perpage: 12,
+});
+Router.route('/blogs/:category_slug', {
+    name: 'BlogCategoryList',
+    template: 'Blogs',
+    parent: 'Blogs',
+    controller: BlogCategoryController,
+    perpage: 12,
+    title: function () {
+        let category = BlogCategories.findOne({category_slug: this.params.category_slug});
+        if ( category ) {
+
+            return category.category_name;
+        }
+    }
+});
+Router.route('/blogs/:category_slug/:post_slug/:commentsLimit?', {
+    name: 'BlogDetail',
+    parent: 'BlogCategoryList',
+    controller: BlogDetailController
+});
+
+Router.route('/@:farm_url', {
+    name: "FarmHome",
+    controller: FarmController,
+});
+Router.route('/@:farm_url/cat/:breed_slug/', {
+    name: 'FarmCatBreed',
+    parent: 'FarmHome',
+    layoutTemplate: 'LayoutFarm',
+    waitOn: function () {
+        return [
+            Meteor.subscribe('farmInfoByUrl', this.params.farm_url),
+            Meteor.subscribe('allCatsInFarmByUrl', this.params.farm_url),
+            Meteor.subscribe('allCatBreedsInFarmByUrl', this.params.farm_url),
+            Meteor.subscribe('imageFarmCatsByFarmUrl', this.params.farm_url),
+            Meteor.subscribe('imageFarmImagesByFarmUrl', this.params.farm_url),
+            Meteor.subscribe('imageFarmCoversByFarmUrl', this.params.farm_url),
+            Meteor.subscribe('imageFarmLogosByFarmUrl', this.params.farm_url)
+        ];
+    },
+    data: function () {
+        return {
+            farm: Farms.findOne({farm_url: this.params.farm_url})
+        };
+    },
+    onAfterAction: function () {
+        if (!Meteor.isClient) {
+            return;
+        }
+
+        let farm = Farms.findOne({ farm_url: this.params.farm_url });
+        let breed = CatBreeds.findOne({ breed_slug: this.params.breed_slug });
+        if (breed) {
+            var title = 'Cats in ' + breed.breed_name + ' | ' + farm.farm_name;
+
+            SEO.set({
+                title: title
+            });
+        }
+        
+
+    }
+});
+
 Router.route('/@:farm_url/cat/:breed_slug/:cat_slug/:commentsLimit?', {
     name: "FarmCatDetail",
     parent: 'FarmCatBreed',

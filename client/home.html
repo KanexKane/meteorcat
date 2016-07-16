@@ -1,19 +1,19 @@
 <template name="home">
     <div class="frontend">
         {{> header}}
-        
+        {{> HeaderCover }}
         <div class="content">
     
             <div class="popular-cats">
-                <div class="row">
-                    <div class="container">
-                        <h2>แมวยอดนิยม</h2>
+                <div class="container">
+                    <h2>แมวยอดนิยม</h2>
+                    <div class="row">
                         <div class="owl-carousel owl-theme">
                             {{#each popularCats}}
                                 <div class="item">
                                     <figure class="item-thumbnail">
                                         <a href="{{linkToCat farm_id cat_slug}}">
-                                            <img src="{{popularCatImage cat_featured_image}}">
+                                            <img src="{{catThumbImage cat_featured_image}}">
                                         </a>
                                     </figure>
                                     <div class="item-title">
@@ -28,6 +28,22 @@
                 </div>
             </div>
             
+            <div class="latest-farm">
+                <div class="container">
+                    <h2>ฟาร์มเปิดใหม่</h2>
+                    {{#each rowLatestFarms}}
+                        <div class="row">
+                            {{#each this}}
+                                <div class="col-xs-6 col-sm-3 col-md-3 text-center latest-farm-list">
+                                    {{#linkTo route='FarmHome' farm_url=farm_url}}
+                                        <img src="{{farmLogo farm_logo}}" alt="Logo {{farm_name}}" /><br />{{farm_name}}
+                                    {{/linkTo}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
         {{> FooterBanner}}
        

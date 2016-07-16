@@ -271,68 +271,6 @@ body
                 left 0
             .owl-next 
                 right 0
-        .popular-cats
-            background-color #327191
-            width 100%
-            padding 0 0 3% 0
-            h2
-                color white
-                text-align right
-                margin-right 7%
-            .item
-                .item-thumbnail
-                    position relative
-                    background-color white
-                    overflow hidden
-                    height 200px
-                    @media(max-width $maxWidthXS)
-                        height 185px
-                    @media(min-width $minWidthMD) and (max-width $maxWidthMD)
-                        height 195px
-                    a
-                        color white
-                        text-decoration none
-                        &:hover
-                            color #575757
-                .item-title
-                    text-align center
-                    font-size 2em
-                    padding 10px 10px
-                    color black
-                    position absolute
-                    margin-top -18%
-                    z-index 1
-                    background-color rgba(white, 0.7)
-                    @media(max-width $maxWidthXS)
-                        font-size 1.5em
-                    a
-                        color black
-                        text-decoration underline
-            .row
-                margin 0
-            .owl-carousel 
-                position relative
-                width 90%
-                margin 0 0 0 3.5%
-                @media (min-width $minWidthSM) and (max-width $maxWidthSM)
-                    margin 0 0 0 4%
-                @media (min-width $minWidthMD) and (max-width $maxWidthMD)
-                    margin 0 0 0 5%
-                @media (min-width $minWidthLG)
-                    margin 0 0 0 5%
-            .owl-prev,
-            .owl-next 
-                position absolute
-                top 50%
-                margin-top -10px
-            .owl-prev 
-                left -7%
-                @media (min-width $minWidthLG)
-                    left -5%
-            .owl-next 
-                right -7%
-                @media (min-width $minWidthLG)
-                    right -5%
         .comment-form
             margin 2% 0
             background-color white
@@ -429,6 +367,102 @@ body
                 font-size 20px
                 @media(min-width $minWidthSM)
                     width 100%          
+        .popular-cats
+            background-color #327191
+            width 100%
+            padding 0 0 3% 0
+            h2
+                color white
+                text-align right
+            .item
+                .item-thumbnail
+                    position relative
+                    background-color white
+                    overflow hidden
+                    height 200px
+                    @media(max-width $maxWidthXS)
+                        height 185px
+                    @media(min-width $minWidthMD) and (max-width $maxWidthMD)
+                        height 195px
+                    a
+                        color white
+                        text-decoration none
+                        &:hover
+                            color #575757
+                .item-title
+                    text-align center
+                    font-size 2em
+                    padding 10px 10px
+                    color black
+                    position absolute
+                    margin-top -18%
+                    z-index 1
+                    background-color rgba(white, 0.7)
+                    @media(max-width $maxWidthXS)
+                        font-size 1.5em
+                    a
+                        color black
+                        text-decoration underline
+            .row
+                margin 0
+            .owl-carousel 
+                position relative
+                width 90%
+                margin 0 0 0 3.5%
+                @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                    margin 0 0 0 4%
+                @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                    margin 0 0 0 5%
+                @media (min-width $minWidthLG)
+                    margin 0 0 0 5%
+            .owl-prev,
+            .owl-next 
+                position absolute
+                top 50%
+                margin-top -10px
+            .owl-prev 
+                left -7%
+                @media (min-width $minWidthLG)
+                    left -5%
+            .owl-next 
+                right -7%
+                @media (min-width $minWidthLG)
+                    right -5%
+        .latest-farm
+            background-color #B9F2E1
+            h2
+                text-align right
+            .latest-farm-list
+                img
+                    max-width 100%
+                    @media (max-width $maxWidthXS)
+                        max-height 120px
+                    @media (min-width $minWidthSM) and (max-width $maxWidthSM)
+                        max-height 150px
+                    @media (min-width $minWidthMD) and (max-width $maxWidthMD)
+                        max-height 130px
+                    @media (min-width $minWidthLG)
+                        max-height 150px
+                a
+                    color #19A0FF
+                    font-size 1.2em
+                    @media (min-width $minWidthMD)
+                        color #76298E
+                        font-size 1.4em
+                    @media (min-width $minWidthLG)
+                        color #76298E
+                        font-size 1.6em
+                @media (max-width $maxWidthSM)
+                    margin-bottom 2%
+                @media (min-width $minWidthMD)
+                    padding 0.5% 0
+                    border 3px solid #FADDE6
+                    width 24.5%
+                    background-color #73FCD6
+                    &:nth-child(4n-2)
+                        margin-left 0.5%
+                    &:nth-child(4n-1)
+                        margin 0 0.5% 1% 0.5%
         .all-farms-list
             img
                 max-width 100%

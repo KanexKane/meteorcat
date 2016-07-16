@@ -1,3 +1,5 @@
+import '/imports/client/register-helpers-farm';
+
 Template.home.onRendered(function() {
     $('.owl-carousel').owlCarousel({
         loop:true,
@@ -25,15 +27,6 @@ Template.home.helpers({
     popularCats: function() {
         return Cats.find().fetch();
     },
-    popularCatImage: function( imageId ) {
-        if ( !imageId ) {
-            return 'images/no-cat-image.jpg';
-        }
-        var image = farmCats.findOne( imageId );
-        if( image ) {
-            return image.url({store: 'farmcatthumbs'});
-        }
-    },
     farmName: function( farmId ) {
         return Farms.findOne( farmId ).farm_name;
     },
@@ -45,5 +38,14 @@ Template.home.helpers({
             return '/@' + farmUrl + '/cat/' + catSlug;
         }
         
+    },
+    rowLatestFarms: function() {
+        var farms = Farms.find({}, { sort: { created_at: -1 }, limit: 8 }).fetch();
+        var chunkSize = 4;
+        var row = [];
+        for(var i = 0; i < farms.length; i += chunkSize) {
+            row.push(farms.slice(i, i + chunkSize));
+        }
+        return row;
     }
 });

@@ -4,23 +4,26 @@
         {{> HeaderCover}}
         <div class="content">
             <div class="row">    
-                <form id="register-form-xs" class="register-form" action="action">
+                <form id="register-form-xs" class="register-form">
                     <div class="col-xs-4 col-sm-4 col-lg-3">
                         <img src="/images/cat-register.png" alt="" class="register-cat">
                     </div>
                     <div class="col-xs-7 col-sm-7 col-lg-offset-1 col-lg-5">
                         <div class="register-header">สมัครสมาชิก</div>
-                        <div class="form-group">
+                        <div class="form-group {{errorClassSession 'userRegisterErrors' 'username'}}">
                             <label for="account-username">Username</label>
                             <input type="username" id="account-username" class="form-control" placeholder="Username" />
+                            <span class="help-block">{{errorMessageSession 'userRegisterErrors' 'username'}}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group {{errorClassSession 'userRegisterErrors' 'password'}}">
                             <label for="account-password">Password</label>
                             <input type="password" id="account-password" class="form-control" placeholder="Password" />
+                            <span class="help-block">{{errorMessageSession 'userRegisterErrors' 'password'}}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group {{errorClassSession 'userRegisterErrors' 'email'}}">
                             <label for="account-email">Email address</label>
                             <input type="email" class="form-control" id="account-email" placeholder="Email">
+                            <span class="help-block">{{errorMessageSession 'userRegisterErrors' 'email'}}</span>
                         </div>
                         <button type="submit" class="btn hidden-xs" id="create-account">สมัครสมาชิก</button>
                     </div>
