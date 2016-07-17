@@ -2,8 +2,8 @@ Template.MemberFarmCats.helpers({
     activeClass: function() {
         var breedId = this._id;
         var routerParamId = Router.current().params.id;
-        
-        if( breedId === routerParamId )
+         
+        if( (!routerParamId && breedId == 'all') || breedId === routerParamId )
         {
             return 'list-group-item active';
         }
@@ -93,11 +93,11 @@ Template.MemberFarmCats.events({
     'click .delete-cat': function(e){
         var currentId = $(e.currentTarget).attr("data-id");
         if(confirm('แน่ใจนะ?')){
+            $(e.currentTarget).parent().parent().css('background-color', 'yellow').fadeOut('slow');
             Meteor.call('catDelete', currentId, function(error, result){
                 if(error){
                     return throwError(error.reason);
                 }
-                $(e.currentTarget).parent().parent().fadeOut();
             });
         }
     }

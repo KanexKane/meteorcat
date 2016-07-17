@@ -1,3 +1,10 @@
 <template name="MemberFarmCatEdit">
-  {{> quickForm collection="Cats" doc=this id="updateCatForm" type="update"}}
+    <div class="row">
+        <div class="card">
+            <div class="header"><h1>แก้ไขแมว</h1></div>
+            <div class="content">
+                {{> quickForm collection="Cats" doc=this id="updateCatForm" type="update"}}
+            </div>
+        </div>
+    </div>
 </template>

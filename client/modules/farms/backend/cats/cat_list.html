@@ -3,7 +3,7 @@
         <div class="card">
             <div class="header">
                 <div class="pull-left">
-                    <h2>แมว</h2>
+                    <h1>แมว</h1>
                 </div>
                 <div class="pull-right">
                     <br/>
@@ -19,46 +19,58 @@
                     </div>
                 </div>
                 <br/><br/><br/><br/>
-                <aside class="col-sm-4">
-                    <ul class="list-group">
-                        {{#each catbreeds}}
-                            {{#linkTo route='MemberFarmCats' id=_id class=activeClass}}
-                                {{breed_name}}
-                            {{/linkTo}}
-                        {{/each}}
-                    </ul>
-                </aside>
-                <div class="col-sm-8 content">
-                    <!-- {{> tabular table=TabularTables.MemberFarmCats class="table table-striped table-bordered table-condensed"}} -->
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ชื่อแมว</th>
-                                    <th>สายพันธุ์</th>
-                                    <th>จัดการ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each cats}}
-                                    <tr>
-                                        <td>{{cat_name}}</td>
-                                        <td>{{cat_breed}}</td>
-                                        <td>
-                                            {{#linkTo route='MemberFarmCatEdit' id=_id class='edit-cat btn btn-success' }}
-                                                <i class="fa fa-edit"></i>
-                                            {{/linkTo}}
+                {{#if cats}}
+                    <aside class="col-sm-4">
+                        <div class="cat-list-group panel panel-default">
+  
+                            <div class="panel-heading">เลือกแสดงตามสายพันธุ์</div>
 
-                                            <a href="#" data-id="{{_id}}" class="delete-cat btn btn-danger"><i class="fa fa-remove"></i></a>
-                                        </td>
-                                    </tr>
+                            <ul class="list-group">
+                                <a class="{{activeClass}}" id="all" href="{{pathFor 'MemberFarmCats'}}">
+                                    ทั้งหมด
+                                </a>
+                                {{#each catbreeds}}
+                                    {{#linkTo route='MemberFarmCats' id=_id class=activeClass}}
+                                        {{breed_name}}
+                                    {{/linkTo}}
                                 {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
+                            </ul>
+                        </div>
+                    </aside>
+                    <div class="col-sm-8 content">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ชื่อแมว</th>
+                                        <th>สายพันธุ์</th>
+                                        <th>จัดการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each cats}}
+                                        <tr>
+                                            <td>{{cat_name}}</td>
+                                            <td>{{cat_breed}}</td>
+                                            <td>
+                                                {{#linkTo route='MemberFarmCatEdit' id=_id class='edit-cat btn btn-success' }}
+                                                    <i class="fa fa-edit"></i>
+                                                {{/linkTo}}
 
-                    {{paging}}
-                </div>
+                                                <a href="#" data-id="{{_id}}" class="delete-cat btn btn-danger"><i class="fa fa-remove"></i></a>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        {{paging}}
+                    </div>
+                {{else}}
+                    <div class="col-xs-12 text-center">
+                        <h2>ไม่พบแมว! <a href="{{pathFor 'MemberFarmCatCreate'}}">เพิ่มแมวของคุณ</a></h2>
+                    </div>
+                {{/if}}
             </div>
         </div>
     </div>

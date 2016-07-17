@@ -46,7 +46,7 @@ Meteor.publish('allCatsInFarmByUserId', function(userId, breedId, searchKeyword)
                 farm_id: farms._id, 
                 cat_breed: breedId,
                 cat_name: {
-                    $regex: searchKeyword
+                    $regex: new RegExp(searchKeyword.toLowerCase(), "i")
                 }
             } );
         }
@@ -62,7 +62,7 @@ Meteor.publish('allCatsInFarmByUserId', function(userId, breedId, searchKeyword)
             return Cats.find( { 
                 farm_id: farms._id, 
                 cat_name: {
-                    $regex: searchKeyword
+                    $regex: new RegExp(searchKeyword.toLowerCase(), "i")
                 }
             } );
         }
