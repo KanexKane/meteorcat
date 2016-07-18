@@ -23,12 +23,24 @@ Template.registerHelper('catFeaturedImage', function( imageId, galleryImage ) {
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
         if (image) {
-            return image.url();
+            if ( image.url() ) {
+                return image.url();
+            } else if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image.jpg';
+            }
         }
     } else if ( !!galleryImage) {
         var image = farmCats.findOne( galleryImage[0].image );
         if (image) {
-            return image.url();
+            if ( image.url() ) {
+                return image.url();
+            } else if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image.jpg';
+            }
         }
     } else {
         return 'images/no-cat-image.jpg';
@@ -39,12 +51,24 @@ Template.registerHelper('catFeaturedImageCover', function( imageId, galleryImage
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
         if (image) {
-            return image.url();
+            if ( image.url() ) {
+                return image.url();
+            } else if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image-cover.jpg';
+            }
         }
     } else if ( !!galleryImage) {
         var image = farmCats.findOne( galleryImage[0].image );
         if (image) {
-            return image.url();
+            if ( image.url() ) {
+                return image.url();
+            } else if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image-cover.jpg';
+            }
         }
     }
     else {
@@ -56,12 +80,20 @@ Template.registerHelper('catThumbImage', function( imageId, galleryImage ) {
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
         if (image) {
-            return image.url( { store: 'farmcatthumbs' } );
+            if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image.jpg';
+            }
         }
     } else if ( !!galleryImage) {
         var image = farmCats.findOne( galleryImage[0].image );
         if (image) {
-            return image.url( { store: 'farmcatthumbs' } );
+            if ( image.url( { store: 'farmcatthumbs' } ) ) {
+                return image.url( { store: 'farmcatthumbs' } );
+            } else {
+                return 'images/no-cat-image.jpg';
+            }
         }
     } else {
         return 'images/no-cat-image.jpg';
