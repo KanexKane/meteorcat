@@ -26,18 +26,25 @@ Template.registerHelper('catFeaturedImage', function( imageId ) {
         return 'images/no-cat-image.jpg';
     }
 });
-Template.registerHelper('catFeaturedImageCover', function( imageId ) {
+Template.registerHelper('catFeaturedImageCover', function( imageId, galleryImage ) {
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
         return image.url();
-    } else {
+    } else if ( !!galleryImage) {
+        var image = farmCats.findOne( galleryImage[0].image );
+        return image.url();
+    }
+    else {
         return 'images/no-cat-image-cover.jpg';
     }
 });
-Template.registerHelper('catThumbImage', function( imageId ) {
+Template.registerHelper('catThumbImage', function( imageId, galleryImage ) {
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
         return image.url( { store: 'farmcatthumbs' } );
+    } else if ( !!galleryImage) {
+        var image = farmCats.findOne( galleryImage[0].image );
+        return image.url({ store: 'farmcatthumbs' });
     } else {
         return 'images/no-cat-image.jpg';
     }
