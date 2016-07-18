@@ -433,6 +433,7 @@ body
             h2
                 text-align right
             .latest-farm-list
+                
                 img
                     max-width 100%
                     @media (max-width $maxWidthXS)
@@ -452,6 +453,9 @@ body
                     @media (min-width $minWidthLG)
                         color #76298E
                         font-size 1.6em
+                @media (max-width $maxWidthXS)
+                    height 170px
+                    overflow hidden
                 @media (min-width $minWidthSM) and (max-width $maxWidthSM)
                     margin-bottom 2%
                 @media (min-width $minWidthMD)
