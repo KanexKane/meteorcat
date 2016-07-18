@@ -18,9 +18,12 @@ Template.registerHelper('dayOfBirth', function( date ) {
 Template.registerHelper('price', function( price ) {
     return price === undefined ? 0 : formatMoney(price);
 });
-Template.registerHelper('catFeaturedImage', function( imageId ) {
+Template.registerHelper('catFeaturedImage', function( imageId, galleryImage ) {
     if ( !!imageId ) {
         var image = farmCats.findOne( imageId );
+        return image.url();
+    } else if ( !!galleryImage) {
+        var image = farmCats.findOne( galleryImage[0].image );
         return image.url();
     } else {
         return 'images/no-cat-image.jpg';
