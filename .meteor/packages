@@ -43,7 +43,6 @@ aldeed:autoform
 mpowaga:autoform-summernote
 cfs:graphicsmagick
 yogiben:autoform-modals
-yogiben:pretty-email
 yogiben:autoform-file
 yogiben:autoform-map
 rikonor:autoform-image-gallery
@@ -54,9 +53,9 @@ aldeed:autoform-bs-datepicker
 tsega:bootstrap3-lightbox
 okgrow:analytics
 dbernhard:cfs-file-manager
-markoshust:owl-carousel-2
 ian:accounts-ui-bootstrap-3
 accounts-password
 cfs:ui
 u2622:persistent-session
 gwendall:auth-client-callbacks
+udondan:slick

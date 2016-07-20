@@ -175,7 +175,7 @@ BlogDetailController = RouteController.extend({
         var posts = BlogPosts.findOne({ post_slug: this.params.post_slug});
         var categories = BlogCategories.find({});
 
-        if ( posts && categories && comments ) {      
+        if ( posts && categories && comments ) {    
             return {
                 post: BlogPosts.findOne({ post_slug: this.params.post_slug}),
                 categories: BlogCategories.find({}),

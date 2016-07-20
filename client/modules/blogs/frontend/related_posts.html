@@ -2,10 +2,8 @@
     <div class="related-posts">
         <h2>บทความที่เกี่ยวข้อง</h2>
         <div class="row content related-post">
-        
             <div class="owl-carousel owl-theme">
                 {{#each relatedPosts}}
-
                     <div class="item">
                         <figure class="item-thumbnail">
                             <a class="go-to-post" data-post-category="{{post_category}}" data-post-slug="{{post_slug}}">
@@ -18,10 +16,11 @@
                             </a>
                         </div>
                     </div>
-                    
+                    {{#if lastIndexSix @index}}
+                        {{initializeCarousel}}
+                    {{/if}}
                 {{/each}}
-            </div>
-            
+            </div> 
         </div>
     </div>
 </template>

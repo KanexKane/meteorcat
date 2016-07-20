@@ -1,16 +1,5 @@
 import '/imports/client/register-helpers-farm.js';
 
-Template.RelatedCats.onRendered(function () {
-    
-
-        
-           
- 
-            
-
-
-});
-
 Template.RelatedCats.events({
     'click .prev': function () {
         $("#owl").trigger('owl.prev');
@@ -67,6 +56,7 @@ Template.RelatedCats.helpers({
     },
 
     initializeCarousel: function() {
+        
         $('.owl-carousel').trigger('destroy.owl.carousel');
         $('.owl-carousel').owlCarousel({
             loop:true,
