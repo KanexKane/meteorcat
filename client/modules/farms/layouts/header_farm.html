@@ -3,7 +3,9 @@
     <div class="row">
         <div class="farm-cover col-xs-12" style="">
             <!-- Farm Cover -->
-            <img src="{{farmCover farm.farm_cover}}" class="img-responsive">
+
+            <img id="farmCoverImage" src="{{farmCover farm.farm_cover}}">
+            {{checkCoverSize}}
         </div>
     </div>
     <div class="row">

@@ -3,6 +3,7 @@ import '/imports/client/register-helpers-farm.js';
 
 Template.FarmCatDetail.onCreated(function(){
     Session.set('commentSubmitErrors', {});
+    Session.set('loadingGalleryImage', false);
 });
 
 Template.FarmCatDetail.onRendered(function(){
@@ -47,13 +48,25 @@ Template.FarmCatDetail.helpers({
     },
     numIndex: function( index ) {
         return parseInt(index) + 1;
+    },
+    haveParent: function( father, mother ) {
+        if (father || mother) {
+            return true;
+        }
+
+        return false;
     }
 });
 
 Template.FarmCatDetail.events({
     'click .img-cat-detail-gallery': (event) => {
         event.preventDefault();
+
         var objMainPic = $("#mainPic");
+        // ซ่อนรูป แสดงการ Loading
+        objMainPic.hide();
+        Session.set('loadingGalleryImage', true);
+
         var obj = $(event.currentTarget);
         var thisLinkImage = obj.attr('data-image');
 
@@ -61,6 +74,9 @@ Template.FarmCatDetail.events({
         $('html, body').animate({
             scrollTop: objMainPic.offset().top
         }, 200);
+        // ยกเลิกแสดงการ Loading, แสดงรูป
+        Session.set('loadingGalleryImage', false);
+        objMainPic.show();
     },
     'submit form': function(e, template){
         e.preventDefault();

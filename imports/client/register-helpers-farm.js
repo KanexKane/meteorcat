@@ -3,11 +3,9 @@
 Template.registerHelper('farmLogo', function( imageId, isThumbnail = false ) {
     var logo = farmLogos.findOne( imageId );
     if ( !!logo ) {
-        if ( isThumbnail ) {
-            return logo.url({ store: 'farmlogothumbs' });
-        } else {
-            return logo.url();
-        }
+
+        return logo.url();
+        
     } else {
         return '/images/farm-cat-nologo.png'; 
     }

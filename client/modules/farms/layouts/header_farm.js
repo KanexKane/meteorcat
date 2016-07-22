@@ -68,5 +68,26 @@ Template.FarmHeader.helpers({
         } else {
             return '/images/no-farm-cover.png' ;
         }
+    },
+    checkCoverSize: function() {
+        var obj = $('#farmCoverImage');
+        var objSrc = obj.attr('src')
+        if ( objSrc == '/images/no-farm-cover.png') {
+
+            $(this).attr('style', 'width:100%;');
+            
+        } else {
+
+            $("#farmCoverImage").load(function() {
+                var imageHeight = $(this).height();
+                var imageWidth = $(this).width();
+
+                if ( imageWidth > 500 ) {
+                    $(this).attr('style', 'width:100%;');
+                }
+            });
+        }
+
+
     }
 });

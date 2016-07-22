@@ -8,6 +8,9 @@
         
         <div class="col-xs-12 main-pic">
             <div class="container">
+                {{#if $.Session.get 'loadingGalleryImage'}}
+                    {{> loading}}
+                {{/if}}
                 <img id="mainPic" src="{{catFeaturedImage cat.cat_featured_image}}" alt="">
             </div>
         </div>
@@ -70,90 +73,12 @@
         </div>
     </div>
 
-    <div class="row visible-xs visible-sm">
-        <div class="cat-father">
-            <div class="container">
-                <div class="col-xs-12 cat-father-info">
-                    <a href="{{catFeaturedImage cat.cat_father}}"
-                        data-toggle="lightbox"
-                        data-type="image"
-                        data-title="คุณพ่อ"
-                        >
-                        <div class="cat-father-thumbnail" style="
-                        background-image: url( '{{catThumbImage cat.cat_father}}' );
-                        background-repeat: no-repeat;
-                        background-position: top center;
-                        background-size: cover;"></div>
-                        <div class="cat-father-desc">
-                            คุณพ่อ
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="cat-mother">
-            <div class="container">
-                <div class="col-xs-12 cat-mother-info">
-                    <a href="{{catFeaturedImage cat.cat_mother}}"
-                        data-toggle="lightbox"
-                        data-type="image"
-                        data-title="คุณแม่"
-                        >
-                        <div class="cat-mother-thumbnail" style="
-                        background-image: url( '{{catThumbImage cat.cat_mother}}' );
-                        background-repeat: no-repeat;
-                        background-position: top center;
-                        background-size: cover;"></div>
-                        <div class="cat-mother-desc">
-                            คุณแม่
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row visible-md visible-lg">
-        <div class="cat-father-mother">  
-            <div class="container">
-                <div class="col-md-6 cat-father-info">
-                    <a href="{{catFeaturedImage cat.cat_father}}"
-                        data-toggle="lightbox"
-                        data-type="image"
-                        data-title="คุณพ่อ"
-                        >
-                        <div class="cat-father-thumbnail" style="
-                        background-image: url( '{{catFeaturedImage cat.cat_father}}' );
-                        background-repeat: no-repeat;
-                        background-position: top center;
-                        background-size: cover;"></div>
-                        <div class="cat-father-desc">
-                            คุณพ่อ
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 cat-mother-info">
-                    <a href="{{catFeaturedImage cat.cat_mother}}"
-                        data-toggle="lightbox"
-                        data-type="image"
-                        data-title="คุณแม่"
-                        >
-                        <div class="cat-mother-thumbnail" style="
-                        background-image: url( '{{catFeaturedImage cat.cat_mother}}' );
-                        background-repeat: no-repeat;
-                        background-position: top center;
-                        background-size: cover;"></div>
-                        <div class="cat-mother-desc">
-                            คุณแม่
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{#if haveParent cat.cat_father cat.cat_mother}}
+        {{> CatDetailParent}}
+    {{/if}}
 
     {{> RelatedCats}}
+
     <div class="row">
         <div class="container">
             
